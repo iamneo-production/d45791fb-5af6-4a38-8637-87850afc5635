@@ -22,7 +22,6 @@
         </dependency>
     </dependencies>
     <build>
-        <additionalClasspathElement>${basedir}/Springapp/src/main/</additionalClasspathElement>
         <pluginManagement>
             <plugins>
                 <plugin>
