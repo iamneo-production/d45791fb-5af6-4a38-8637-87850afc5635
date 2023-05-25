@@ -1,0 +1,26 @@
+<section class="container">
+    <div class="slider">
+        <div *ngFor="let imageUrl of imageUrls; let i = index">
+            <img [src]="imageUrl" alt="Slide Image" [class.active]="i === activeIndex">
+        </div>
+        <div class="cover"></div>
+    </div>
+
+    <div class="search">
+        <div class="location">
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="Enter Zipcode or City Name">
+            <ul class="suggestions"></ul>
+        </div>
+        <div class="dates">
+            <label for="checkin">Check-in:</label>
+            <input type="date" id="checkin">
+            <label for="checkout">Check-out:</label>
+            <input type="date" id="checkout">
+        </div>
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Search...">
+            <button>Search</button>
+        </div>
+    </div>
+</section>
