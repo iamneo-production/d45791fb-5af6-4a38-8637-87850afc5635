@@ -22,7 +22,11 @@
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 			<id>1683029788204</id>
+=======
+			<id>1683020391318</id>
+>>>>>>> 33a1333 (coomiting some hidden files like .classpath .project, etc)
 			<name></name>
 			<type>30</type>
 			<matcher>
