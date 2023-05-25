@@ -1,4 +1,4 @@
-package com.emportal.event_management;
+package com.emsite.event_management;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
