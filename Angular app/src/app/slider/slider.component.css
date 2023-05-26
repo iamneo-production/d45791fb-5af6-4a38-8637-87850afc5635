@@ -1,0 +1,27 @@
+.slider {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cover {
+    position: relative;
+    background-color: #00000052;
+    height: 600px;
+}
+
+.slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    object-fit: cover;
+}
+
+.slider img.active {
+    opacity: 1;
+}
