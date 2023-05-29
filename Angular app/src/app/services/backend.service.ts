@@ -6,7 +6,11 @@ import { Organizer } from '../models/organizer';
 import { Invoice } from '../models/invoice';
 import { Admin } from '../models/admin';
 import { Event } from '../models/event';
+import { Injectable } from '@angular/core';
 
+// add mock data based on this interface
+// keep the id field same as the original index
+// Only for mocking backend
 interface Database {
   events: Event[];
   tickets: Ticket[];
@@ -16,6 +20,9 @@ interface Database {
   admins: Admin[];
 }
 
+@Injectable({
+  providedIn: 'root',
+})
 export class BackendService implements InMemoryDbService {
   createDb(
     reqInfo?: RequestInfo | undefined
@@ -23,6 +30,7 @@ export class BackendService implements InMemoryDbService {
     const data: Database = {
       events: [
         {
+          id: 1,
           EventID: 1,
           Capacity: 10000,
           Description:
@@ -39,6 +47,7 @@ export class BackendService implements InMemoryDbService {
           EndDate: new Date(2023, 8, 28, 20, 30).toISOString(),
         },
         {
+          id: 2,
           EventID: 2,
           Capacity: 15000,
           Description:
@@ -58,6 +67,7 @@ export class BackendService implements InMemoryDbService {
 
       users: [
         {
+          id: 1,
           ParticipantId: 1,
           Name: 'James Hetfield',
           Contact_No: '6000855325',
@@ -69,17 +79,19 @@ export class BackendService implements InMemoryDbService {
 
       tickets: [
         {
+          id: 1,
           ParticipantId: 1,
           EventId: 1,
           Availabity: 83,
           Price: 1200,
           TicketCount: 23,
-          TicketId: 1,
+          TicketID: 1,
           Type: 'sadhsdfh',
         },
       ],
       organizers: [
         {
+          id: 1,
           OrganizerId: 1,
           Name: 'George Fisher',
           Contact_No: '7000855325',
@@ -90,7 +102,8 @@ export class BackendService implements InMemoryDbService {
       ],
       admins: [
         {
-          AdminId: 1,
+          id: 1,
+          AdminID: 1,
           Email: 'raven123@gmail.com',
           Name: 'Ravendark1234',
           Password: '23653573',
@@ -98,6 +111,7 @@ export class BackendService implements InMemoryDbService {
       ],
       invoices: [
         {
+          id: 1,
           Date: new Date(28, 4, 2023, 16, 1).toISOString(),
           InvoiceId: 1,
           TicketId: 1,

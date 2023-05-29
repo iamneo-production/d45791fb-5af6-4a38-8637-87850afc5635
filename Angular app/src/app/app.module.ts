@@ -39,8 +39,10 @@ import { BackendService } from './services/backend.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    // for testing purposes
+    // a in memeory fake backend is used
     HttpClientInMemoryWebApiModule.forRoot(BackendService, {
-      host: 'localhost',
+      delay: 0,
     }),
   ],
   providers: [],

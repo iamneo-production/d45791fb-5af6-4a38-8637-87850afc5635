@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { appRESTService } from './appRESTService';
+import { Event } from '../models/event';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,10 @@ export class EventsService implements appRESTService {
 
   constructor(private http: HttpClient) {}
   getEvents() {
-    return this.http.get(this.API_URL);
+    return this.http.get<Event[]>(this.API_URL);
   }
 
   getEvent(id: number) {
-    return this.http.get(`${this.API_URL}/${id}`);
+    return this.http.get<Event>(`${this.API_URL}/${id}`);
   }
 }

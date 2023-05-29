@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TicketsService } from './tickets.service';
+import { OrganizerService } from './organizer.service';
 import { BackendService } from './backend.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-describe('TicketsService', () => {
-  let service: TicketsService;
+describe('OrganiserService', () => {
+  let service: OrganizerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,14 +18,14 @@ describe('TicketsService', () => {
       ],
       providers: [BackendService],
     });
-    service = TestBed.inject(TicketsService);
+    service = TestBed.inject(OrganizerService);
   });
 
-  it('should return a ticket based on id', async () => {
-    const ticketID = 1;
+  it('should return a ticket  based on id', async () => {
+    const organizerID = 1;
 
-    service.getTicket(ticketID).subscribe((data) => {
-      expect(data.TicketID).toBe(ticketID);
+    service.getOrganiser(organizerID).subscribe((data) => {
+      expect(data.OrganizerId).toBe(organizerID);
     });
   });
 });

@@ -1,5 +1,6 @@
 export interface Ticket {
-  TicketId: number;
+  id?: number;
+  TicketID: number;
   EventId: number;
   ParticipantId: number;
   Type: string;

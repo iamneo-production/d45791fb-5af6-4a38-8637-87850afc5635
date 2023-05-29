@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { appRESTService } from './appRESTService';
+import { Participant } from '../models/participant';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,10 @@ export class UserService implements appRESTService {
   constructor(private http: HttpClient) {}
 
   getTickets(id: number) {
-    this.http.get(`${this.API_URL}/${id}/tickets`);
+    return this.http.get(`${this.API_URL}/${id}/tickets`);
   }
 
-  getUserById(id: number) {
-    this.http.get(`${this.API_URL}/${id}`);
+  getUser(id: number) {
+    return this.http.get<Participant>(`${this.API_URL}/${id}`);
   }
 }
