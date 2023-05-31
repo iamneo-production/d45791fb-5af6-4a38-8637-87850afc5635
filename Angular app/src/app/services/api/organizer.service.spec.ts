@@ -28,4 +28,34 @@ describe('OrganiserService', () => {
       expect(data.OrganizerId).toBe(organizerID);
     });
   });
+
+  it('should return a user based on email and password', async () => {
+    const email = 'gf83@gmail.com';
+    const password = 'sdhsfjsd';
+
+    service
+      .getOrganizerByEmailAndPassword(email, password)
+      .subscribe((data) => {
+        expect(data).toBeTruthy();
+        expect(data.Email).toBe(email);
+      });
+  });
+
+  it('should add a new organizer', async () => {
+    const input = {
+      Email: 'jh93@gmail.com',
+      Password: 'sdhsfjsd',
+      Contact_No: '247374384',
+      Name: 'Robert Halford',
+    };
+
+    service.addOrganizer(input).subscribe(() => {
+      service
+        .getOrganizerByEmailAndPassword(input.Email, input.Password)
+        .subscribe((user) => {
+          console.log(user);
+          expect(user.Email).toBe(input.Email);
+        });
+    });
+  });
 });

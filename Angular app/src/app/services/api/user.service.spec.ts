@@ -28,4 +28,32 @@ describe('UserService', () => {
       expect(data.ParticipantId).toBe(userID);
     });
   });
+
+  it('should return a user based on email and password', async () => {
+    const email = 'jh83@gmail.com';
+    const password = 'sdhsfjsd';
+
+    service.getUserByEmailAndPassword(email, password).subscribe((data) => {
+      expect(data).toBeTruthy();
+      expect(data.Email).toBe(email);
+    });
+  });
+
+  it('should add a new user', async () => {
+    const input = {
+      Email: 'jh93@gmail.com',
+      Password: 'sdhsfjsd',
+      Contact_No: '247374384',
+      Name: 'Robert Halford',
+    };
+
+    service.addUser(input).subscribe(() => {
+      service
+        .getUserByEmailAndPassword(input.Email, input.Password)
+        .subscribe((user) => {
+          console.log(user);
+          expect(user.Email).toBe(input.Email);
+        });
+    });
+  });
 });

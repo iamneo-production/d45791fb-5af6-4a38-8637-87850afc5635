@@ -6,4 +6,5 @@ export interface Participant {
   Password: string;
   Contact_No: string;
   TicketId: number[];
+  Role: string;
 }

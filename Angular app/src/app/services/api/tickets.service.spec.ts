@@ -28,4 +28,32 @@ describe('TicketsService', () => {
       expect(data.TicketID).toBe(ticketID);
     });
   });
+
+  it('should get tickets by userId', async () => {
+    const userID = 1;
+
+    service.getTicketsByUser(userID).subscribe((data) => {
+      expect(data[0].ParticipantID).toBe(userID);
+    });
+  });
+
+  it('should add a ticket', async () => {
+    const input = {
+      ParticipantID: 1,
+      EventId: 1,
+      Availabilty: 83,
+      Price: 1200,
+      TicketCount: 23,
+      Type: 'sadhsdfh',
+    };
+
+    service.getTickets().subscribe((data) => {
+      const ini = data.length;
+      service.addTicket(input).subscribe(() => {
+        service.getTickets().subscribe((data) => {
+          expect(data[data.length - 1].TicketID).toBe(ini + 1);
+        });
+      });
+    });
+  });
 });
