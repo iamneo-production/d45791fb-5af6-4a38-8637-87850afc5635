@@ -2,9 +2,9 @@ export interface Ticket {
   id?: number;
   TicketID: number;
   EventId: number;
-  ParticipantId: number;
+  ParticipantID: number;
   Type: string;
   Price: number;
   TicketCount: number;
-  Availabity: number;
+  Availabilty: number;
 }

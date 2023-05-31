@@ -5,5 +5,6 @@ export interface Organizer {
   Email: string;
   Password: string;
   Contact_No: string;
-  EventId: number[];
+  EventID: number[];
+  Role: string;
 }

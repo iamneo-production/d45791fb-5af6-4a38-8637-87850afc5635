@@ -17,7 +17,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { BackendService } from './services/backend.service';
+import { BackendService } from './services/api/backend.service';
 
 @NgModule({
   declarations: [

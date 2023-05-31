@@ -12,6 +12,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
 import { TicketsComponent } from './user/tickets/tickets.component';
+import { userGuard } from './guards/user.guard';
+import { orgainzerGuard } from './guards/orgainzer.guard';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -48,6 +51,7 @@ const routes: Routes = [
     // :id is dynamic path variable
     path: 'user/:id',
     component: UserComponent,
+    canActivate: [userGuard],
     children: [
       {
         // This path shows a particukar ticket for a particlar user
@@ -67,6 +71,7 @@ const routes: Routes = [
     // :id is dynamic path variable
     path: 'organiser/:id',
     component: OrganiserComponent,
+    canActivate: [orgainzerGuard],
     children: [
       {
         // The path opens a page where the
@@ -92,6 +97,7 @@ const routes: Routes = [
     // The path opens portal for admin
     path: 'admin/:id',
     component: AdminComponent,
+    canActivate: [adminGuard],
     children: [
       {
         // Shows all the events listed
