@@ -1,0 +1,71 @@
+package com.example.springapp.controller;
+
+import com.example.springapp.model.Attendee;
+import com.example.springapp.service.AttendeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/attendee")
+public class AttendeeController {
+
+    private final AttendeeService attendeeService;
+
+    @Autowired
+    public AttendeeController(AttendeeService attendeeService) {
+        this.attendeeService = attendeeService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Attendee> createAttendee(@RequestBody Attendee attendee) {
+        Attendee createdAttendee = attendeeService.createAttendee(attendee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAttendee);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Attendee> getAttendeeById(@PathVariable("id") Long id) {
+        Attendee attendee = attendeeService.getAttendeeById(id);
+        if (attendee != null) {
+            return ResponseEntity.ok(attendee);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity<List<Attendee>> getAttendeeByEventId(@PathVariable("eventId") Long eventId) {
+        List<Attendee> attendees = attendeeService.getAttendeeByEventId(eventId);
+        return ResponseEntity.ok(attendees);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Attendee>> getAllAttendee() {
+        List<Attendee> attendees = attendeeService.getAllAttendee();
+        return ResponseEntity.ok(attendees);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Attendee> updateAttendee(@PathVariable("id") Long id, @RequestBody Attendee attendee) {
+        Attendee existingAttendee = attendeeService.getAttendeeById(id);
+        if (existingAttendee != null) {
+            attendee.setId(id);
+            Attendee updatedAttendee = attendeeService.updateAttendee(attendee);
+            return ResponseEntity.ok(updatedAttendee);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAttendee(@PathVariable("id") Long id) {
+        boolean isDeleted = attendeeService.deleteAttendee(id);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // Additional methods based on your requirements
+}
