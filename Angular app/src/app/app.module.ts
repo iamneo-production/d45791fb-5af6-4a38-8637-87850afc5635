@@ -24,6 +24,33 @@ import { MyeventComponent } from './user/myevent/myevent.component';
 import { UpcomingeventsComponent } from './user/upcomingevents/upcomingevents.component';
 import { PasteventsComponent } from './user/pastevents/pastevents.component';
 import { CancelledeventsComponent } from './user/cancelledevents/cancelledevents.component';
+import { AdminDashboardComponent } from './admin/admin_components/admin-dashboard/admin-dashboard.component';
+import { AdminNavComponent } from './admin/admin_components/admin-dashboard/admin-nav/admin-nav.component';
+import { MainPanelComponent } from './admin/admin_components/admin-dashboard/main-panel/main-panel.component';
+import { CardsComponent } from './admin/admin_components/admin-dashboard/main-panel/cards/cards.component';
+import { NumberOfTicketsCardComponent } from './admin/admin_components/admin-dashboard/main-panel/cards/number-of-tickets-card/number-of-tickets-card.component';
+import { TotalEventCardComponent } from './admin/admin_components/admin-dashboard/main-panel/cards/total-event-card/total-event-card.component';
+import { TotalUserCardComponent } from './admin/admin_components/admin-dashboard/main-panel/cards/total-user-card/total-user-card.component';
+import { RecentComponent } from './admin/admin_components/admin-dashboard/main-panel/recent/recent.component';
+import { RevenueChartComponent } from './admin/admin_components/admin-dashboard/main-panel/revenue-chart/revenue-chart.component';
+import { UserChartComponent } from './admin/admin_components/admin-dashboard/main-panel/user-chart/user-chart.component';
+import { AdminHeadNavComponent } from './admin/admin_components/admin-head-nav/admin-head-nav.component';
+import { EventListingComponent } from './admin/admin_components/event-listing/event-listing.component';
+import { AEventDetailComponent } from './admin/admin_components/event-listing/a-event-detail/a-event-detail.component';
+import { AEventsComponent } from './admin/admin_components/event-listing/a-events/a-events.component';
+import { FilterByDateComponent } from './admin/admin_components/event-listing/filter-by-date/filter-by-date.component';
+import { SearchEventComponent } from './admin/admin_components/event-listing/search-event/search-event.component';
+import { ReportComponent } from './admin/admin_components/report/report.component';
+import { TicketComponent } from './admin/admin_components/ticket/ticket.component';
+import { TicketListComponent } from './admin/admin_components/ticket/ticket-list/ticket-list.component';
+import { TicketNavComponent } from './admin/admin_components/ticket/ticket-nav/ticket-nav.component';
+import { TicketDateFilterComponent } from './admin/admin_components/ticket/ticket-nav/ticket-date-filter/ticket-date-filter.component';
+import { TicketSearchComponent } from './admin/admin_components/ticket/ticket-nav/ticket-search/ticket-search.component';
+import { UserListComponent } from './admin/admin_components/user-list/user-list.component';
+import { AUserComponent } from './admin/admin_components/user-list/a-user/a-user.component';
+import { UserDetailComponent } from './admin/admin_components/user-list/user-detail/user-detail.component';
+import { UserRoleFilterComponent } from './admin/admin_components/user-list/user-role-filter/user-role-filter.component';
+import { UserSearchComponent } from './admin/admin_components/user-list/user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +72,34 @@ import { CancelledeventsComponent } from './user/cancelledevents/cancelledevents
     MyeventComponent,
     UpcomingeventsComponent,
     PasteventsComponent,
-    CancelledeventsComponent
+    CancelledeventsComponent,
+    AdminDashboardComponent,
+    AdminNavComponent,
+    MainPanelComponent,
+    CardsComponent,
+    NumberOfTicketsCardComponent,
+    TotalEventCardComponent,
+    TotalUserCardComponent,
+    RecentComponent,
+    RevenueChartComponent,
+    UserChartComponent,
+    AdminHeadNavComponent,
+    EventListingComponent,
+    AEventDetailComponent,
+    AEventsComponent,
+    FilterByDateComponent,
+    SearchEventComponent,
+    ReportComponent,
+    TicketComponent,
+    TicketListComponent,
+    TicketNavComponent,
+    TicketDateFilterComponent,
+    TicketSearchComponent,
+    UserListComponent,
+    AUserComponent,
+    UserDetailComponent,
+    UserRoleFilterComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
