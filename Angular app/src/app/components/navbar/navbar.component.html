@@ -1,0 +1,140 @@
+<!-- HOME COMPONENT NAVBAR / ABOUT-US NAVBAR-->
+<nav [ngSwitch]="menuType">
+    <ul class="nav-list" [ngClass]="{ scrolled: isScrolled }" *ngSwitchCase="'default'">
+      <li class="nav-item nav-logo">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" routerLink="/about">About Us</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" routerLink="/events-list">Upcoming Event</a>
+      </li>
+      <li class="nav-item links" >
+        <a class="text" routerLink="/organiser-login" *ngIf="!isAuth; else signIn">Organiser</a>
+  
+        <ng-template #signIn>
+          <a class="text" routerLink="/organizer/:id">Organiser</a>
+        </ng-template>
+      </li>
+      <li class="nav-item links">
+        <a class="text" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="new-nav-btn" [ngClass]="{afterDrop : isShowDropdown}" (click)="toggleDropdown()" *ngIf="isAuth">
+          <span class="user-name">{{ OrgUserName }}</span>
+          <span class="arrow-icon">&#9662;</span>
+        </a>
+        <div class="drop-menu" [ngClass]="{ShowDropdown : isShowDropdown}" *ngIf="dropdownUrl === '/organiser'">
+          <a class="drop-item" routerLink="/organizer/:id">Profile</a>
+          <a class="drop-item" (click)="logout()">Logout</a>
+        </div>
+  
+        <div class="drop-menu" [ngClass]="{ShowDropdown : isShowDropdown}" *ngIf="dropdownUrl === '/user'">
+          <a class="drop-item" routerLink="/user/:id">Profile</a>
+          <a class="drop-item" (click)="logout()">Logout</a>
+        </div>
+      </li>
+  
+      <li class="nav-item" *ngIf="!isAuth">
+        <button class="nav-btn" routerLink="/user-login">Sign in</button>
+      </li>
+    </ul>
+  
+  
+    <!-- EVENT DETAILS NAVBAR / CATEGORIES / CREATE EVENT NAVBAR(Organiser) / MY EVENT NAVBAR(User) -->
+    <ul class="nav-list nav-color" *ngSwitchCase="'/categories'">
+      <li class="nav-item nav-logo">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" (click)="logout()" *ngIf="isAuth; else signIn">
+          Log out
+        </button>
+  
+        <ng-template #signIn>
+          <button class="nav-btn" routerLink="/user-login">Sign in</button>
+        </ng-template>
+      </li>
+    </ul>
+  
+    <!-- EVENT LIST NAVBAR -->
+    <ul class="nav-list nav-color" *ngSwitchCase="'/events-list'">
+      <li class="nav-item nav-logo">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" routerLink="/categories">Categories</a>
+      </li>
+      <li class="nav-item links">
+        <a class="text" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" (click)="logout()" *ngIf="isAuth; else signIn">
+          Log out
+        </button>
+  
+        <ng-template #signIn>
+          <button class="nav-btn" routerLink="/user-login">Sign in</button>
+        </ng-template>
+      </li>
+    </ul>
+  
+    <!-- USER LOGIN NAVBAR / ORGANISER LOGIN NAVBAR -->
+    <ul class="nav-list" *ngSwitchCase="'login'">
+      <li class="nav-item nav-logo">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+    </ul>
+  
+    <!-- USER REGISTRATION NAVBAR / ORGANISER REGISTRATION NAVBAR -->
+    <!-- <ul class="nav-list" *ngSwitchCase="'register'">
+      <li class="nav-item nav-logo">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+    </ul> -->
+  
+    <!-- ORGANISER INFO NAVBAR -->
+    <ul class="nav-list nav-color" *ngSwitchCase="'/organiser/'">
+      <li class="nav-item">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+      <li class="nav-item nav-logo">
+        <a class="text" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item nav-logo">
+        <a class="text" routerLink="/organizer/:id/createvent">Create Event</a>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" routerLink="/home">Log Out</button>
+      </li>
+    </ul>
+  
+    <!-- USER INFO NAVBAR -->
+    <ul class="nav-list nav-color" *ngSwitchCase="'/user/'">
+      <li class="nav-item">
+        <a class="logo-text" routerLink="/home">SwiftEvent</a>
+      </li>
+      <li class="nav-item nav-logo">
+        <a class="text" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item nav-logo">
+        <a class="text" routerLink="/user/:id/myevent">My Event</a>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" routerLink="/home">Log Out</button>
+      </li>
+    </ul>
+  </nav>
