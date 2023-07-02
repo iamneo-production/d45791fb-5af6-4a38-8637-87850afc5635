@@ -1,0 +1,13 @@
+<router-outlet name="nav"></router-outlet>
+<div class="row">    
+    <div class="col-md-2 nav">
+      <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
+      <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
+    </div>
+    <div class="col-md-9 main-panel">
+      <div *ngIf="default" id="default"></div>
+      <app-neweventform *ngIf="newE"></app-neweventform>
+      <app-eventdisplay *ngIf="manageE"></app-eventdisplay>
+    </div>
+  </div>
+  <app-footer></app-footer>
