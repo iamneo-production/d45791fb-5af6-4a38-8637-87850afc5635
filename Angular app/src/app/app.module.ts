@@ -28,6 +28,9 @@ import { EventsComponent } from './events/events.component';
 import { ListSearchComponent } from './list-search/list-search.component';
 import { EventsService } from './services/event-service/events.service';
 import { MatIconModule } from '@angular/material/icon';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { SpeakerDetailsComponent } from './event-details/speaker-details/speaker-details.component';
+import { SearchAlleventsComponent } from './search-allevents/search-allevents.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { MatIconModule } from '@angular/material/icon';
     PasteventsComponent,
     CancelledeventsComponent,
     EventsComponent,
-    ListSearchComponent
+    ListSearchComponent,
+    EventDetailsComponent,
+    SpeakerDetailsComponent,
+    SearchAlleventsComponent
   ],
   imports: [
     BrowserModule,

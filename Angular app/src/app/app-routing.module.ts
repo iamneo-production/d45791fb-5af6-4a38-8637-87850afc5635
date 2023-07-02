@@ -16,6 +16,7 @@ import { userGuard } from './guards/user.guard';
 import { MyeventComponent } from './user/myevent/myevent.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
 import { EventsComponent } from './events/events.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -149,6 +150,16 @@ const routes: Routes = [
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
   },
+
+  {
+    // This path shows the details for a particular event
+    path: 'event-details/:id',
+    component: EventDetailsComponent,
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+      { path: '', component: FooterComponent, outlet: 'footer' },
+    ],
+  }
 ];
 
 
