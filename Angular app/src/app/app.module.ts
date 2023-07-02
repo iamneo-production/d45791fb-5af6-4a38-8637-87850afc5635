@@ -24,6 +24,10 @@ import { MyeventComponent } from './user/myevent/myevent.component';
 import { UpcomingeventsComponent } from './user/upcomingevents/upcomingevents.component';
 import { PasteventsComponent } from './user/pastevents/pastevents.component';
 import { CancelledeventsComponent } from './user/cancelledevents/cancelledevents.component';
+import { EventsComponent } from './events/events.component';
+import { ListSearchComponent } from './list-search/list-search.component';
+import { EventsService } from './services/event-service/events.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -45,15 +49,18 @@ import { CancelledeventsComponent } from './user/cancelledevents/cancelledevents
     MyeventComponent,
     UpcomingeventsComponent,
     PasteventsComponent,
-    CancelledeventsComponent
+    CancelledeventsComponent,
+    EventsComponent,
+    ListSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
