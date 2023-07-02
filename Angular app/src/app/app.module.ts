@@ -59,6 +59,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { EventService } from './admin/admin_services/a-event.service';
+import { TicketService } from './admin/admin_services/a-ticket.service';
+import { UserService } from './admin/admin_services/a-user.service';
 
 @NgModule({
   declarations: [
@@ -122,7 +125,7 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatTableModule,
   ],
-  providers: [EventsService],
+  providers: [EventsService,EventService,TicketService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
