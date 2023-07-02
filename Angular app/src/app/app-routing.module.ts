@@ -16,6 +16,13 @@ import { userGuard } from './guards/user.guard';
 import { MyeventComponent } from './user/myevent/myevent.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
 import { EventsComponent } from './events/events.component';
+import { AdminDashboardComponent } from './admin/admin_components/admin-dashboard/admin-dashboard.component';
+import { AEventDetailComponent } from './admin/admin_components/event-listing/a-event-detail/a-event-detail.component';
+import { EventListingComponent } from './admin/admin_components/event-listing/event-listing.component';
+import { TicketComponent } from './admin/admin_components/ticket/ticket.component';
+import { UserDetailComponent } from './admin/admin_components/user-list/user-detail/user-detail.component';
+import { UserListComponent } from './admin/admin_components/user-list/user-list.component';
+import { ReportComponent } from './admin/admin_components/report/report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +45,10 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
+  },
+  {
+    path: 'admin/login',
+    component: LoginComponent,
   },
   {
     //Authentication path if user has already registered
@@ -148,6 +159,17 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
+  },
+  //admin
+  { path: 'admin/dashboard', component: AdminDashboardComponent },
+  { path: 'admin/manage-users', component: UserListComponent },
+  { path: 'admin/manage-events', component: EventListingComponent },
+  { path: 'admin/manage-events/:id', component: AEventDetailComponent },
+  { path: 'admin/manage-users/:id', component: UserDetailComponent },
+  { path: 'admin/manage-tickets', component: TicketComponent },
+  {
+    path: 'admin/report/:id',
+    component: ReportComponent,
   },
 ];
 
