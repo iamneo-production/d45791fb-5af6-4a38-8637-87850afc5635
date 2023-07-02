@@ -62,6 +62,9 @@ import { MatTableModule } from '@angular/material/table';
 import { EventService } from './admin/admin_services/a-event.service';
 import { TicketService } from './admin/admin_services/a-ticket.service';
 import { UserService } from './admin/admin_services/a-user.service';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { SpeakerDetailsComponent } from './event-details/speaker-details/speaker-details.component';
+import { SearchAlleventsComponent } from './search-allevents/search-allevents.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +115,10 @@ import { UserService } from './admin/admin_services/a-user.service';
     UserRoleFilterComponent,
     UserSearchComponent,
     EventsComponent,
-    ListSearchComponent
+    ListSearchComponent,
+    EventDetailsComponent,
+    SpeakerDetailsComponent,
+    SearchAlleventsComponent
   ],
   imports: [
     BrowserModule,

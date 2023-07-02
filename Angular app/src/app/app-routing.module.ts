@@ -23,6 +23,7 @@ import { TicketComponent } from './admin/admin_components/ticket/ticket.componen
 import { UserDetailComponent } from './admin/admin_components/user-list/user-detail/user-detail.component';
 import { UserListComponent } from './admin/admin_components/user-list/user-list.component';
 import { ReportComponent } from './admin/admin_components/report/report.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -171,6 +172,16 @@ const routes: Routes = [
     path: 'admin/report/:id',
     component: ReportComponent,
   },
+
+  {
+    // This path shows the details for a particular event
+    path: 'event-details/:id',
+    component: EventDetailsComponent,
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+      { path: '', component: FooterComponent, outlet: 'footer' },
+    ],
+  }
 ];
 
 
