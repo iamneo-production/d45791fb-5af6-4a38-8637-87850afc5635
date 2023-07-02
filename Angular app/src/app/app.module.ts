@@ -19,6 +19,11 @@ import { EditeventformComponent } from './organizer/editeventform/editeventform.
 import { EventdisplayComponent } from './organizer/eventdisplay/eventdisplay.component';
 import { NeweventformComponent } from './organizer/neweventform/neweventform.component';
 import { OrganizerprofilepageComponent } from './organizer/organizerprofilepage/organizerprofilepage.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
+import { MyeventComponent } from './user/myevent/myevent.component';
+import { UpcomingeventsComponent } from './user/upcomingevents/upcomingevents.component';
+import { PasteventsComponent } from './user/pastevents/pastevents.component';
+import { CancelledeventsComponent } from './user/cancelledevents/cancelledevents.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { OrganizerprofilepageComponent } from './organizer/organizerprofilepage/
     EditeventformComponent,
     EventdisplayComponent,
     NeweventformComponent,
-    OrganizerprofilepageComponent
+    OrganizerprofilepageComponent,
+    UserprofileComponent,
+    MyeventComponent,
+    UpcomingeventsComponent,
+    PasteventsComponent,
+    CancelledeventsComponent
   ],
   imports: [
     BrowserModule,
