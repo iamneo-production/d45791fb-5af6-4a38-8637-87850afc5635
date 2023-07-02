@@ -15,6 +15,7 @@ import { OrganizerprofilepageComponent } from './organizer/organizerprofilepage/
 import { userGuard } from './guards/user.guard';
 import { MyeventComponent } from './user/myevent/myevent.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
+import { EventsComponent } from './events/events.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -76,7 +77,7 @@ const routes: Routes = [
     // :id is dynamic path variable
     path: 'user/:id',
     component: UserprofileComponent,
-    canActivate: [userGuard],
+    // canActivate: [userGuard],
     children: [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       // {
@@ -96,7 +97,7 @@ const routes: Routes = [
   {
     path: 'user/:id/myevent',
     component: MyeventComponent,
-    canActivate: [userGuard],
+    // canActivate: [userGuard],
     children: [
       { path: '', component: NavbarComponent, outlet: 'nav' },
     ]
@@ -139,7 +140,17 @@ const routes: Routes = [
       
     ],
   },
+  {
+    // Events path
+    path: 'events-list', // for event listing
+    component: EventsComponent,
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+      { path: '', component: FooterComponent, outlet: 'footer' },
+    ],
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

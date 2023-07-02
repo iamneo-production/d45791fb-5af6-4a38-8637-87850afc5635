@@ -51,6 +51,10 @@ import { AUserComponent } from './admin/admin_components/user-list/a-user/a-user
 import { UserDetailComponent } from './admin/admin_components/user-list/user-detail/user-detail.component';
 import { UserRoleFilterComponent } from './admin/admin_components/user-list/user-role-filter/user-role-filter.component';
 import { UserSearchComponent } from './admin/admin_components/user-list/user-search/user-search.component';
+import { EventsComponent } from './events/events.component';
+import { ListSearchComponent } from './list-search/list-search.component';
+import { EventsService } from './services/event-service/events.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -100,14 +104,17 @@ import { UserSearchComponent } from './admin/admin_components/user-list/user-sea
     UserDetailComponent,
     UserRoleFilterComponent,
     UserSearchComponent
+    EventsComponent,
+    ListSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
