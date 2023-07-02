@@ -1,0 +1,105 @@
+<router-outlet name="nav"></router-outlet>
+<div class="back">
+    <h2 style="text-align: center;padding-top: 30px;">User Details</h2>
+    <div class="container">
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 boxHeight">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar" style="margin-bottom: 25px;">
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                                        alt="Maxwell Admin">
+                                </div>
+                                <!-- <h5 class="user-name">Name</h5>
+                  <h6 class="user-email">Email id</h6> -->
+                                <h1>User profile</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 boxHeight">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="height: 3rem;">
+                                <h4 class="mb-2 text-primary">Personal Details</h4>
+                                <br>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="FirstName">First Name</label>
+                                    <input type="text" class="form-control" id="fullName" [disabled]="!isEditMode"
+                                        placeholder="Enter full name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="LastName">Last Name</label>
+                                    <input type="text" class="form-control" id="fullName" [disabled]="!isEditMode"
+                                        placeholder="Enter full name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="eMail">Email</label>
+                                    <input type="email" class="form-control" id="eMail" [disabled]="!isEditMode"
+                                        placeholder="Enter email ID">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="eMail">Password</label>
+                                    <input type="password" class="form-control" id="password" [disabled]="!isEditMode"
+                                        placeholder="Your Password">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" [disabled]="!isEditMode"
+                                        placeholder="Enter phone number">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="website">Date of birth</label>
+                                    <input type="date" class="form-control" id="website" [disabled]="!isEditMode"
+                                        placeholder="Please Select">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Gender</label>
+                                    <select id="inputState" [disabled]="!isEditMode" class="form-control" style="height: 35px;">
+                                        <option selected>Choose...</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters" style="margin-bottom: 20px;">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h4 class="mt-3 mb-2 text-primary">Address</h4><br>
+                                <textarea name="" id="" cols="30" [disabled]="!isEditMode" rows="10"
+                                    class="address form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-md-2 offset-md-10">
+                                <div class="text-right">
+                                    <button type="button" id="submit" name="submit" class="button-18"
+                                        (click)="toEdit()">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
