@@ -1,0 +1,103 @@
+/*-------------------------------------------------------*/
+
+.appslider {
+    position: relative;
+    height: 47rem;
+    width: 100%;
+    overflow: hidden;
+    /* margin-bottom: 10rem; */
+    z-index: 998;
+}
+
+.cover {
+    position: relative;
+    background-color: #00000052;
+    height: 47rem;
+}
+
+.appslider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    object-fit: cover;
+}
+
+.appslider img.active {
+    opacity: 1;
+}
+
+.slider-heading {
+    color: white;
+    font-size: 4.7rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 15rem;
+    left: 13rem;
+    width: 40rem;
+    z-index: 5;
+    letter-spacing: 0.5px;
+    line-height: 5.7rem;
+    text-shadow: 3px 2px 5px #00000075;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider-heading.active {
+    opacity: 1;
+}
+
+.slider-description {
+    color: white;
+    font-size: 1.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    top: 28rem;
+    left: 13.2rem;
+    width: 35rem;
+    z-index: 5;
+    line-height: 35px;
+    /* word-spacing: 5px; */
+    letter-spacing: 0.5px;
+    text-shadow: 3px 2px 5px #00000075;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider-description.active {
+    opacity: 1;
+}
+
+.slider-button {
+    background: rgb(255, 100, 0);
+    position: absolute;
+    top: 34rem;
+    left: 13.2rem;
+    width: 115px;
+    height: 38px;
+    z-index: 5;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    color: black;
+}
+
+.slider-button.active {
+    opacity: 1;
+}
+
+/* .slider-button:hover {
+      color: white;
+  } */
+
+/* .search{
+      height: 50rem;
+  } */
