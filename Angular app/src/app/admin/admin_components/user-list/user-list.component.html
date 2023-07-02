@@ -1,0 +1,35 @@
+<app-admin-head-nav id="head"></app-admin-head-nav>
+<div>
+    <div class="admin-nav">
+        <app-admin-nav id="nav"></app-admin-nav>
+        <app-user-role-filter id="filter"></app-user-role-filter>
+    </div>
+    <app-user-search style="width: 70vw;" id="search"></app-user-search>
+    <div id="main">
+            <ul>
+                <div class="list-group-item" id="title" style="margin-bottom: 10px;">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <b>User ID</b>
+                        </div>
+                        <div class="col-md-2">
+                           <b> First Name</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>Last Name</b>
+                        </div>
+                        <div class="col-md-3">
+                        <b>   Email ID</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>User Role</b>
+                        </div>
+                        <div class="col-md-1">
+                        <b>   Details</b>
+                        </div>
+                    </div>
+                </div>
+                <app-a-user id="list" *ngFor="let user of users" [user]="user"></app-a-user>
+            </ul>
+    </div>
+</div>
