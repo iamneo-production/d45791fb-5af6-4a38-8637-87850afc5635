@@ -59,6 +59,9 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { SpeakerDetailsComponent } from './event-details/speaker-details/speaker-details.component';
+import { SearchAlleventsComponent } from './search-allevents/search-allevents.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +112,10 @@ import { MatTableModule } from '@angular/material/table';
     UserRoleFilterComponent,
     UserSearchComponent,
     EventsComponent,
-    ListSearchComponent
+    ListSearchComponent,
+    EventDetailsComponent,
+    SpeakerDetailsComponent,
+    SearchAlleventsComponent
   ],
   imports: [
     BrowserModule,
