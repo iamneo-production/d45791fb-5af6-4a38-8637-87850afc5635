@@ -24,6 +24,7 @@ import { UserDetailComponent } from './admin/admin_components/user-list/user-det
 import { UserListComponent } from './admin/admin_components/user-list/user-list.component';
 import { ReportComponent } from './admin/admin_components/report/report.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { PaymentpageComponent } from './paymentpage/paymentpage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -181,7 +182,11 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
-  }
+  },
+  {
+    path: 'payment',
+    component: PaymentpageComponent,
+  },
 ];
 
 
