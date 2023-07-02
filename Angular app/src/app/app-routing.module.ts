@@ -88,7 +88,7 @@ const routes: Routes = [
     // :id is dynamic path variable
     path: 'user/:id',
     component: UserprofileComponent,
-    // canActivate: [userGuard],
+    canActivate: [userGuard],
     children: [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       // {
@@ -108,7 +108,7 @@ const routes: Routes = [
   {
     path: 'user/:id/myevent',
     component: MyeventComponent,
-    // canActivate: [userGuard],
+    canActivate: [userGuard],
     children: [
       { path: '', component: NavbarComponent, outlet: 'nav' },
     ]
