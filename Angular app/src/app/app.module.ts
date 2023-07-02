@@ -103,7 +103,7 @@ import { MatIconModule } from '@angular/material/icon';
     AUserComponent,
     UserDetailComponent,
     UserRoleFilterComponent,
-    UserSearchComponent
+    UserSearchComponent,
     EventsComponent,
     ListSearchComponent
   ],
