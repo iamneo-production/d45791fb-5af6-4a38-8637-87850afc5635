@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { orgainzerGuard } from './guards/orgainzer.guard';
 import { CreateventComponent } from './organizer/createvent/createvent.component';
 import { OrganizerprofilepageComponent } from './organizer/organizerprofilepage/organizerprofilepage.component';
+import { userGuard } from './guards/user.guard';
+import { MyeventComponent } from './user/myevent/myevent.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -67,6 +70,36 @@ const routes: Routes = [
     //Authentication path if organiser is new
     path: 'organiser-register', // for organiser registration
     component: RegisterComponent,
+  },
+  {
+    // This path contains details about specific user
+    // :id is dynamic path variable
+    path: 'user/:id',
+    component: UserprofileComponent,
+    canActivate: [userGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+      // {
+      //   // This path shows a particukar ticket for a particlar user
+      //   path: 'tickets',
+      //   component: TicketComponent,
+      // },
+      // {
+      //   // the path loads a page
+      //   // which shows details about a particular ticket based on the id
+      //   path: 'tickets/:id',
+      //   component: TicketComponent,
+      // },
+    ],
+  },
+  //This path loads a myevent page
+  {
+    path: 'user/:id/myevent',
+    component: MyeventComponent,
+    canActivate: [userGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+    ]
   },
   {
     path: 'organizer/:id/createvent',
