@@ -9,6 +9,9 @@ import { ServiceCardComponent } from './landing_page/service-card/service-card.c
 import { SliderComponent } from './landing_page/slider/slider.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { orgainzerGuard } from './guards/orgainzer.guard';
+import { CreateventComponent } from './organizer/createvent/createvent.component';
+import { OrganizerprofilepageComponent } from './organizer/organizerprofilepage/organizerprofilepage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -64,6 +67,44 @@ const routes: Routes = [
     //Authentication path if organiser is new
     path: 'organiser-register', // for organiser registration
     component: RegisterComponent,
+  },
+  {
+    path: 'organizer/:id/createvent',
+    component: CreateventComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+    ]
+  },
+  {
+    // This path contains details about specific organiser
+    // :id is dynamic path variable
+    path: 'organizer/:id',
+    component:OrganizerprofilepageComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+      // {
+        // The path opens a page where the
+        // organiser can add a new event
+        // path: 'createvent',
+        // component: CreateventComponent,
+      // },
+      // {
+      //   // Shows event created by user
+      //   path: 'events',
+      //   component: EventComponent,
+      //   children: [
+      //     {
+      //       // Shows particular event details created by user
+      //       path: ':id',
+      //       component: EventComponent,
+      //     },
+      //   ],
+      // },
+      
+    ],
   },
 ];
 

@@ -14,6 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from "@angular/forms";
+import { CreateventComponent } from './organizer/createvent/createvent.component';
+import { EditeventformComponent } from './organizer/editeventform/editeventform.component';
+import { EventdisplayComponent } from './organizer/eventdisplay/eventdisplay.component';
+import { NeweventformComponent } from './organizer/neweventform/neweventform.component';
+import { OrganizerprofilepageComponent } from './organizer/organizerprofilepage/organizerprofilepage.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { FormsModule } from "@angular/forms";
     ServiceCardComponent,
     SliderComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CreateventComponent,
+    EditeventformComponent,
+    EventdisplayComponent,
+    NeweventformComponent,
+    OrganizerprofilepageComponent
   ],
   imports: [
     BrowserModule,
