@@ -11,6 +11,9 @@ import { ServiceCardComponent } from './landing_page/service-card/service-card.c
 import { SliderComponent } from './landing_page/slider/slider.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,12 +23,15 @@ import { HttpClientModule } from '@angular/common/http';
     AboutUsComponent,
     HomeComponent,
     ServiceCardComponent,
-    SliderComponent
+    SliderComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
