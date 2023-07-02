@@ -55,6 +55,10 @@ import { EventsComponent } from './events/events.component';
 import { ListSearchComponent } from './list-search/list-search.component';
 import { EventsService } from './services/event-service/events.service';
 import { MatIconModule } from '@angular/material/icon';
+import { NgChartsModule } from 'ng2-charts';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -111,8 +115,12 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgChartsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatTableModule,
   ],
   providers: [EventsService],
   bootstrap: [AppComponent]
