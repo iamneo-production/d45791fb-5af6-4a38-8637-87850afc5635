@@ -70,6 +70,8 @@ import { OrdersummaryComponent } from './paymentpage/ordersummary/ordersummary.c
 import { PaymentmodeComponent } from './paymentpage/paymentmode/paymentmode.component';
 import { LottieModule } from 'ngx-lottie';
 import { CommonModule } from '@angular/common';
+import { AdminAuthService } from './admin/admin_services/a-auth.service';
+import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
 
 // player-factory
 export function playerFactory() {
@@ -149,7 +151,7 @@ export function playerFactory() {
     CommonModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],	
-  providers: [EventsService,EventService,TicketService,UserService],
+  providers: [EventsService,EventService,TicketService,UserService,AdminAuthService,AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

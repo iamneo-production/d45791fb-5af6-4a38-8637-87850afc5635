@@ -5,6 +5,7 @@ import { Role } from '../models/role';
 import { Admin } from '../models/admin';
 import { Organizer } from '../models/organizer';
 import { Participant } from '../models/participant';
+import { AdminAuthService } from '../admin/admin_services/a-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authUser = data;
   });
 
-  constructor(private auth: AuthService, private route: Router) {
+  constructor(private auth: AuthService, private route: Router,private as:AdminAuthService) {
     this.currentRoute = route.url;
     if (this.currentRoute.includes('admin/login')) {
       this.isAdmin = true;
@@ -76,7 +77,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  advalid:boolean=true;
+
   adminLogin() {
-    this.route.navigate(['/admin/dashboard']);
+    console.log(this.formdata.email,this.formdata.password);
+    this.formdata.email==='admin' && this.formdata.password==='admin'?this.as.login():this.advalid=false;
   }
 }

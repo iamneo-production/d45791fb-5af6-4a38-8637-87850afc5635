@@ -38,6 +38,7 @@
                     <p [innerText]="this.errorMessage"></p>
                     </span>
                     <button *ngIf="isAdmin" class="btn-primary" style="padding: 10px;border-radius: 10px;width: 80px;position: relative;left: 170px;top: 20px;" (click)="adminLogin()">Login</button>
+                    <div *ngIf="!advalid" style="position: relative;top: 35px;"><i class="fa-solid fa-triangle-exclamation"></i> You're not an admin if ur enter the valid credentials </div>
                     <input *ngIf="!isAdmin" id="logbtn" type="submit" class="btn btn-login float-right" [disabled]="this.loading"  value="Login" (click)="submit=true">
                 </div>
                 <div class="clearfix"></div>
