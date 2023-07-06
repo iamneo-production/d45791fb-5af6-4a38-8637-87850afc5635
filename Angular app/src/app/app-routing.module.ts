@@ -16,6 +16,16 @@ import { userGuard } from './guards/user.guard';
 import { MyeventComponent } from './user/myevent/myevent.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
 import { EventsComponent } from './events/events.component';
+import { AdminDashboardComponent } from './admin/admin_components/admin-dashboard/admin-dashboard.component';
+import { AEventDetailComponent } from './admin/admin_components/event-listing/a-event-detail/a-event-detail.component';
+import { EventListingComponent } from './admin/admin_components/event-listing/event-listing.component';
+import { TicketComponent } from './admin/admin_components/ticket/ticket.component';
+import { UserDetailComponent } from './admin/admin_components/user-list/user-detail/user-detail.component';
+import { UserListComponent } from './admin/admin_components/user-list/user-list.component';
+import { ReportComponent } from './admin/admin_components/report/report.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { PaymentpageComponent } from './paymentpage/paymentpage.component';
+import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +48,10 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
+  },
+  {
+    path: 'admin/login',
+    component: LoginComponent,
   },
   {
     //Authentication path if user has already registered
@@ -148,6 +162,31 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
       { path: '', component: FooterComponent, outlet: 'footer' },
     ],
+  },
+  //admin
+  { path: 'admin/dashboard', component: AdminDashboardComponent ,canActivate:[AdminGuard]},
+  { path: 'admin/manage-users', component: UserListComponent ,canActivate:[AdminGuard]},
+  { path: 'admin/manage-events', component: EventListingComponent,canActivate:[AdminGuard] },
+  { path: 'admin/manage-events/:id', component: AEventDetailComponent,canActivate:[AdminGuard] },
+  { path: 'admin/manage-users/:id', component: UserDetailComponent ,canActivate:[AdminGuard]},
+  { path: 'admin/manage-tickets', component: TicketComponent ,canActivate:[AdminGuard]},
+  {
+    path: 'admin/report/:id',
+    component: ReportComponent,
+  },
+
+  {
+    // This path shows the details for a particular event
+    path: 'event-details/:id',
+    component: EventDetailsComponent,
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+      { path: '', component: FooterComponent, outlet: 'footer' },
+    ],
+  },
+  {
+    path: 'payment',
+    component: PaymentpageComponent,
   },
 ];
 

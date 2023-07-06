@@ -1,82 +1,109 @@
-.container{
-    position: relative;
-    top: 40px;;
-  }
-  
-  .back{
-    background-color:aqua;
-    height: 100vh;
-  }
-  
-  .address{
-    height: 80px;
-  }
-  
-  .card{
-    
-    background-color: aliceblue;
-    box-shadow: 10px 10px rgba(172, 176, 177,0.5);
-  }
-  
-  label{
-    font-size: large;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  button{
-    width: 100px;
-  }
-  
-  .button-18 {
-    align-items: center;
-    background-color: #0A66C2;
-    border: 0;
-    border-radius: 100px;
-    box-sizing: border-box;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    justify-content: center;
-    line-height: 20px;
-    max-width: 480px;
-    min-height: 40px;
-    min-width: 0px;
-    overflow: hidden;
-    padding: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: center;
-    touch-action: manipulation;
-    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    user-select: none;
-    -webkit-user-select: none;
-    vertical-align: middle;
-  }
-  
-  .button-18:hover,
-  .button-18:focus { 
-    background-color: #16437E;
-    color: #ffffff;
-  }
-  
-  .button-18:active {
-    background: #09223b;
-    color: rgb(255, 255, 255, .7);
-  }
-  
-  .button-18:disabled { 
-    cursor: not-allowed;
-    background: rgba(0, 0, 0, .08);
-    color: rgba(0, 0, 0, .3);
-  }
-  h1{
-    color: #0d6efd;;
-    text-align: center;
-    font-size: 30px;
-  }
-  h4{
-    font-size: 25px;
-  }
+.container {
+  position: relative;
+  top: 40px;
+  ;
+}
+
+.boxHeight{
+  max-height: 37rem;
+}
+
+.user-avatar > img{
+  width: 100%;
+  height: 100%;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-label {
+  font-size: 17px;
+}
+
+.form-control {
+  height: 30px;
+}
+
+.back {
+  /* background-color: aqua; */
+  /* background-color: #c3e2ff85; */
+  background-color: rgb(255 100 0 / 4%);
+  height: 100vh;
+}
+
+.address {
+  height: 80px;
+}
+
+.card {
+
+  background-color: aliceblue;
+  /* box-shadow: 10px 10px rgba(172, 176, 177, 0.5); */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+label {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  width: 100px;
+}
+
+.button-18 {
+  align-items: center;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus {
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.button-18:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.button-18:disabled {
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+h1 {
+  color: #0d6efd;
+  ;
+  text-align: center;
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 25px;
+}
