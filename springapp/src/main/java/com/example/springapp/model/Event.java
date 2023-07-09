@@ -1,65 +1,143 @@
 package com.example.springapp.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "event")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    @Column(name = "name")
     private String name;
+    @Column(name = "description")
     private String description;
-    private Date startDate;
-    private Date endDate;
+    @Column(name = "location")
     private String location;
+    @Column(name = "startDate")
+    private Date startDate;
+    @Column(name = "endDate")
+    private Date endDate;
+    @Column(name = "speakerName")
+    private String speakerName;
+    @Column(name = "speakerExpertise")
+    private String speakerExpertise;
+    @Column(name = "speakerAffiliations")
+    private String speakerAffiliations;
+    @Column(name = "speakerAccomplishments")
+    private String speakerAccomplishments;
+    @Column(name = "speakerBiography")
+    private String speakerBiography;
+    @Column(name = "price")
+    private int price;
+    @Column(name = "totalTickets")
     private Long totalTickets;
+    @Column(name = "imgUrl")
+    private String imgUrl;
 
     @OneToMany(mappedBy = "event")
+    @Column(name = "attendees")
     private List<Attendee> attendees;
 
     @OneToMany(mappedBy = "event")
+    @Column(name = "tickets")
     private List<Ticket> tickets;
-
-    
-
-    public Event() {
-    }
-
-    public Event(Long id, String name, String description, Date startDate, Date endDate, String location,
-            Long totalTickets, List<Attendee> attendees, List<Ticket> tickets) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.location = location;
-        this.totalTickets = totalTickets;
-        this.attendees = attendees;
-        this.tickets = tickets;
-    }
-    
 
     public Event(Long id, String name, String description, Date startDate, Date endDate, String location,
             Long totalTickets) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.location = location;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.location = location;
         this.totalTickets = totalTickets;
     }
 
-    public Long getId() {
-        return id;
+    public Event(String name, String description, String location, String speakerName, Date startDate, Date endDate,
+            String speakerExpertise, String speakerAffiliations, String speakerAccomplishments, String speakerBiography,
+            int price, Long totalTickets, String imgUrl) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.location = location;
+        this.speakerName = speakerName;
+        this.speakerExpertise = speakerExpertise;
+        this.speakerAffiliations = speakerAffiliations;
+        this.speakerAccomplishments = speakerAccomplishments;
+        this.speakerBiography = speakerBiography;
+        this.price = price;
+        this.totalTickets = totalTickets;
+        this.imgUrl = imgUrl;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getSpeakerName() {
+        return speakerName;
+    }
+
+    public void setSpeakerName(String speakerName) {
+        this.speakerName = speakerName;
+    }
+
+    public String getSpeakerExpertise() {
+        return speakerExpertise;
+    }
+
+    public void setSpeakerExpertise(String speakerExpertise) {
+        this.speakerExpertise = speakerExpertise;
+    }
+
+    public String getSpeakerAffiliations() {
+        return speakerAffiliations;
+    }
+
+    public void setSpeakerAffiliations(String speakerAffiliations) {
+        this.speakerAffiliations = speakerAffiliations;
+    }
+
+    public String getSpeakerAccomplishments() {
+        return speakerAccomplishments;
+    }
+
+    public void setSpeakerAccomplishments(String speakerAccomplishments) {
+        this.speakerAccomplishments = speakerAccomplishments;
+    }
+
+    public String getSpeakerBiography() {
+        return speakerBiography;
+    }
+
+    public void setSpeakerBiography(String speakerBiography) {
+        this.speakerBiography = speakerBiography;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Event() {
     }
 
     public String getName() {
@@ -126,7 +204,16 @@ public class Event {
         this.tickets = tickets;
     }
 
-    // Constructors, getters, and setters
-    
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setId(Long id2) {
+        this.id = id2;
+    }
 
 }

@@ -1,12 +1,26 @@
 package com.example.springapp.model;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="ticketSales")
 public class TicketSales {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ticket_sales_id")
     private Long id;
+    @Column(name="totalTicketsBooked")
     private String totalTicketsBooked;
+    @Column(name="availableTickets")
     private String availableTickets;
+    @Column(name="noOfAttendees")
     private String noOfAttendees;
+
+    @Column(name="event_id")
     private Long eventId;
+    @Column(name="totalPrice")
     private Double totalPrice;
 
     
@@ -58,7 +72,4 @@ public class TicketSales {
         this.totalPrice = totalPrice;
     }
 
-    // Constructors, getters, and setters
-
-    
 }
