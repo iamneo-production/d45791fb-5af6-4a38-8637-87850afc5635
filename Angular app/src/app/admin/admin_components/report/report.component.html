@@ -1,0 +1,339 @@
+<!-- Report -->
+<app-admin-head-nav style="position: fixed;z-index: 2;width: 100vw;background-color: aqua;"></app-admin-head-nav>
+<div class="report-container">
+
+    <!-- Event Name -->
+
+    <!-- Center  -->
+    <div>
+        <!-- Row -->
+
+
+        <div class="courses-container">
+            <div class="course">
+                <div class="course-preview">
+                    
+                    <img src="assets/Images/concert.jpg" />
+                </div>
+                <div class="course-info">
+                
+                    <h2>{{eventDetails.name}}</h2>
+
+                    <p>{{eventDetails.description}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+        
+    </div>
+    <!-- Row -->
+
+    <div>
+        <div class="spl">
+            <h1 class="spl_text">
+                Participants
+            </h1>
+        </div>
+        <div class="row-flex">
+
+        <!-- Left -->
+        
+            <div class="ag-format-container">
+                <div class="ag-courses_box">
+                    <div class="ag-courses_item">
+                        <div class="ag-courses-item_link">
+                            <div class="ag-courses-item_bg"></div>
+                    
+                            <div class="ag-courses-item_title">
+                                Estimated
+                            </div>
+                    
+                            <div class="ag-courses-item_date-box">
+                                <p class="ag-courses-item_date">
+                                {{eventDetails.capacity}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-courses_item">
+                        <div class="ag-courses-item_link">
+                            <div class="ag-courses-item_bg"></div>
+                    
+                            <div class="ag-courses-item_title">
+                                Registered
+                            </div>
+                    
+                            <div class="ag-courses-item_date-box">
+                                <p class="ag-courses-item_date">
+                                    {{eventDetails.attendee_id.length}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-courses_item">
+                        <div class="ag-courses-item_link">
+                            <div class="ag-courses-item_bg"></div>
+                    
+                            <div class="ag-courses-item_title">
+                                Remaining
+                            </div>
+                    
+                            <div class="ag-courses-item_date-box">
+                                <p class="ag-courses-item_date">
+                                    {{eventDetails.capacity - eventDetails.attendee_id.length}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right -->
+            <!-- Row -->
+
+            <div>
+
+                <!-- Chart -->
+                <canvas baseChart
+                    [data]="barChartDataParticipants"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [type]="'bar'">
+                </canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Row -->
+
+    <div>
+
+        <!-- Title -->
+        <div class="spl">
+            <h1 class="spl_text">
+                Amount
+            </h1>
+        </div>
+        <div class="row-flex">
+
+        <!-- Left -->
+        
+            <div class="ag-format-container">
+                <div class="ag-courses_box">
+                    <div class="ag-courses_item">
+                        <div class="ag-courses-item_link">
+                            <div class="ag-courses-item_bg"></div>
+                    
+                            <div class="ag-courses-item_title">
+                                Estimated Total
+                            </div>
+                    
+                            <div class="ag-courses-item_date-box">
+                                <p class="ag-courses-item_date">
+                                    Rs. {{eventDetails.capacity * eventDetails.amount}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-courses_item">
+                        <div class="ag-courses-item_link">
+                            <div class="ag-courses-item_bg"></div>
+                    
+                            <div class="ag-courses-item_title">
+                                Actual Total
+                            </div>
+                    
+                            <div class="ag-courses-item_date-box">
+                                <p class="ag-courses-item_date">
+                                    Rs. {{eventDetails.attendee_id.length * eventDetails.amount}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ag-courses_item">
+                        <div class="ag-courses-item_link">
+                            <div class="ag-courses-item_bg"></div>
+                    
+                            <div class="ag-courses-item_title">
+                                Remaining Total
+                            </div>
+                    
+                            <div class="ag-courses-item_date-box">
+                                <p class="ag-courses-item_date">
+                                    Rs. {{(eventDetails.capacity * eventDetails.amount) - (eventDetails.attendee_id.length * eventDetails.amount)}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right -->
+            <!-- Row -->
+
+            <div>
+
+                <!-- Chart -->
+                <canvas baseChart
+                    [data]="barChartDataAmount"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [type]="'bar'">
+                </canvas>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Center -->
+
+   <!-- Row -->
+
+   <div>
+       <div class="spl">
+           <h1 class="spl_text">
+               Registeration Based on Date
+            </h1>
+        </div>
+        <!-- Graph -->
+        <div class="flex-center">
+            <canvas baseChart width="1000px" height="400"
+            [type]="'line'"
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend">
+            </canvas>
+        </div>
+   </div>
+
+   <!-- Left -->
+
+   <!-- Row -->
+
+   <div class="report_flex">
+        
+        <div>
+            <div class="spl">
+                <h1 class="spl_text">
+                    Pie Chart for Gender
+                </h1>
+            </div>
+        <!-- Gender PieChart -->
+            <div class="flex-center">
+                <canvas baseChart
+                    [type]="'pie'"
+                    [datasets]="pieChartGenderDatasets"
+                    [labels]="pieChartGenderLabels"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend">
+                </canvas>
+
+            </div>
+
+        </div>
+
+        <div>
+            <div class="spl">
+                <h1 class="spl_text">
+                    Pie Chart for Age
+                </h1>
+            </div>
+
+            <div class="flex-center">
+                <canvas baseChart
+                    [type]="'pie'"
+                    [datasets]="pieChartAgeDatasets"
+                    [labels]="pieChartAgeLabels"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend">
+                </canvas>
+
+            </div>
+            
+        </div>
+
+   </div>
+
+   
+   <!-- Left -->
+
+   <!-- Row -->
+
+   <div>
+
+    <!-- Gender Barchart -->
+        
+        <div class="spl">
+            <h1 class="spl_text">
+                Attendee List
+            </h1>
+        </div>
+
+        <div class="shadow-effect">
+            
+            <div>
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                </mat-form-field>
+                
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Age Column -->
+                    <ng-container matColumnDef="age">
+                        <th mat-header-cell *matHeaderCellDef> Age </th>
+                        <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                    </ng-container>
+
+                    <!-- Registered Date Column -->
+                    <ng-container matColumnDef="registeredDate">
+                        <th mat-header-cell *matHeaderCellDef> Registered Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.registeredDate}} </td>
+                    </ng-container>
+                    
+                    <!-- Gender Column -->
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef> Gender </th>
+                        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                    </ng-container>
+                    
+                    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+
+   </div>
+
+    
+
+</div>

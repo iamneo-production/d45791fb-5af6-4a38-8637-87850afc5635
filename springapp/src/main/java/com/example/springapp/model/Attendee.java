@@ -3,15 +3,21 @@ package com.example.springapp.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="attendee")
 public class Attendee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="attendee_id")
     private Long id;
 
+    @Column(name="name")
     private String name;
+    @Column(name="email")
     private String email;
+    @Column(name="phone")
     private String phone;
+    @Column(name="address")
     private String address;
 
     @ManyToOne
@@ -80,7 +86,5 @@ public class Attendee {
     public void setEvent(Event event) {
         this.event = event;
     }
-
-    // Constructors, getters, and setters
     
 }

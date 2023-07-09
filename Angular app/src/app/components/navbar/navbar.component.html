@@ -92,19 +92,12 @@
       </li>
     </ul>
   
-    <!-- USER LOGIN NAVBAR / ORGANISER LOGIN NAVBAR -->
+    <!-- USER & ORGANISER LOGIN NAVBAR / USER & ORGANISER REGISTRATION NAVBAR -->
     <ul class="nav-list" *ngSwitchCase="'login'">
       <li class="nav-item nav-logo">
         <a class="logo-text" routerLink="/home">SwiftEvent</a>
       </li>
     </ul>
-  
-    <!-- USER REGISTRATION NAVBAR / ORGANISER REGISTRATION NAVBAR -->
-    <!-- <ul class="nav-list" *ngSwitchCase="'register'">
-      <li class="nav-item nav-logo">
-        <a class="logo-text" routerLink="/home">SwiftEvent</a>
-      </li>
-    </ul> -->
   
     <!-- ORGANISER INFO NAVBAR -->
     <ul class="nav-list nav-color" *ngSwitchCase="'/organiser/'">
@@ -118,7 +111,7 @@
         <a class="text" routerLink="/organizer/:id/createvent">Create Event</a>
       </li>
       <li class="nav-item">
-        <button class="nav-btn" routerLink="/home">Log Out</button>
+        <button class="nav-btn" (click)="logout()" routerLink="/home">Log Out</button>
       </li>
     </ul>
   
@@ -134,7 +127,7 @@
         <a class="text" routerLink="/user/:id/myevent">My Event</a>
       </li>
       <li class="nav-item">
-        <button class="nav-btn" routerLink="/home">Log Out</button>
+        <button class="nav-btn" (click)="logout()" routerLink="/home">Log Out</button>
       </li>
     </ul>
   </nav>
