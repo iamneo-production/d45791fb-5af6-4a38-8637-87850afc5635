@@ -4,13 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { Ticket } from '../../models/ticket';
 import { catchError, tap } from 'rxjs';
 
+// interface TicketInput {
+//   EventId: number;
+//   ParticipantID: number;
+//   Availabilty: number;
+//   Type: string;
+//   Price: number;
+//   TicketCount: number;
+// }
+
 interface TicketInput {
-  EventId: number;
-  ParticipantID: number;
-  Availabilty: number;
-  Type: string;
-  Price: number;
-  TicketCount: number;
+  status:string;
+  price:number;
 }
 
 @Injectable({
