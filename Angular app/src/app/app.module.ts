@@ -72,6 +72,8 @@ import { LottieModule } from 'ngx-lottie';
 import { CommonModule } from '@angular/common';
 import { AdminAuthService } from './admin/admin_services/a-auth.service';
 import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BackendService } from './services/api/backend.service';
 
 // player-factory
 export function playerFactory() {
@@ -139,6 +141,7 @@ export function playerFactory() {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(BackendService),
     NgChartsModule,
     FormsModule,
     MatIconModule,

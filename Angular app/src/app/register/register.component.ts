@@ -35,8 +35,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   //to check if user or not
   isUser: boolean = false;
 
-  authUser : Admin | Organizer | Participant | null= null;
-  
+  authUser: Admin | Organizer | Participant | null = null;
+
   isAuth = false;
 
   isAuthUpdates = this.auth.authUpdates.subscribe((data) => {
@@ -44,6 +44,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   });
   authUserUpdates = this.auth.authUserUpdates.subscribe((data) => {
     this.authUser = data;
+
+    // only chnage url based on auth
+    if (this.isAuth && this.authUser) {
+      this.submit = false;
+      this.loading = false;
+      console.log(this.auth.authUser);
+
+      this.router.navigateByUrl(`/home`);
+    }
   });
 
   constructor(private router: Router, private auth: AuthService) {
@@ -68,7 +77,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.formdata);
     this.submit = true;
     this.loading = true;
 
@@ -81,15 +89,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.isUser) this.auth.signupUser(email, password, username, contactNo);
     if (this.isOrganiser)
       this.auth.signupOrganizer(email, password, username, contactNo);
-
-    // only chnage url based on auth
-    if (this.isAuth && this.authUser) {
-      this.submit = false;
-      this.loading = false;
-      console.log(this.auth.authUser);
-
-      this.router.navigateByUrl(`/home`);
-    }
 
     const fileInput: HTMLInputElement | null = document.querySelector(
       'input[name="fileInput"]'

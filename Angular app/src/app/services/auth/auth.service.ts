@@ -8,19 +8,17 @@ import { Role } from 'src/app/models/role';
 import { OrganizerService } from '../api/organizer.service';
 
 // for razorpay to get native window support
-function _window() : any {
+function _window(): any {
   // return the global native browser window object
   return window;
 }
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   // for razorpay to get native window support
-  get nativeWindow() : any {
+  get nativeWindow(): any {
     return _window();
   }
 
@@ -69,7 +67,6 @@ export class AuthService {
         this.userService
           .getUserByEmailAndPassword(email, password)
           .subscribe((data) => {
-            console.log(data);
             this.isAuth = true;
             this.authUser = data;
           });
@@ -110,8 +107,8 @@ export class AuthService {
         this.userService
           .getUserByEmailAndPassword(email, password)
           .subscribe((data) => {
-            this.authUser = data;
             this.isAuth = true;
+            this.authUser = data;
           });
       });
   }
@@ -133,8 +130,8 @@ export class AuthService {
         this.organizerService
           .getOrganizerByEmailAndPassword(email, password)
           .subscribe((data) => {
-            this.authUser = data;
             this.isAuth = true;
+            this.authUser = data;
           });
       });
   }

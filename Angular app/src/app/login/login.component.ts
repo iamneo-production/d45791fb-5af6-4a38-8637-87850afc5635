@@ -27,16 +27,26 @@ export class LoginComponent implements OnInit, OnDestroy {
   isUser: boolean = false;
 
   isAuth = false;
-  authUser : Admin | Organizer | Participant | null= null;
+  authUser: Admin | Organizer | Participant | null = null;
 
   isAuthUpdates = this.auth.authUpdates.subscribe((data) => {
     this.isAuth = data;
   });
   authUserUpdates = this.auth.authUserUpdates.subscribe((data) => {
     this.authUser = data;
+    if (this.isAuth && this.authUser) {
+      this.loading = false;
+      this.route.navigateByUrl(
+        `/${this.authUser.Role.toLowerCase()}/${this.authUser.id}`
+      );
+    }
   });
 
-  constructor(private auth: AuthService, private route: Router,private as:AdminAuthService) {
+  constructor(
+    private auth: AuthService,
+    private route: Router,
+    private as: AdminAuthService
+  ) {
     this.currentRoute = route.url;
     if (this.currentRoute.includes('admin/login')) {
       this.isAdmin = true;
@@ -58,7 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authUserUpdates.unsubscribe();
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.loading = true;
     const role = this.isAdmin
       ? Role.ADMIN
@@ -68,19 +78,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     //call login service
     this.auth.login(this.formdata.email, this.formdata.password, role);
-
-    if (this.isAuth && this.authUser) {
-      this.loading = false;
-      this.route.navigateByUrl(
-        `/${this.authUser.Role.toLowerCase()}/${this.authUser.id}`
-      );
-    }
   }
 
-  advalid:boolean=true;
+  advalid: boolean = true;
 
   adminLogin() {
-    console.log(this.formdata.email,this.formdata.password);
-    this.formdata.email==='admin' && this.formdata.password==='admin'?this.as.login():this.advalid=false;
+    console.log(this.formdata.email, this.formdata.password);
+    this.formdata.email === 'admin' && this.formdata.password === 'admin'
+      ? this.as.login()
+      : (this.advalid = false);
   }
 }
