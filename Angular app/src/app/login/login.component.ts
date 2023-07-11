@@ -6,6 +6,7 @@ import { Admin } from '../models/admin';
 import { Organizer } from '../models/organizer';
 import { Participant } from '../models/participant';
 import { AdminAuthService } from '../admin/admin_services/a-auth.service';
+import { ErrorService } from '../services/api/error.service';
 
 @Component({
   selector: 'app-login',
@@ -34,18 +35,26 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
   authUserUpdates = this.auth.authUserUpdates.subscribe((data) => {
     this.authUser = data;
+
     if (this.isAuth && this.authUser) {
       this.loading = false;
-      this.route.navigateByUrl(
-        `/${this.authUser.Role.toLowerCase()}/${this.authUser.id}`
-      );
+      const role = this.authUser.role.split('_')[1];
+      this.route.navigate([`/${role.toLowerCase()}/${this.authUser.id}`]);
+    }
+  });
+
+  errorUpdates = this.errorService.errorUpdates.subscribe((data) => {
+    this.errorMessage = data.message;
+    if (data) {
+      this.loading = false;
     }
   });
 
   constructor(
     private auth: AuthService,
     private route: Router,
-    private as: AdminAuthService
+    private as: AdminAuthService,
+    private errorService: ErrorService
   ) {
     this.currentRoute = route.url;
     if (this.currentRoute.includes('admin/login')) {
@@ -66,6 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isAuthUpdates.unsubscribe();
     this.authUserUpdates.unsubscribe();
+    this.errorUpdates.unsubscribe();
   }
 
   async onSubmit() {
@@ -74,7 +84,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       ? Role.ADMIN
       : this.isUser
       ? Role.USER
-      : Role.ORAGANIZER;
+      : Role.ORAGANISER;
 
     //call login service
     this.auth.login(this.formdata.email, this.formdata.password, role);

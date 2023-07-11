@@ -19,9 +19,13 @@ export class NavbarComponent implements OnInit {
   isShowDropdown: boolean = false;
   dropdownUrl: string = '';
   isAuth = false;
-  authUser: Admin | Organizer | Participant | null= null;
+  authUser: Admin | Organizer | Participant | null = null;
 
-  constructor(private router: Router, private auth: AuthService, private elementRef: ElementRef) { }
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private elementRef: ElementRef
+  ) {}
 
   //get updates for authentication component
   isAuthUpdates = this.auth.authUpdates.subscribe(
@@ -46,16 +50,15 @@ export class NavbarComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent): void {
     const clickedElement = event.target as HTMLElement;
-    const dropdownMenu = this.elementRef.nativeElement.querySelector('.drop-menu');
+    const dropdownMenu =
+      this.elementRef.nativeElement.querySelector('.drop-menu');
     const navbtn = this.elementRef.nativeElement.querySelector('.new-nav-btn');
 
     if (dropdownMenu !== null && dropdownMenu.contains(clickedElement)) {
       this.isShowDropdown = true;
-    }
-    else if (navbtn !== null && navbtn.contains(clickedElement)) {
+    } else if (navbtn !== null && navbtn.contains(clickedElement)) {
       this.isShowDropdown = !this.isShowDropdown;
-    }
-    else {
+    } else {
       this.isShowDropdown = false;
     }
   }
@@ -71,14 +74,14 @@ export class NavbarComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.setMenuType(event.url);
         console.log(event.url);
-        
       }
     });
 
     this.isAuth = this.auth.isAuth;
     this.authUser = this.auth.authUser;
 
-    console.log("this is navbar authUser - ", this.authUser);
+    console.log(this.auth);
+    console.log('this is navbar authUser - ', this.authUser);
     this.getUserName();
     this.getUrlForDropDown();
 
@@ -89,19 +92,19 @@ export class NavbarComponent implements OnInit {
   // for logging out user
   logout() {
     this.auth.logout();
-    if(this.authUser == null)
-    {
-      return
+    if (this.authUser == null) {
+      return;
     }
+    const role = this.authUser.role.split('_')[1].toLowerCase();
 
-    switch (this.authUser.Role) {
-      case Role.USER:
+    switch (this.authUser.role) {
+      case Role.USER.toLowerCase():
         this.router.navigateByUrl('/user-login');
         break;
-      case Role.ADMIN:
+      case Role.ADMIN.toLowerCase():
         this.router.navigateByUrl('/admin/login');
         break;
-      case Role.ORAGANIZER:
+      case Role.ORAGANISER.toLowerCase():
         this.router.navigateByUrl('/organiser-login');
         break;
       default:
@@ -136,9 +139,9 @@ export class NavbarComponent implements OnInit {
 
   // for getting the role who has registered and sending the url into html for role based dropdown selection..
   getUrlForDropDown() {
-    if (this.authUser && this.authUser.Role === Role.ORAGANIZER) {
+    if (this.authUser && this.authUser.role === Role.ORAGANISER) {
       this.dropdownUrl = '/organiser';
-    } else if (this.authUser && this.authUser.Role === Role.USER) {
+    } else if (this.authUser && this.authUser.role === Role.USER) {
       this.dropdownUrl = '/user';
     } else {
       this.dropdownUrl = ''; // No dropdown for other roles or when not logged in
@@ -148,7 +151,7 @@ export class NavbarComponent implements OnInit {
   // for getting Organiser's first name for dropdown display.
   getUserName() {
     if (this.authUser != undefined) {
-      const nameArr = this.authUser.Name.split(" ");
+      const nameArr = this.authUser.name.split(' ');
       let firstName = '';
       if (nameArr.length > 0) {
         firstName = nameArr[0];

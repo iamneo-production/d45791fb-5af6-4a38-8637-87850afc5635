@@ -13,7 +13,7 @@ import { SliderComponent } from './landing_page/slider/slider.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateventComponent } from './organizer/createvent/createvent.component';
 import { EditeventformComponent } from './organizer/editeventform/editeventform.component';
 import { EventdisplayComponent } from './organizer/eventdisplay/eventdisplay.component';
@@ -141,7 +141,7 @@ export function playerFactory() {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(BackendService),
+    // HttpClientInMemoryWebApiModule.forRoot(BackendService),
     NgChartsModule,
     FormsModule,
     MatIconModule,
@@ -151,10 +151,17 @@ export function playerFactory() {
     ReactiveFormsModule,
     LottieModule,
     LottieModule.forRoot({ player: playerFactory }),
-    CommonModule
+    CommonModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],	
-  providers: [EventsService,EventService,TicketService,UserService,AdminAuthService,AdminGuard],
-  bootstrap: [AppComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    EventsService,
+    EventService,
+    TicketService,
+    UserService,
+    AdminAuthService,
+    AdminGuard,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
