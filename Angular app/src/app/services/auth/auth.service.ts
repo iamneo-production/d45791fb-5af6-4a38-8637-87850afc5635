@@ -6,6 +6,7 @@ import { Organizer } from 'src/app/models/organizer';
 import { Role } from 'src/app/models/role';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from '../api/error.service';
+import { parseJwt } from 'src/app/utils/utils';
 
 interface AuthResponse {
   msg: string;
@@ -27,6 +28,7 @@ function _window(): any {
 export class AuthService {
   API_URL = 'http://localhost:8080';
   JWT = 'jwt';
+  USER = 'user';
   // for razorpay to get native window support
   get nativeWindow(): any {
     return _window();
@@ -61,7 +63,22 @@ export class AuthService {
     this.authUserUpdates.next(this._authUser);
   }
   // _______
+  // autologin for valid token
+  autologin() {
+    const jwt = localStorage.getItem(this.JWT);
+    const user = JSON.parse(localStorage.getItem(this.USER));
 
+    if (!user && !jwt) return;
+
+    const parsedToken = parseJwt(jwt);
+    const expirySeconds = parsedToken['exp'] * 1000;
+
+    if (expirySeconds > Date.now()) {
+      console.log(user);
+      this.isAuth = true;
+      this.authUser = user;
+    }
+  }
   // Initiate the login process
   login(email: string, password: string, role: Role) {
     return this.http
@@ -132,6 +149,7 @@ export class AuthService {
     const { user, jwt } = res.data;
 
     localStorage.setItem(this.JWT, jwt);
+    localStorage.setItem(this.USER, JSON.stringify(user));
 
     this.isAuth = true;
     this.authUser = user;

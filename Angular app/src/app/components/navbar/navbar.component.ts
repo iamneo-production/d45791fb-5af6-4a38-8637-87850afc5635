@@ -80,7 +80,6 @@ export class NavbarComponent implements OnInit {
     this.isAuth = this.auth.isAuth;
     this.authUser = this.auth.authUser;
 
-    console.log(this.auth);
     console.log('this is navbar authUser - ', this.authUser);
     this.getUserName();
     this.getUrlForDropDown();
