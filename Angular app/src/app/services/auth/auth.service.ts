@@ -1,26 +1,36 @@
 import { Injectable } from '@angular/core';
-import { UserService } from '../api/user.service';
 import { Subject, of, tap } from 'rxjs';
 import { Participant } from 'src/app/models/participant';
 import { Admin } from 'src/app/models/admin';
 import { Organizer } from 'src/app/models/organizer';
 import { Role } from 'src/app/models/role';
-import { OrganizerService } from '../api/organizer.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ErrorService } from '../api/error.service';
+import { parseJwt } from 'src/app/utils/utils';
+
+interface AuthResponse {
+  msg: string;
+  data: {
+    jwt: string;
+    user: any;
+  };
+}
 
 // for razorpay to get native window support
-function _window() : any {
+function _window(): any {
   // return the global native browser window object
   return window;
 }
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
+  API_URL = 'http://localhost:8080';
+  JWT = 'jwt';
+  USER = 'user';
   // for razorpay to get native window support
-  get nativeWindow() : any {
+  get nativeWindow(): any {
     return _window();
   }
 
@@ -32,10 +42,7 @@ export class AuthService {
     Admin | Organizer | Participant
   >();
 
-  constructor(
-    private userService: UserService,
-    private organizerService: OrganizerService
-  ) {}
+  constructor(private http: HttpClient, private errorService: ErrorService) {}
 
   //Getters and Setters
   get isAuth() {
@@ -55,91 +62,96 @@ export class AuthService {
     this._authUser = val;
     this.authUserUpdates.next(this._authUser);
   }
+  // _______
+  // autologin for valid token
+  autologin() {
+    const jwt = localStorage.getItem(this.JWT);
+    const user = JSON.parse(localStorage.getItem(this.USER));
 
-  hasAuthenticatedUser() {
-    return of(this.isAuth && this.authUser.Role === Role.USER).pipe(
-      tap((v) => console.log(v))
-    );
+    if (!user && !jwt) return;
+
+    const parsedToken = parseJwt(jwt);
+    const expirySeconds = parsedToken['exp'] * 1000;
+
+    if (expirySeconds > Date.now()) {
+      console.log(user);
+      this.isAuth = true;
+      this.authUser = user;
+    }
   }
-
   // Initiate the login process
   login(email: string, password: string, role: Role) {
-    switch (role) {
-      case Role.USER:
-        this.userService
-          .getUserByEmailAndPassword(email, password)
-          .subscribe((data) => {
-            console.log(data);
-            this.isAuth = true;
-            this.authUser = data;
-          });
-        break;
-
-      case Role.ORAGANIZER:
-        this.organizerService
-          .getOrganizerByEmailAndPassword(email, password)
-          .subscribe((data) => {
-            this.isAuth = true;
-            this.authUser = data;
-          });
-        break;
-
-      case Role.ADMIN:
-        break;
-
-      default:
-        break;
-    }
+    return this.http
+      .post(`${this.API_URL}/signin`, {
+        email,
+        password,
+        role,
+      })
+      .subscribe({
+        next: this._handleSuccessAuth,
+        error: (err: HttpErrorResponse) => {
+          this.errorService.error = err.error;
+        },
+      });
   }
 
   // Initiate the signup user process
-  signupUser(
-    email: string,
-    password: string,
-    name: string,
-    contact_No: string
-  ) {
-    this.userService
-      .addUser({
-        Email: email,
-        Name: name,
-        Password: password,
-        Contact_No: contact_No,
-      })
-      .subscribe(() => {
-        this.userService
-          .getUserByEmailAndPassword(email, password)
-          .subscribe((data) => {
-            this.authUser = data;
-            this.isAuth = true;
-          });
-      });
+  signupUser(email: string, password: string, name: string, phone: string) {
+    return this._signUp(email, password, name, phone, Role.USER);
   }
 
   signupOrganizer(
     email: string,
     password: string,
     name: string,
-    contact_No: string
+    phone: string
   ) {
-    this.organizerService
-      .addOrganizer({
-        Email: email,
-        Name: name,
-        Password: password,
-        Contact_No: contact_No,
-      })
-      .subscribe(() => {
-        this.organizerService
-          .getOrganizerByEmailAndPassword(email, password)
-          .subscribe((data) => {
-            this.authUser = data;
-            this.isAuth = true;
-          });
-      });
+    return this._signUp(email, password, name, phone, Role.ORAGANISER);
+  }
+
+  signupAdmin(email: string, password: string, name: string, phone: string) {
+    return this._signUp(email, password, name, phone, Role.ADMIN);
   }
 
   logout() {
     this.isAuth = false;
+    this.authUser = null;
+
+    localStorage.removeItem(this.JWT);
   }
+
+  // private methods to make
+  // task easy
+  private _signUp(
+    email: string,
+    password: string,
+    name: string,
+    phone: string,
+    role: Role
+  ) {
+    return this.http
+      .post(`${this.API_URL}/signup`, {
+        email,
+        password,
+        name,
+        phone,
+        role,
+      })
+      .subscribe({
+        next: this._handleSuccessAuth,
+        error: this.errorService.handleApiErrors,
+      });
+  }
+
+  private _handleSuccessAuth = (res: AuthResponse) => {
+    // this.isAuth = true;
+    //         this.authUser = data;
+    const { user, jwt } = res.data;
+
+    localStorage.setItem(this.JWT, jwt);
+    localStorage.setItem(this.USER, JSON.stringify(user));
+
+    this.isAuth = true;
+    this.authUser = user;
+  };
 }

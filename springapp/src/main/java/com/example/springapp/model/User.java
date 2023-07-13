@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 import com.example.springapp.AccountRoles;
 import com.example.springapp.request.SignUpRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +35,7 @@ public class User {
     @Column(name = "role")
     private String role;
     @Column(name = "password")
+    @JsonIgnore
     private String password;
 
     public void setRole(AccountRoles role) {
