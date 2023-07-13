@@ -117,7 +117,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'organizer/:id/createvent',
+    path: 'organiser/:id/createvent',
     component: CreateventComponent,
     canActivate: [orgainzerGuard],
     children: [
@@ -127,7 +127,7 @@ const routes: Routes = [
   {
     // This path contains details about specific organiser
     // :id is dynamic path variable
-    path: 'organizer/:id',
+    path: 'organiser/:id',
     component:OrganizerprofilepageComponent,
     canActivate: [orgainzerGuard],
     children: [
