@@ -10,8 +10,10 @@ import com.example.springapp.service.EventService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/event")
+
 public class EventController {
 
     private final EventService eventService;
@@ -43,8 +45,8 @@ public class EventController {
         return eventService.getAllEvent();
     }
 
-    @GetMapping("/id")
-    public Event getEventById(@RequestParam("id") Long id) {
+    @GetMapping("/{id}")
+    public Event getEventById(@PathVariable("id") Long id) {
         return eventService.getEventById(id);
     }
 }
