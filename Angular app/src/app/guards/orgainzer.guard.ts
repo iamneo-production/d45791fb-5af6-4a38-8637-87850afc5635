@@ -6,8 +6,8 @@ import { Role } from '../models/role';
 export const orgainzerGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-
-  return authService.isAuth && authService.authUser.Role === Role.ORAGANIZER
+  const role = authService.authUser.role.split('_')[1].toLowerCase();
+  return authService.isAuth && role === Role.ORAGANISER.toLowerCase()
     ? true
     : router.navigate(['/organiser-login']);
 };

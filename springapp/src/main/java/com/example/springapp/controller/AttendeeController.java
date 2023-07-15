@@ -2,7 +2,6 @@ package com.example.springapp.controller;
 
 import com.example.springapp.model.Attendee;
 import com.example.springapp.service.AttendeeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ public class AttendeeController {
 
     private final AttendeeService attendeeService;
 
-    @Autowired
     public AttendeeController(AttendeeService attendeeService) {
         this.attendeeService = attendeeService;
     }

@@ -4,18 +4,35 @@ import { AppRESTService } from './appRESTService';
 import { Event } from '../../models/event';
 import { catchError, tap } from 'rxjs';
 
+// interface EventInput {
+//   Name: string;
+//   Description: string;
+//   City: string;
+//   State: string;
+//   Zipcode: number;
+//   StartDate: string;
+//   EndDate: string;
+//   Capacity: number;
+//   EventType: string;
+//   Price: number;
+//   OrganizerId: number;
+// }
+
+
 interface EventInput {
-  Name: string;
-  Description: string;
-  City: string;
-  State: string;
-  Zipcode: number;
-  StartDate: string;
-  EndDate: string;
-  Capacity: number;
-  EventType: string;
-  Price: number;
-  OrganizerId: number;
+    name:string;
+    description:string;
+    location:string;
+    startDate:string;
+    endDate:string;
+    speakerName:string;
+    speakerExpertise:string;
+    speakerAffiliations:string;
+    speakerAccomplishments:string;
+    speakerBiography:string;
+    price:number;
+    totalTickets:number;
+    imgUrl:string;
 }
 
 @Injectable({
