@@ -42,4 +42,44 @@ public class ApiError {
         debugMessage = ex.getLocalizedMessage();
     }
 
+    public HttpStatus getHttpStatus() {
+        return this.httpStatus;
+    }
+
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return this.timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getDebugMessage() {
+        return this.debugMessage;
+    }
+
+    public void setDebugMessage(String debugMessage) {
+        this.debugMessage = debugMessage;
+    }
+
+    public List<ApiSubErrors> getSubErrors() {
+        return this.subErrors;
+    }
+
+    public void setSubErrors(List<ApiSubErrors> subErrors) {
+        this.subErrors = subErrors;
+    }
+
 }

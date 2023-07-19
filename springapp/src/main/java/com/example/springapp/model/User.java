@@ -52,8 +52,5 @@ public class User {
         this.role = sr.role;
         this.phone = sr.phone;
         this.password = sr.password;
-
-        // this.gender = sr.gender;
-        // this.dob = sr.dob;
     }
 }
