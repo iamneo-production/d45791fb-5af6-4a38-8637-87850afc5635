@@ -3,8 +3,6 @@ package com.example.springapp.request;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-// import java.time.LocalDate;
-
 import javax.validation.constraints.Size;
 
 public class SignUpRequest {
@@ -23,11 +21,5 @@ public class SignUpRequest {
     @NotEmpty
     @Size(max = 20, min = 5, message = "Password should be between 5 and 20 letters")
     public String password;
-    // @Size(min = 2, max = 20)
-    // public String gender;
-    // @Size(min = 2, max = 20)
-    // public LocalDate dob;
-    // @Size(min = 2, max = 20)
-    // public String identity;
 
 }

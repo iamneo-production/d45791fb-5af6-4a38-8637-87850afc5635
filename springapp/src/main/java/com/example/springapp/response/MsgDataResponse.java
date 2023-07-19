@@ -1,12 +1,17 @@
 package com.example.springapp.response;
 
-public class MsgDataResponse {
-    public String msg;
-    public Object data;
+import lombok.Getter;
+import lombok.Setter;
 
-    public MsgDataResponse(String msg, Object data){
+@Getter
+@Setter
+public class MsgDataResponse {
+    private String msg;
+    private Object data;
+
+    public MsgDataResponse(String msg, Object data) {
         this.msg = msg;
         this.data = data;
     }
-    
+
 }

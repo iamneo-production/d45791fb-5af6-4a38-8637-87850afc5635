@@ -7,9 +7,6 @@ import java.util.Optional;
 import javax.management.BadAttributeValueExpException;
 import javax.validation.Valid;
 
-// import javax.print.attribute.standard.Media;
-// import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -54,7 +51,7 @@ public class AuthController {
   private CustomUserDetailsService customUserDetailsService;
 
   @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequest sr) throws Exception {
+  public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequest sr) throws BadAttributeValueExpException {
 
     User user = new User(sr);
 
@@ -74,19 +71,16 @@ public class AuthController {
 
     user.setPassword(passwordEncoder.encode(sr.password));
 
-    User db_user = userRepository.save(user);
+    User dbUser = userRepository.save(user);
 
-    CustomUserDetails loadedUser = customUserDetailsService.loadUserByUsername(db_user.getEmail());
+    CustomUserDetails loadedUser = customUserDetailsService.loadUserByUsername(dbUser.getEmail());
 
     String jwt = jwtUtil.generateToken(loadedUser);
-
-    // json maker is used to make a json object
-    // String body = json.add("jwt", jwt).add("user", db_user).build();
 
     Map<String, Object> body = new HashMap<>();
 
     body.put("jwt", jwt);
-    body.put("user", db_user);
+    body.put("user", dbUser);
 
     return new ResponseEntity<>(
         new MsgDataResponse("Account Created Successfully", body),
@@ -95,7 +89,7 @@ public class AuthController {
   }
 
   @PostMapping(value = "/signin", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> signin(@Valid @RequestBody LogInRequest lr) throws Exception {
+  public ResponseEntity<?> signin(@Valid @RequestBody LogInRequest lr) throws UsernameNotFoundException {
 
     // An AuthenticationManager can do one of 3 things in its authenticate() method:
     // Return an Authentication (normally with authenticated=true ) if it can verify
@@ -108,15 +102,15 @@ public class AuthController {
     CustomUserDetails user = customUserDetailsService.loadUserByUsername(lr.email);
 
     String jwt = jwtUtil.generateToken(user);
-    Optional<User> db_user = userRepository.findByEmailIgnoreCase(lr.email);
+    Optional<User> dbUser = userRepository.findByEmailIgnoreCase(lr.email);
 
-    if (db_user.isEmpty())
+    if (dbUser.isEmpty())
       throw new UsernameNotFoundException("User doesn't exists");
 
     Map<String, Object> body = new HashMap<>();
 
     body.put("jwt", jwt);
-    body.put("user", db_user.get());
+    body.put("user", dbUser.get());
 
     return new ResponseEntity<>(new MsgDataResponse("Logged Successfully", body), HttpStatus.OK);
 

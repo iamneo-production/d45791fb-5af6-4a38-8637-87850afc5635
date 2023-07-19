@@ -6,14 +6,11 @@ import org.springframework.http.HttpStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-//Sends error the following way
-        // {
-        //   "httpStatus": "NOT_FOUND",
-        //   "timestamp": "28-06-2023 11:16:35",
-        //   "message": "Path doesn't exist",
-        //   "debugMessage": "No endpoint POST /app.",
-        //   "subErrors": null
-        // }
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.DEDUCTION, property = "error", visible = true)
 public class ApiError {
     private HttpStatus httpStatus;
@@ -43,47 +40,6 @@ public class ApiError {
         this(status);
         message = msg;
         debugMessage = ex.getLocalizedMessage();
-    }
-
-    // Getters and Setters
-    public HttpStatus getHttpStatus() {
-        return this.httpStatus;
-    }
-
-    public void setHttpStatus(HttpStatus httpStatus) {
-        this.httpStatus = httpStatus;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return this.timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getMessage() {
-        return this.message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getDebugMessage() {
-        return this.debugMessage;
-    }
-
-    public void setDebugMessage(String debugMessage) {
-        this.debugMessage = debugMessage;
-    }
-
-    public List<ApiSubErrors> getSubErrors() {
-        return this.subErrors;
-    }
-
-    public void setSubErrors(List<ApiSubErrors> subErrors) {
-        this.subErrors = subErrors;
     }
 
 }

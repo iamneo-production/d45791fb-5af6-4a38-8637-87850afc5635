@@ -16,9 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtUtil {
 
-  // @Value("${secretjwt}")
-  // private String secretkey;
-
   private Key getSigningKey() {
     byte[] keyBytes = this.secretkey.getBytes(StandardCharsets.UTF_8);
     return Keys.hmacShaKeyFor(keyBytes);
@@ -63,7 +60,7 @@ public class JwtUtil {
 
     claims.put("role", role);
 
-    String token = Jwts.builder()
+    return Jwts.builder()
         .setClaims(claims)
         .setSubject(email)
         .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -72,7 +69,6 @@ public class JwtUtil {
         .signWith(getSigningKey())
         .compact();
 
-    return token;
   }
 
   public Boolean validateToken(String token, CustomUserDetails userDetails) {

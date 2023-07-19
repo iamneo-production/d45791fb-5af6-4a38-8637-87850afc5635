@@ -3,6 +3,7 @@ package com.example.springapp;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-// import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -28,12 +28,20 @@ import com.example.springapp.service.CustomUserDetailsService;
 public class SecurityConfig {
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
-    @Autowired
+    private ApplicationContext applicationContext;
+
+    private CustomUserDetailsService getCustomUserDetailsService() {
+        return applicationContext.getBean(CustomUserDetailsService.class);
+    }
+
+    private JwtRequestFilter getJwtRequestFilter() {
+        return applicationContext.getBean(JwtRequestFilter.class);
+    }
+
     @Qualifier("delegatedAuthenticationEntryPoint")
-    private AuthenticationEntryPoint authEntryPoint;
+    private AuthenticationEntryPoint getAuthEntryPoint() {
+        return applicationContext.getBean(AuthenticationEntryPoint.class);
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -62,10 +70,10 @@ public class SecurityConfig {
                                 .mvcMatchers(eventUrls, attendeeUrls, ticketUrls).authenticated())
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .userDetailsService(customUserDetailsService).cors(cors -> cors.disable())
-                .exceptionHandling(hand -> hand.authenticationEntryPoint(authEntryPoint));
+                .userDetailsService(getCustomUserDetailsService()).cors(cors -> cors.disable())
+                .exceptionHandling(hand -> hand.authenticationEntryPoint(getAuthEntryPoint()));
 
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(getJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
