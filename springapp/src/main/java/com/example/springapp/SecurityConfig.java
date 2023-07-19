@@ -49,10 +49,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        String[] authUrls = new String[] { "/signin", "/signup" };
+        String attendeeUrls = "/attendee/**";
+        String eventUrls = "/event/**";
+        String ticketUrls = "/ticket/**";
+
         http.csrf(t -> t.disable())
                 .authorizeHttpRequests(
                         auth -> auth
-                                .mvcMatchers("/**").permitAll())
+                                .mvcMatchers(authUrls)
+                                .permitAll()
+                                .mvcMatchers(eventUrls, attendeeUrls, ticketUrls).authenticated())
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .userDetailsService(customUserDetailsService).cors(cors -> cors.disable())

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppRESTService } from './appRESTService';
 import { Event } from '../../models/event';
@@ -18,21 +18,20 @@ import { catchError, tap } from 'rxjs';
 //   OrganizerId: number;
 // }
 
-
 interface EventInput {
-    name:string;
-    description:string;
-    location:string;
-    startDate:string;
-    endDate:string;
-    speakerName:string;
-    speakerExpertise:string;
-    speakerAffiliations:string;
-    speakerAccomplishments:string;
-    speakerBiography:string;
-    price:number;
-    totalTickets:number;
-    imgUrl:string;
+  name: string;
+  description: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  speakerName: string;
+  speakerExpertise: string;
+  speakerAffiliations: string;
+  speakerAccomplishments: string;
+  speakerBiography: string;
+  price: number;
+  totalTickets: number;
+  imgUrl: string;
 }
 
 @Injectable({
@@ -46,7 +45,9 @@ export class EventsService extends AppRESTService {
   }
   getEvents() {
     return this.http
-      .get<Event[]>(this.API_URL)
+      .get<Event[]>(this.API_URL, {
+        headers: headers,
+      })
       .pipe(tap(), catchError(this.handleError));
   }
 
@@ -70,4 +71,3 @@ export class EventsService extends AppRESTService {
       .pipe(tap(), catchError(this.handleError));
   }
 }
-
