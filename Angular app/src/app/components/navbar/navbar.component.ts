@@ -81,6 +81,7 @@ export class NavbarComponent implements OnInit {
     this.authUser = this.auth.authUser;
 
     console.log('this is navbar authUser - ', this.authUser);
+    console.log("role", this.authUser.role)
     this.getUserName();
     this.getUrlForDropDown();
 
@@ -95,8 +96,9 @@ export class NavbarComponent implements OnInit {
       return;
     }
     const role = this.authUser.role.split('_')[1].toLowerCase();
+    console.log("Another role - ", role);
 
-    switch (this.authUser.role) {
+    switch (role) {
       case Role.USER.toLowerCase():
         this.router.navigateByUrl('/user-login');
         break;
@@ -127,7 +129,7 @@ export class NavbarComponent implements OnInit {
       this.menuType = '/categories';
     } else if (url.includes('/myevent')) {
       this.menuType = '/categories';
-    } else if (url.includes('/organizer/')) {
+    } else if (url.includes('/organiser/')) {
       this.menuType = '/organiser/';
     } else if (url.includes('/user/')) {
       this.menuType = '/user/';
@@ -138,11 +140,14 @@ export class NavbarComponent implements OnInit {
 
   // for getting the role who has registered and sending the url into html for role based dropdown selection..
   getUrlForDropDown() {
-    if (this.authUser && this.authUser.role === Role.ORAGANISER) {
+    if (this.authUser && this.authUser.role == 'ROLE_ORGANISER') {
+      console.log("Organiser -", true);
       this.dropdownUrl = '/organiser';
-    } else if (this.authUser && this.authUser.role === Role.USER) {
+    } else if (this.authUser && this.authUser.role == 'ROLE_USER') {
+      console.log("User - ", true);
       this.dropdownUrl = '/user';
     } else {
+      console.log("dropdownUrl is empty -----")
       this.dropdownUrl = ''; // No dropdown for other roles or when not logged in
     }
   }
