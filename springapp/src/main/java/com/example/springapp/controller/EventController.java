@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.springapp.model.Event;
 import com.example.springapp.service.EventService;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -23,12 +24,14 @@ public class EventController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ORGANISER')")
     public ResponseEntity<String> createEvent(@RequestBody Event event) {
         eventService.createEvent(event);
         return ResponseEntity.status(HttpStatus.CREATED).body("Event created");
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ORGANISER')")
     public String updateEvent(@PathVariable Long id,@RequestBody Event event) {
         event.setId(id);
     	eventService.updateEvent(event);
@@ -36,6 +39,7 @@ public class EventController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public boolean deleteEvent( @PathVariable Long id) {
         return eventService.deleteEvent(id);
     }

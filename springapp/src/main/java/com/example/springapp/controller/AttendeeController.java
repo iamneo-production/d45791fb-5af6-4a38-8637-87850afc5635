@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/attendee")
@@ -19,12 +20,14 @@ public class AttendeeController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public ResponseEntity<Attendee> createAttendee(@RequestBody Attendee attendee) {
         Attendee createdAttendee = attendeeService.createAttendee(attendee);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdAttendee);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public ResponseEntity<Attendee> getAttendeeById(@PathVariable("id") Long id) {
         Attendee attendee = attendeeService.getAttendeeById(id);
         if (attendee != null) {
@@ -34,18 +37,21 @@ public class AttendeeController {
     }
 
     @GetMapping("/event/{eventId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public ResponseEntity<List<Attendee>> getAttendeeByEventId(@PathVariable("eventId") Long eventId) {
         List<Attendee> attendees = attendeeService.getAttendeeByEventId(eventId);
         return ResponseEntity.ok(attendees);
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public ResponseEntity<List<Attendee>> getAllAttendee() {
         List<Attendee> attendees = attendeeService.getAllAttendee();
         return ResponseEntity.ok(attendees);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public ResponseEntity<Attendee> updateAttendee(@PathVariable("id") Long id, @RequestBody Attendee attendee) {
         Attendee existingAttendee = attendeeService.getAttendeeById(id);
         if (existingAttendee != null) {
@@ -64,6 +70,4 @@ public class AttendeeController {
         }
         return ResponseEntity.notFound().build();
     }
-
-    // Additional methods based on your requirements
 }
