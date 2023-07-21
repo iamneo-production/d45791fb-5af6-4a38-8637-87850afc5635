@@ -59,31 +59,31 @@
             <div class="row" style="margin-top: 30px;">
               <div class="bio-row  input-group mb-3">
                 <label for="FName" class="input-group-text">First Name</label>
-                <input type="text"  class="form-control" placeholder="enter your firstname" disabled>
+                <input type="text"  class="form-control" placeholder="enter your firstname" value={{firstname}} disabled>
               </div>
               <div class="bio-row  input-group mb-3">
                 <label for="LName" class="input-group-text">Last Name</label>
-                <input type="text"  class="form-control" placeholder="enter your lastname" disabled>
+                <input type="text"  class="form-control" placeholder="enter your lastname" value={{lastname}} disabled>
               </div>
               <div class="bio-row  input-group mb-3">
                 <label for="OrganiserId" class="input-group-text">Organiser ID</label>
-                <input type="text" class="form-control" disabled>
+                <input type="text" class="form-control" value={{organiser.id}} disabled>
               </div>
               <div class="bio-row  input-group mb-3">
                 <label for="phoneNumber" class="input-group-text">Phone Number</label>
                 <input type="text" class="form-control" [disabled]="!isEdit" maxlength="10"
-                  placeholder="enter your valid mobilenumber">
+                  placeholder="enter your valid mobilenumber" value={{organiser.phone}}>
               </div>
               <div class="bio-row  input-group mb-3">
                 <label for="Email" class="input-group-text">Email ID</label>
-                <input type="email" [disabled]="!isEdit" class="form-control" placeholder=" enter your valid mail">
+                <input type="email" [disabled]="!isEdit" class="form-control" placeholder=" enter your valid mail" [(ngModel)]="organiser.email">
               </div>
               <div class="bio-row  input-group mb-3">
                 <label for="password" class="input-group-text">Password</label>
-                <input type="password" [disabled]="!isEdit" class="form-control" maxlength="8"
-                  placeholder="enter your password min 8 char">
+                <input type="password" disabled class="form-control" maxlength="8"
+                  placeholder="enter your password min 8 char" [(ngModel)]="organiser.password">
               </div>&nbsp;
-              <div class="bio-row input-group">
+              <!-- <div class="bio-row input-group">
                 <label for="Gender" class="input-group-text">Gender</label>&nbsp;&nbsp;
                 <select name="" id=""  style="width: 200px;" class="form-control" disabled>
                   <option value="">Choose your gender...</option>
@@ -91,7 +91,7 @@
                   <option value="">Female</option>
                   <option value="">Others</option>
                 </select>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
