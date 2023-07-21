@@ -34,16 +34,16 @@ export class BackendService implements InMemoryDbService {
     if (collectionName === 'users') {
       user = collection.filter(
         (user: Participant) =>
-          user.Email === query.get('Email')![0] &&
-          user.Password === query.get('Password')![0]
+          user.email === query.get('Email')![0] &&
+          user.password === query.get('Password')![0]
       );
     }
     // Organizer collection
     if (collectionName === 'organizers') {
       user = collection.filter(
         (user: Organizer) =>
-          user.Email === query.get('Email')![0] &&
-          user.Password === query.get('Password')![0]
+          user.email === query.get('Email')![0] &&
+          user.password === query.get('Password')![0]
       );
     }
 
@@ -76,7 +76,7 @@ export class BackendService implements InMemoryDbService {
     if (collectionName === 'organizers') {
       data.UserID = idUpdater(collection);
       data.id = data.UserID;
-      data.Role = Role.ORAGANIZER;
+      data.Role = Role.ORAGANISER;
 
       data.EventID = [];
     }
@@ -112,4 +112,3 @@ export class BackendService implements InMemoryDbService {
     return undefined;
   }
 }
-

@@ -1,11 +1,13 @@
 package com.example.springapp.controller;
 
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
 import com.example.springapp.model.Event;
 import com.example.springapp.service.EventService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -15,25 +17,28 @@ public class EventController {
 
     private final EventService eventService;
 
-    @Autowired
     public EventController(EventService eventService) {
         this.eventService = eventService;
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ORGANISER')")
     public ResponseEntity<String> createEvent(@RequestBody Event event) {
         eventService.createEvent(event);
         return ResponseEntity.status(HttpStatus.CREATED).body("Event created");
     }
 
-    @PutMapping
-    public String updateEvent(@RequestBody Event event) {
-        eventService.updateEvent(event);
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ORGANISER')")
+    public String updateEvent(@PathVariable Long id,@RequestBody Event event) {
+        event.setId(id);
+    	eventService.updateEvent(event);
         return "Event updated";
     }
 
-    @DeleteMapping
-    public boolean deleteEvent(@RequestParam("id") Long id) {
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
+    public boolean deleteEvent( @PathVariable Long id) {
         return eventService.deleteEvent(id);
     }
 

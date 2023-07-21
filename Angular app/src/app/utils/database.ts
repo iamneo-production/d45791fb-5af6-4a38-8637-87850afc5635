@@ -39,18 +39,7 @@ export const DatabaseData: Database = {
     },
   ],
 
-  users: [
-    {
-      id: 1,
-      ParticipantId: 1,
-      Name: 'James Hetfield',
-      Contact_No: '6000855325',
-      Email: 'jh83@gmail.com',
-      Password: 'sdhsfjsd',
-      TicketId: [1],
-      Role: Role.USER,
-    },
-  ],
+  users: [],
 
   tickets: [
     {
@@ -64,28 +53,8 @@ export const DatabaseData: Database = {
       Type: 'sadhsdfh',
     },
   ],
-  organizers: [
-    {
-      id: 1,
-      OrganizerId: 1,
-      Name: 'George Fisher',
-      Contact_No: '7000855325',
-      Email: 'gf83@gmail.com',
-      Password: 'sdhsfjsd',
-      EventID: [1],
-      Role: Role.ORAGANIZER,
-    },
-  ],
-  admins: [
-    {
-      id: 1,
-      AdminID: 1,
-      Email: 'raven123@gmail.com',
-      Name: 'Ravendark1234',
-      Password: '23653573',
-      Role: Role.ADMIN,
-    },
-  ],
+  organizers: [],
+  admins: [],
   invoices: [
     {
       id: 1,

@@ -25,6 +25,7 @@ import { UserListComponent } from './admin/admin_components/user-list/user-list.
 import { ReportComponent } from './admin/admin_components/report/report.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { PaymentpageComponent } from './paymentpage/paymentpage.component';
+import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -116,7 +117,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'organizer/:id/createvent',
+    path: 'organiser/:id/createvent',
     component: CreateventComponent,
     canActivate: [orgainzerGuard],
     children: [
@@ -126,7 +127,7 @@ const routes: Routes = [
   {
     // This path contains details about specific organiser
     // :id is dynamic path variable
-    path: 'organizer/:id',
+    path: 'organiser/:id',
     component:OrganizerprofilepageComponent,
     canActivate: [orgainzerGuard],
     children: [
@@ -163,12 +164,12 @@ const routes: Routes = [
     ],
   },
   //admin
-  { path: 'admin/dashboard', component: AdminDashboardComponent },
-  { path: 'admin/manage-users', component: UserListComponent },
-  { path: 'admin/manage-events', component: EventListingComponent },
-  { path: 'admin/manage-events/:id', component: AEventDetailComponent },
-  { path: 'admin/manage-users/:id', component: UserDetailComponent },
-  { path: 'admin/manage-tickets', component: TicketComponent },
+  { path: 'admin/dashboard', component: AdminDashboardComponent ,canActivate:[AdminGuard]},
+  { path: 'admin/manage-users', component: UserListComponent ,canActivate:[AdminGuard]},
+  { path: 'admin/manage-events', component: EventListingComponent,canActivate:[AdminGuard] },
+  { path: 'admin/manage-events/:id', component: AEventDetailComponent,canActivate:[AdminGuard] },
+  { path: 'admin/manage-users/:id', component: UserDetailComponent ,canActivate:[AdminGuard]},
+  { path: 'admin/manage-tickets', component: TicketComponent ,canActivate:[AdminGuard]},
   {
     path: 'admin/report/:id',
     component: ReportComponent,

@@ -9,10 +9,10 @@ import java.util.List;
 
 @Service
 public class TicketService {
-
+    @Autowired
     private final TicketRepository ticketRepository;
 
-    @Autowired
+ 
     public TicketService(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
     }
