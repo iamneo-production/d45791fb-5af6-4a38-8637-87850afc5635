@@ -51,7 +51,7 @@ export class EventsService extends AppRESTService {
   }
 
   
- getEventById(id:number){
+ getEvent(id:number){
       return this.http.get<Event>(this.BASE_URL+'/'+id)
  }
 

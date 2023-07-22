@@ -16,7 +16,7 @@
           <p class="card-text">
             {{event.shortDescription}}
           </p>
-          <p><mat-icon>date_range</mat-icon>{{event.startDate | date:"dd/MM/yyyy"}}</p>
+          <p><mat-icon>date_range</mat-icon>{{event.startDate | date:"dd/MM/yy"}}</p>
           <button class="btn btn-block btn-md" (click)="redirectToEventDetails(event.id)">Event Details</button>
         </div>
       </div>

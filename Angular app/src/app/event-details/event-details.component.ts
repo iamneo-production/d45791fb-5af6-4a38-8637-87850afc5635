@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EventsService } from '../services/event-service/events.service';
+//import { EventsService } from '../services/event-service/events.service';
+import {Event} from '../models/event';
+import {EventsService} from '../services/api/events.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.css']
+  styleUrls: ['./event-details.component.css'],
+  providers:[DatePipe]
 })
 export class EventDetailsComponent implements OnInit {
-  public name = "Cybersecurity Symposium";
+ /* public name = "Cybersecurity Symposium";
   public duration = "2 hrs";
   public location = "Ground and Mezzanine floor, Bangalore, Karnataka";
   public participantsCapacity = "100 Members";
@@ -32,18 +36,29 @@ export class EventDetailsComponent implements OnInit {
   locationName: string = 'Ground and Mezzanine floor, Bangalore, Karnataka';
 
  
+*/
 
+event:Event;
 
-  constructor(private router:Router, private eventdet:EventsService) { }
-
+  constructor(private router:Router,private es:EventsService) { 
+    
+    console.log(this.event);
+  }
+  
+  
   ngOnInit(): void {
     //console.log(this.router.url);
     let url = this.router.url.split('/');
     console.log(url[url.length-1]);
     let Id:number =  Number(url[url.length-1]);
-    let event= this.eventdet.getEvent(Id-1);
-    console.log(event);
-    this.eventID=event.id;
+    //let event= this.eventdet.getEvent(Id-1);
+    let event = this.es.getEvent(Id).subscribe((data:Event)=>{
+      this.event=data;
+      console.log(this.event);
+
+    },error=>console.log(error));
+    
+    /*this.eventID=event.id;
     this.image=event.image;
     this.description=event.description;
     this.name=event.name;
@@ -52,19 +67,19 @@ export class EventDetailsComponent implements OnInit {
     this.expertise=event.expertise;
     this.affliations=event.affiliations;
     this.accomplishments=event.accomplishments;
-    this.biography=event.biography;
+    this.biography=event.biography; */
 
   }
 
 
   generateCalendarUrl(): string {
-    const startDate = new Date('2023-06-09T18:00:00+05:30');
-    const endDate = new Date('2023-06-09T20:00:00+05:30');
+    const startDate = new Date(this.event.startDate);
+    const endDate = new Date(this.event.endDate);
   
     const formattedStartDate = startDate.toISOString().replace(/-|:|\.\d+/g, '');
     const formattedEndDate = endDate.toISOString().replace(/-|:|\.\d+/g, '');
   
-    const eventName = encodeURIComponent('Cybersecurity Symposium');
+    const eventName = encodeURIComponent(this.event.name);
     const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventName}&dates=${formattedStartDate}/${formattedEndDate}`;
   
     return calendarUrl;
@@ -76,13 +91,17 @@ export class EventDetailsComponent implements OnInit {
   }
   
   generateLocationUrl(): string{
-    const locationNameEncoded = encodeURIComponent(this.locationName);
+    const locationNameEncoded = encodeURIComponent(this.event.location);
     const locationUrl= `https://maps.google.com/maps?q=${locationNameEncoded}`;
     return locationUrl;
   }
 
+  
+organiser_name=JSON.parse(localStorage.getItem('user')).name;
+
   generateMessage(): string {
-    const message = `Join us for a week-long Cybersecurity symposium in Bangalore from June 9th to June 15th, 2023.\n\nEvent Details:\nDuration: 2 hrs\nLocation: ${this.locationName}\nParticipants Capacity: 100 Members\nStart Time & Date: ${this.startTime}\nEnd Time & Date: ${this.endTime}\nOrganizer: ${this.organizer}\nEvent ID: ${this.eventID}\n\nDon't miss this transformative journey into the world of cybersecurity at the Bangalore symposium from June 9th to June 15th, 2023. Register now!`;
+    const message = `Join us for a week-long ${this.event.name} in ${this.event.location} from ${this.event.startDate} to ${this.event.endDate} .\n\nEvent Details:
+    \nDuration: 2 hrs\nLocation: ${this.event.location}\nParticipants Capacity: ${this.event.totalTickets} Members\nStart Time & Date: ${this.event.startDate}\nEnd Time & Date: ${this.event.endDate}\nOrganizer: ${this.organiser_name} \nEvent ID: ${this.event.id}\n\nDon't miss this transformative journey into the world of ${this.event.name} at the ${this.event.location} from ${this.event.startDate} to ${this.event.endDate}. Register now!`;
 
     return message;
   }
@@ -103,16 +122,16 @@ export class EventDetailsComponent implements OnInit {
 
   buyTickets() : any {
     let event_details = {
-      eventID:this.eventID,
-      image:this.image,
-      description:this.description,
-      name:this.name,
-      cost:this.cost,
-      speakerName:this.speakerName,
-      expertise:this.expertise,
-      affliations:this.affliations,
-      accomplishments:this.accomplishments,
-      biography:this.biography
+      eventID:this.event.id,
+      image:this.event.imgUrl,
+      description:this.event.description,
+      name:this.event.name,
+      cost:this.event.price,
+      speakerName:this.event.speakerName,
+      expertise:this.event.speakerExpertise,
+      affliations:this.event.speakerAffiliations,
+      accomplishments:this.event.speakerAccomplishments,
+      biography:this.event.speakerBiography
     }
 
     console.log(event_details)
