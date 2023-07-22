@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppRESTService } from './appRESTService';
 import { Event } from '../../models/event';
@@ -39,21 +39,21 @@ interface EventInput {
   providedIn: 'root',
 })
 export class EventsService extends AppRESTService {
-  API_URL: string = '/api/events';
+  override API_URL: string;
+  BASE_URL: string = 'http://localhost:8080/event';
 
   constructor(private http: HttpClient) {
     super();
   }
   getEvents() {
     return this.http
-      .get<Event[]>(this.API_URL)
-      .pipe(tap(), catchError(this.handleError));
+      .get<Event[]>(this.BASE_URL);
   }
 
   getEvent(id: number) {
     return this.http
-      .get<Event>(`${this.API_URL}/${id}`)
-      .pipe(tap(), catchError(this.handleError));
+    .get<Event[]>(`${this.API_URL}`)
+    .pipe(tap(), catchError(this.handleError));
   }
 
   getEventsByEventType(type: string) {
@@ -62,12 +62,22 @@ export class EventsService extends AppRESTService {
       .pipe(tap(), catchError(this.handleError));
   }
 
-  //Add an event
-  //requires following fields to create
   addEvent(input: EventInput) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
     return this.http
-      .post(`${this.API_URL}`, input)
-      .pipe(tap(), catchError(this.handleError));
+      .post<string>(this.BASE_URL, input, {
+        headers,
+        responseType: 'text' as 'json',
+      })
+      .subscribe(
+        (data) => {
+          console.log(data); 
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
 

@@ -9,15 +9,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.FetchType;
+
 
 import java.util.Date;
 import java.util.List;
 
+import com.example.springapp.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
 @Table(name="event")
 public class Event {
 
@@ -25,19 +35,22 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="event_id")
     private Long id;
-
-    public Long getId() {
-		return id;
-	}
-
     @Column(name="name")
 	private String name;
+    @Column(name="shortDescription")
+    private String shortDescription;
     @Column(name="description")
     private String description;
     @Column(name="location")
     private String location;
     @Column(name="startDate")
     private Date startDate;
+
+    @JsonIgnoreProperties("events")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="organizer_id")
+    private User organizer;
+
     @Column(name="endDate")
     private Date endDate;
     @Column(name="speakerName")
@@ -80,10 +93,11 @@ public class Event {
         this.totalTickets = totalTickets;
     }
 
-    public Event(String name, String description, String location, String speakerName,Date startDate,Date endDate,
+    public Event(String name,String shortDescription, String description, String location, String speakerName,Date startDate,Date endDate,
 			String speakerExpertise, String speakerAffiliations, String speakerAccomplishments, String speakerBiography,
 			int price, Long totalTickets, String imgUrl) {
 		super();
+        this.shortDescription=shortDescription;
 		this.name = name;
 		this.description = description;
 	    this.startDate = startDate;
@@ -99,154 +113,7 @@ public class Event {
 		this.imgUrl = imgUrl;
 	}
 
-	public String getSpeakerName() {
-		return speakerName;
-	}
-
-
-
-	public void setSpeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
-
-
-
-	public String getSpeakerExpertise() {
-		return speakerExpertise;
-	}
-
-
-
-	public void setSpeakerExpertise(String speakerExpertise) {
-		this.speakerExpertise = speakerExpertise;
-	}
-
-
-
-	public String getSpeakerAffiliations() {
-		return speakerAffiliations;
-	}
-
-
-
-	public void setSpeakerAffiliations(String speakerAffiliations) {
-		this.speakerAffiliations = speakerAffiliations;
-	}
-
-
-
-	public String getSpeakerAccomplishments() {
-		return speakerAccomplishments;
-	}
-
-
-
-	public void setSpeakerAccomplishments(String speakerAccomplishments) {
-		this.speakerAccomplishments = speakerAccomplishments;
-	}
-
-
-
-	public String getSpeakerBiography() {
-		return speakerBiography;
-	}
-
-
-
-	public void setSpeakerBiography(String speakerBiography) {
-		this.speakerBiography = speakerBiography;
-	}
-
-
-
-	public int getPrice() {
-		return price;
-	}
-
-
-
-	public void setPrice(int price) {
-		this.price = price;
-	}    
-
-    public Event() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-   public Date getStartDate() {
-       return startDate;
-    }
-   public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-       this.endDate = endDate;
-   }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Long getTotalTickets() {
-        return totalTickets;
-    }
-
-    public void setTotalTickets(Long totalTickets) {
-        this.totalTickets = totalTickets;
-    }
-
-    public List<Attendee> getAttendees() {
-        return attendees;
-    }
-
-    public void setAttendees(List<Attendee> attendees) {
-        this.attendees = attendees;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
-
-	public void setId(Long id2) {
-		this.id=id2;
-	}
-
+	
     
 
 }
