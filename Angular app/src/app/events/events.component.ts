@@ -43,21 +43,22 @@ export class EventsComponent {
     console.log(this.events);
   }
 
-  onSearchTexEntered(searchValue: string){
+  onSearchTexEntered(searchValue: string) {
     this.searchText = searchValue.toLowerCase();
-    let array = []
-    console.log(this.searchText);
-    for(let i=0;i<this.events.length;i++){
-      const eventName = this.events[i].name.toLowerCase();
-      const startDate = this.events[i].start_date.toLowerCase();
-
-
-      if(eventName.includes(this.searchText) || startDate.includes(this.searchText)){
-        array.push(this.events[i]);
-      // console.log(this.events[i].name);
+    const array = [];
+  
+    for (let i = 0; i < this.events.length; i++) {
+      const event = this.events[i];
+      if (event && event.name && event.startDate) {
+        const eventName = event.name.toLowerCase();
+        const startDate = event.startDate.toLowerCase();
+  
+        if (eventName.includes(this.searchText) || startDate.includes(this.searchText)) {
+          array.push(event);
+        }
       }
     }
-
+  
     if (array.length === 0) {
       // No events found
       this.eventsNotFound = true;
@@ -65,9 +66,10 @@ export class EventsComponent {
       // Events found
       this.eventsNotFound = false;
     }
-    console.log(array);
-    this.temp=array;
+  
+    this.temp = array;
   }
+  
   
   redirectToEventDetails(id:any): void {
     console.log(id);

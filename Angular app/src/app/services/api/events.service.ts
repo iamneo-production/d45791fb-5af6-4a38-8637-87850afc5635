@@ -51,13 +51,14 @@ export class EventsService extends AppRESTService {
   }
 
   
- getEventById(id:number){
+ getEvent(id:number){
       return this.http.get<Event>(this.BASE_URL+'/'+id)
  }
 
   addEvent(input: EventInput) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
+    console.log("event insert ");
+    
     return this.http
       .post<string>(this.BASE_URL, input, {
         headers,
