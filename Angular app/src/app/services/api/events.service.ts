@@ -50,17 +50,10 @@ export class EventsService extends AppRESTService {
       .get<Event[]>(this.BASE_URL);
   }
 
-  getEvent(id: number) {
-    return this.http
-    .get<Event[]>(`${this.API_URL}`)
-    .pipe(tap(), catchError(this.handleError));
-  }
-
-  getEventsByEventType(type: string) {
-    return this.http
-      .get<Event[]>(`${this.API_URL}?EventType=${type}`)
-      .pipe(tap(), catchError(this.handleError));
-  }
+  
+ getEventById(id:number){
+      return this.http.get<Event>(this.BASE_URL+'/'+id)
+ }
 
   addEvent(input: EventInput) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
