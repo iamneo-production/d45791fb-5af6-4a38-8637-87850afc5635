@@ -6,7 +6,7 @@ export interface Event{
     description:string;
     shortDescription:string;
     // you want to send the organizer id while sending the post request so be aware of it
-    organiser?:number;
+    organiser?:Organizer;
     location:string;
     startDate:string;
     endDate:string;
