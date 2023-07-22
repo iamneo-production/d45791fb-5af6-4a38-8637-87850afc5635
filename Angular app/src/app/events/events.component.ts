@@ -1,13 +1,15 @@
 import { Component,Output,EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { arrow } from '@popperjs/core';
-import { EventsService } from '../services/event-service/events.service';
-
+import { EventsService } from '../services/api/events.service';
+import { Event } from '../models/event';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  styleUrls: ['./events.component.css'],
+  providers:[DatePipe]
 })
 export class EventsComponent {
   @Output() event = new EventEmitter<string>()
@@ -22,20 +24,29 @@ export class EventsComponent {
   searchText: string='';
   temp: any[]=this.events;
 
-  constructor(private router: Router,@Inject(EventsService) private eventser: EventsService) {
+  constructor(private router: Router,@Inject(EventsService) private es: EventsService) {
     
   }
   
   ngOnInit(){
-    this.eventser.getAllEvents().forEach((data)=> this.events.push(data));
-    //console.log(events);
-    //this.events=events;
+    //this.eventser.getAllEvents().forEach((data)=> this.events.push(data));
+  
+    this.es.getEvents().subscribe((Response:Event[])=>{
+      console.log(Response);
+      this.temp=[...Response].filter((data)=>{
+          return data.organiser!=null;
+      });
+      this.events=this.temp;
+  },error=>
+      console.log(error)
+  );
+    console.log(this.events);
   }
 
   onSearchTexEntered(searchValue: string){
     this.searchText = searchValue.toLowerCase();
     let array = []
-    //console.log(this.searchText);
+    console.log(this.searchText);
     for(let i=0;i<this.events.length;i++){
       const eventName = this.events[i].name.toLowerCase();
       const startDate = this.events[i].start_date.toLowerCase();
