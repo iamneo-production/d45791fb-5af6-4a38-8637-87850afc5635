@@ -21,6 +21,7 @@ export class OrganizerprofilepageComponent {
     this.organiser.password = "";
     this.getFirstNameAndLastName();
     console.log(this.organiser);
+
   }
 
   getFirstNameAndLastName() {
