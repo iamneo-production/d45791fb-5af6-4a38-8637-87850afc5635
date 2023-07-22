@@ -49,7 +49,7 @@ public class Event {
     @JsonIgnoreProperties("events")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="organizer_id")
-    private User organizer;
+    private User organiser;
 
     @Column(name="endDate")
     private Date endDate;
