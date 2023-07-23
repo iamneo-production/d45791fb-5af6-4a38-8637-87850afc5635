@@ -10,7 +10,7 @@ import { HomeComponent } from './landing_page/home/home.component';
 import { ServiceCardComponent } from './landing_page/service-card/service-card.component';
 import { SliderComponent } from './landing_page/slider/slider.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -59,9 +59,6 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { EventService } from './admin/admin_services/a-event.service';
-import { TicketService } from './admin/admin_services/a-ticket.service';
-import { UserService } from './admin/admin_services/a-user.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { SpeakerDetailsComponent } from './event-details/speaker-details/speaker-details.component';
 import { SearchAlleventsComponent } from './search-allevents/search-allevents.component';
@@ -157,12 +154,12 @@ export function playerFactory() {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    EventsService,
-    EventService,
-    TicketService,
-    UserService,
-    AdminAuthService,
-    AdminGuard,
+    // {
+    //    provide:HTTP_INTERCEPTORS,
+    //    useClass:AAuthInterceptorService,
+    //    multi:true
+    // },
+    EventsService
   ],
   bootstrap: [AppComponent],
 })

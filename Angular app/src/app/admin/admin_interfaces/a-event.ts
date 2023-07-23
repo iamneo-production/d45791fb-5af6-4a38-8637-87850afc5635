@@ -1,13 +1,23 @@
+import { organizer } from "./a-organizer";
+
 export interface event{
-    event_id:number,
-    event_name:string,
-    organizer_id:number,
-    start_date:string,
-    end_date:string
-    organizer_name:string,
-    event_desc:string,
-    cost:number,
-    location:string,
-    capacity:number,
-    register:number
+    id?:number;
+    name:string;
+    description:string;
+    shortDescription:string;
+    // you want to send the organizer id while sending the post request so be aware of it
+    organizer?:organizer;
+    location:string;
+    startDate:string;
+    endDate:string;
+    speakerName:string;
+    speakerExpertise:string;
+    speakerAffiliations:string;
+    speakerAccomplishments:string;
+    speakerBiography:string;
+    price:number;
+    totalTickets:number;
+    imgUrl:string;
+    attendees?:string[];
+    tickets?:string[];
 }

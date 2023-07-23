@@ -1,6 +1,11 @@
 import { Subject } from "rxjs";
 import { user } from "../admin_interfaces/a-user";
+import { Injectable } from "@angular/core";
 
+
+@Injectable({
+    providedIn: 'root',
+  })
 export class UserService{
 
     filterUpdate=new Subject<user[]>();

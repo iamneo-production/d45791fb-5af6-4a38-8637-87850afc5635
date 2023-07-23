@@ -55,13 +55,13 @@
                   </div>
                   
               </div>
-              <div *ngIf="user.user_role==='participant'">
+              <div *ngIf="user.user_role==='ROLE_USER'">
               <label>Previously participated events by the User</label>
                   <ul class="list-group" *ngFor="let event of user.previous_participated_events">
                       <li class="list-group-item">{{event}}</li>
                   </ul>
               </div>
-              <div *ngIf="user.user_role==='organizer'">
+              <div *ngIf="user.user_role==='ROLE_ORGANISER'">
                   <label>Previously Organized events by the User</label>
                   <ul class="list-group" *ngFor="let event of user.previous_organized_events">
                       <li class="list-group-item">{{event}}</li>
