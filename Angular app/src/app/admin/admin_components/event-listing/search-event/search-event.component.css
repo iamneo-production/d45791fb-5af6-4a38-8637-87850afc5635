@@ -1,17 +1,17 @@
 
 #search{
-    position: relative;
-    left: 94%;
-    bottom: 33px;
-    height: 30px;
-    background-color: white;
-  }
-input{
-    box-shadow: 5px 5px 5px 5px rgb(0, 0, 0,0.2);
-    height: 42px;
-  }
-#row{
   position: relative;
-  left: 560px;
-  top: 70px;
+  left: 94%;
+  bottom: 33px;
+  height: 30px;
+  background-color: white;
+}
+input{
+  box-shadow: 5px 5px 5px 5px rgb(0, 0, 0,0.2);
+  height: 42px;
+}
+#row{
+position: relative;
+left: 560px;
+top: 70px;
 }

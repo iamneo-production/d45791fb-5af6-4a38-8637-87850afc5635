@@ -90,12 +90,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.auth.login(this.formdata.email, this.formdata.password, role);
   }
 
-  advalid: boolean = true;
+  advalid:boolean=true;
 
   adminLogin() {
-    console.log(this.formdata.email, this.formdata.password);
-    this.formdata.email === 'admin' && this.formdata.password === 'admin'
-      ? this.as.login()
-      : (this.advalid = false);
+    console.log(this.formdata.email,this.formdata.password);
+    this.as.login(this.formdata.email,this.formdata.password);
+    // this.formdata.email==='admin' && this.formdata.password==='admin'?this.as.login():this.advalid=false;
+
   }
 }

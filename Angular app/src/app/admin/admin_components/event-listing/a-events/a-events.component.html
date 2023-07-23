@@ -1,19 +1,19 @@
 <li class="list-group-item" style="background-color: rgb(245,244,244);" >
     <div class="row" >
         <div class="col-md-1">
-            {{event.event_id}}
+            {{event.id}}
         </div>
         <div class="col-md-2">
-            {{event.event_name}}
+            {{event.name}}
         </div>
         <div class="col-md-2">
-            {{event.organizer_id}}
+            {{event.organiser.id}}
         </div>
         <div class="col-md-2">
-            {{event.start_date}}
+            {{event.startDate | date:"dd/MM/yyyy"}}
         </div>
         <div class="col-md-2">
-            {{event.end_date}}
+            {{event.endDate | date:'dd/MM/yyyy'}}
         </div>
         <div class="col-md-1">
             <button class="btn-primary" (click)="gotoEventDetails()">Details</button> 

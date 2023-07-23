@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventService } from '../../admin_services/a-event.service';
-import { event } from '../../admin_interfaces/a-event';
+import { Event } from '../../../models/event';
 
 @Component({
   selector: 'app-event-listing',
@@ -9,13 +9,21 @@ import { event } from '../../admin_interfaces/a-event';
 })
 export class EventListingComponent {
 
-    events:event[];
+    events:Event[];
 
     constructor(private es:EventService){
     }
 
     ngOnInit(){
-      this.events=this.es.getEvents();
+      this.es.getEvents().subscribe((Response:Event[])=>{
+        console.log(Response);
+        this.events=[...Response].filter((data)=>{
+            return data.organiser!=null;
+        });
+    },error=>
+        console.log(error)
+    );
+    
       this.es.filterUpdate.subscribe(data=>{
         this.events=data;
       })

@@ -23,8 +23,8 @@
                 <div class="details">
                     <p><strong>Location</strong>: {{ event.location }}</p>
                     <p><strong>Participants Capacity</strong>: {{ event.totalTickets }}</p>
-                    <p><strong>Start Date</strong>: {{ event.startDate|date:"dd/MM/yyyy" }}</p>
-                    <p><strong>End Date</strong>: {{ event.endDate|date:"dd/MM/yyyy" }}</p>
+                    <p><strong>Start Date and Time</strong>: {{ event.startDate|date:'medium' }}</p>
+                    <p><strong>End Date and Time</strong>: {{ event.endDate|date:'medium' }}</p>
                     <p><strong>Organizer</strong>: {{ organiser_name }}</p>
                     <p><strong>Event ID</strong>: {{ event.id}}</p>
                   </div>
