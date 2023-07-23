@@ -1,3 +1,8 @@
+<div class="back">
+  <div class="col-md-2 nav">
+    <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
+    <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
+  </div>
 <form #form="ngForm" (ngSubmit)="addEvent(form)">
   <div class="bg">
     <div class="container">
@@ -110,3 +115,4 @@
     </div>
   </div>
 </form>
+</div>
