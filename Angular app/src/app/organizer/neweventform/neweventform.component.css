@@ -40,6 +40,8 @@
     border-radius: 10px;
 }
 .back{
+    position: relative;
+    top: -20px; 
     height: 90vh;
 }
 .nav{
@@ -85,10 +87,10 @@ button{
     height: 90vh;
     width: 1282px;
     position: relative;
-    bottom: 678px;
-    left: 250px;
+    bottom: 670px;
+    left: 267px;
     
 }
-.back{
-    height: 90vh;
+#head-nav{
+    position: fixed;
 }

@@ -119,6 +119,36 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
     ]
   },
+  //organizer................
+  {
+    path:'organiser/:id/newevent',
+    component:NeweventformComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
+  
+  {
+    path:'organiser/:id/editevent/:eventId',
+    component:EditeventformComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
+  
+  {
+    path:'organiser/:id/event',
+    component:EventdisplayComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
   {
     path: 'organiser/:id/createvent',
     component: CreateventComponent,
@@ -159,9 +189,7 @@ const routes: Routes = [
       
     ],
   },
-  {path:'editevent',component:EditeventformComponent},
-  {path:'event',component:EventdisplayComponent},
-  {path:'newevent',component:NeweventformComponent},
+  
 
   {
     // Events path

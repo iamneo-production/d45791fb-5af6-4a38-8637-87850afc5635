@@ -7,7 +7,7 @@
 }
 table{
   background-color: white;
-    width: 80vw;
+    width: 90vw;
     opacity: .8;
     border-left:2px solid black;
     border-left:2px solid black;
@@ -234,7 +234,7 @@ button{
   background: #d1e5ff;
 }
 ::-webkit-scrollbar-thumb{
-  background:linear-gradient(#0F204B,#0F204B);
+  background:linear-gradient(#000,#000);
   border-radius: 10px;
 }
 .back{

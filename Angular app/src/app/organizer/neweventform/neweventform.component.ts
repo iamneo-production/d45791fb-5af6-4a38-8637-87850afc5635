@@ -19,6 +19,8 @@ export class NeweventformComponent implements OnInit{
     this.organiser_info=JSON.parse(localStorage.getItem('user'));
     console.log(this.organiser_info.id);     
   }
+  
+  userId:number=JSON.parse(localStorage.getItem("user")).id;
 
   addEvent(form: any) {
     console.log(form.value);
@@ -26,7 +28,7 @@ export class NeweventformComponent implements OnInit{
     this.es.addEvent(form.value);
     
 
-    this.router.navigate(['event'])
+    this.router.navigate([`organiser/${this.userId}/event`])
   }
 
   newE:boolean=false;
@@ -40,5 +42,6 @@ export class NeweventformComponent implements OnInit{
   manageEvent(){
     this.default=false;
     this.newE=false;
+    this.router.navigate([`organiser/${this.userId}/event`])
 }
 }

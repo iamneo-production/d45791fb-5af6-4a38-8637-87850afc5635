@@ -11,6 +11,8 @@ export class CreateventComponent {
 
     constructor(private router:Router){}
 
+    userId:number=JSON.parse(localStorage.getItem("user")).id;
+
     newE:boolean=false;
     default:boolean=true;
 
@@ -18,13 +20,13 @@ export class CreateventComponent {
     newEvent(){
       this.default=false;
       this.newE=true;
-      this.router.navigate(["/newevent"])
+      this.router.navigate([`organiser/${this.userId}/newevent`])
 
     }
     manageEvent(){
       this.default=false;
       this.newE=false;
-      this.router.navigate(["/event"])
+      this.router.navigate([`organiser/${this.userId}/event`])
 
     }
 }

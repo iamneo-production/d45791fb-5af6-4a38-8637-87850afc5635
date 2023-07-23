@@ -1,10 +1,10 @@
+<router-outlet name="nav" id="head-nav"></router-outlet>
 <div class="back">
   <div class="col-md-2 nav">
     <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
     <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
   </div>
-<form #form="ngForm" (ngSubmit)="addEvent(form)">
-  <div class="bg">
+<form #form="ngForm" class="bg" (ngSubmit)="addEvent(form)">
     <div class="container">
       <h1 style="color: white; text-align: center; margin-top: 80px; padding-top: 10px; padding-left: 5px;">
         Fill The Event Details
@@ -113,6 +113,7 @@
         </div>
       </div>
     </div>
-  </div>
 </form>
 </div>
+
+<app-footer></app-footer>

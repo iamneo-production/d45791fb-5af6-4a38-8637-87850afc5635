@@ -10,9 +10,13 @@ import { Router } from '@angular/router';
 })
 export class EventdisplayComponent implements OnInit{
   
-  edit() {
-    this.router.navigate(["editevent"]);
+
+  edit(id:number) {
+    this.router.navigate([`organiser/${this.userId}/editevent/${id}`]);
   }
+
+  
+  userId:number=JSON.parse(localStorage.getItem("user")).id;
 
   organiser:any;
   constructor(private es:EventsService,private router:Router){
@@ -23,13 +27,24 @@ export class EventdisplayComponent implements OnInit{
   ngOnInit(){
     this.es.getEvents().subscribe(data=>{this.events=data;console.log(data);
     },err=>console.log(err)
-    )
+    );
+    localStorage.setItem("noOfEvent",this.events.length.toString());
   }
   newEvent(){
-    this.router.navigate(["/createvent"]);
+    this.router.navigate([`organiser/${this.userId}/newevent`]);
   }
   manageEvent(){
     this.router.navigate(["/event"]);
+  }
+
+  isDeleted:boolean=false;
+  deleteId:number;
+  delete(id:number){
+    this.es.deleteEvent(id).subscribe(response=>{this.isDeleted=true;setInterval(()=>this.isDeleted=false,3000)},err=>console.log(err)
+    );
+    this.deleteId=id;
+    console.log(this.isDeleted);
+    
   }
 
 }

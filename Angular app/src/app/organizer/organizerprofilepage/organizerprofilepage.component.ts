@@ -15,6 +15,7 @@ export class OrganizerprofilepageComponent {
   organiser : any;
   firstname : any;
   lastname : any;
+  noOfEvents:string=localStorage.getItem("noOfEvent");
 
   ngOnInit() {
     this.organiser = JSON.parse(localStorage.getItem('user'))

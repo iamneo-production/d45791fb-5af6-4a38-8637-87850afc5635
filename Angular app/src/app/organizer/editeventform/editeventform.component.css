@@ -100,5 +100,7 @@ button{
     border-radius: 10px;
 }
 .back{
+    position: relative;
     height: 90vh;
+    top: -10px;
 }
