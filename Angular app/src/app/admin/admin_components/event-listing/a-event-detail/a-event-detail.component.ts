@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { event } from '../../../admin_interfaces/a-event';
+import { Event } from '../../../../models/event';
 import { EventService } from '../../../admin_services/a-event.service';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-a-event-detail',
   templateUrl: './a-event-detail.component.html',
-  styleUrls: ['./a-event-detail.component.css']
+  styleUrls: ['./a-event-detail.component.css'],
+  providers:[DatePipe]
 })
 export class AEventDetailComponent {
   eventId:number;
-  event:event;
+  event:Event;
   routeSubscription:Subscription;
   constructor(private route:ActivatedRoute,private es:EventService){
   }
@@ -24,7 +26,10 @@ export class AEventDetailComponent {
   }
 
   getData(){
-    this.event=this.es.getEventById(this.eventId);
+    this.es.getEventById(this.eventId).subscribe(data=>{
+      console.log("event based on id is :"+data.name);
+      this.event=data;
+    },error=>console.log(error));
   }
 
   ngOnDestroy(){

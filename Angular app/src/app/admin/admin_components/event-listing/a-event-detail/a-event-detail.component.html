@@ -7,33 +7,33 @@
             <form action="">
                 <div class="form-group">
                     <label for="name">Event Name</label>
-                    <div class="detail"><h5>{{event.event_name}}</h5></div>
+                    <div class="detail"><h5>{{event.name}}</h5></div>
                 </div>
                 <div class="form-group">
                     <label for="organizer-name">Organizer Name</label>
-                    <div class="detail"><h5>{{event.organizer_name}}</h5></div>
+                    <div class="detail"><h5>{{event.organiser.name}}</h5></div>
                 </div>
                 <div class="form-group">
                     <label for="desc">Description</label>
-                    <div class="desc"><h5>{{event.event_desc}}</h5></div>
+                    <div class="desc"><h5>{{event.shortDescription}}</h5></div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="st-date">Start Date</label>
-                            <div class="date"><h5>{{event.start_date}}</h5><i class="fa-regular fa-calendar-days" id="dateicon"></i></div>
+                            <div class="date"><h5>{{event.startDate | date:'dd/MM/yyyy'}}</h5><i class="fa-regular fa-calendar-days" id="dateicon"></i></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="ed-date">End Date</label>
-                            <div class="date"><h5>{{event.end_date}}</h5><i class="fa-regular fa-calendar-days" id="dateicon"></i></div>
+                            <div class="date"><h5>{{event.endDate | date:'dd/MM/yyyy'}}</h5><i class="fa-regular fa-calendar-days" id="dateicon"></i></div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cost">Cost Of Event in Rupees</label>
-                    <div class="detail"><h5>Rs.{{event.cost}}/-</h5></div>
+                    <div class="detail"><h5>Rs.{{event.price}}/-</h5></div>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="capacity">Capacity of Participants in head count</label>
-                    <div class="detail"><h5>{{event.capacity}}</h5></div>
+                    <div class="detail"><h5>{{event.totalTickets}}</h5></div>
                 </div>
         
             </form>

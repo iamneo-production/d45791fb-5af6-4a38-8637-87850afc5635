@@ -1,5 +1,5 @@
 import { Component,Input } from '@angular/core';
-import { event } from '../../../admin_interfaces/a-event';
+import { Event } from '../../../../models/event';
 import { EventService } from '../../../admin_services/a-event.service';
 
 @Component({
@@ -10,10 +10,17 @@ import { EventService } from '../../../admin_services/a-event.service';
 export class FilterByDateComponent {
     startDate='';
     endDate='';
-    filteredData:event[];
-    events:event[];
+    filteredData:Event[];
+    events:Event[];
     constructor(private es:EventService){
-      this.events=es.getEvents();
+      es.getEvents().subscribe((Response:Event[])=>{
+        console.log(Response);
+        this.events=[...Response].filter((data)=>{
+            return data.organiser!=null;
+        });
+    },error=>
+        console.log(error)
+    );;
     }
 
     filterIt(){
@@ -22,7 +29,7 @@ export class FilterByDateComponent {
       else{
           const st=new Date(this.startDate);
           const ed=new Date(this.endDate);
-          this.filteredData=this.events.filter(filteredData=> new Date(filteredData.start_date)>=st && new Date(filteredData.start_date)<=ed);
+          this.filteredData=this.events.filter(filteredData=> new Date(filteredData.endDate)>=st && new Date(filteredData.startDate)<=ed);
           console.log(this.filteredData);
           this.es.filterUpdate.next(this.filteredData);
       }
