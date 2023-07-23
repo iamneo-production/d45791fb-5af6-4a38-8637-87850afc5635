@@ -3,13 +3,17 @@ package com.example.springapp.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="ticket")
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ticket_id")
     private Long id;
 
+    @Column(name="status")
     private String status;
+    @Column(name="price")
     private Double price;
 
     @ManyToOne

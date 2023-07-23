@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class AttendeeService {
 
+    @Autowired
     private final AttendeeRepository attendeeRepository;
 
-    @Autowired
     public AttendeeService(AttendeeRepository attendeeRepository) {
         this.attendeeRepository = attendeeRepository;
     }

@@ -1,56 +1,77 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppRESTService } from './appRESTService';
 import { Event } from '../../models/event';
 import { catchError, tap } from 'rxjs';
 
+// interface EventInput {
+//   Name: string;
+//   Description: string;
+//   City: string;
+//   State: string;
+//   Zipcode: number;
+//   StartDate: string;
+//   EndDate: string;
+//   Capacity: number;
+//   EventType: string;
+//   Price: number;
+//   OrganizerId: number;
+// }
+
+
 interface EventInput {
-  Name: string;
-  Description: string;
-  City: string;
-  State: string;
-  Zipcode: number;
-  StartDate: string;
-  EndDate: string;
-  Capacity: number;
-  EventType: string;
-  Price: number;
-  OrganizerId: number;
+    name:string;
+    description:string;
+    location:string;
+    startDate:string;
+    endDate:string;
+    speakerName:string;
+    speakerExpertise:string;
+    speakerAffiliations:string;
+    speakerAccomplishments:string;
+    speakerBiography:string;
+    price:number;
+    totalTickets:number;
+    imgUrl:string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService extends AppRESTService {
-  API_URL: string = '/api/events';
+  override API_URL: string;
+  BASE_URL: string = 'http://localhost:8080/event';
 
   constructor(private http: HttpClient) {
     super();
   }
   getEvents() {
     return this.http
-      .get<Event[]>(this.API_URL)
-      .pipe(tap(), catchError(this.handleError));
+      .get<Event[]>(this.BASE_URL);
   }
 
-  getEvent(id: number) {
-    return this.http
-      .get<Event>(`${this.API_URL}/${id}`)
-      .pipe(tap(), catchError(this.handleError));
-  }
+  
+ getEvent(id:number){
+      return this.http.get<Event>(this.BASE_URL+'/'+id)
+ }
 
-  getEventsByEventType(type: string) {
-    return this.http
-      .get<Event[]>(`${this.API_URL}?EventType=${type}`)
-      .pipe(tap(), catchError(this.handleError));
-  }
-
-  //Add an event
-  //requires following fields to create
   addEvent(input: EventInput) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log("event insert ");
+    
     return this.http
-      .post(`${this.API_URL}`, input)
-      .pipe(tap(), catchError(this.handleError));
+      .post<string>(this.BASE_URL, input, {
+        headers,
+        responseType: 'text' as 'json',
+      })
+      .subscribe(
+        (data) => {
+          console.log(data); 
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
 

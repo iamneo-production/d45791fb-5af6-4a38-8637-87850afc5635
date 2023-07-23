@@ -1,10 +1,11 @@
 export interface Organizer {
   id?: number;
-  OrganizerId: number;
-  Name: string;
-  Email: string;
-  Password: string;
-  Contact_No: string;
-  EventID: number[];
-  Role: string;
+  name: string;
+  email: string;
+  password: string;
+  address:string;
+  phone?: string;
+  Contact_No?: string;
+  EventID?: number[];
+  role: string;
 }
