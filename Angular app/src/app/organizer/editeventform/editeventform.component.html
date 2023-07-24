@@ -105,7 +105,7 @@
           &nbsp;
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary"(click)="close()" >Close</button>&nbsp;
-            <button type="Update" (click)="onSubmit(f)" class="btn btn-primary">Update</button>
+            <button type="Update" (click)="onSubmit(f)" [disabled]="!f.valid" class="btn btn-primary">Update</button>
           </div>
         </form>
         </div>
