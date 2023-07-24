@@ -40,7 +40,7 @@ interface EventInput {
 })
 export class EventsService extends AppRESTService {
   override API_URL: string;
-  BASE_URL: string = 'https://8080-bebaaaeeaedaddfdebcdfcddfaadfadc.project.examly.io/event';
+  BASE_URL: string = 'https://8080-fbccafcdaddfdebcdfcddfaadfadc.project.examly.io/event';
 
   constructor(private http: HttpClient) {
     super();

@@ -15,7 +15,7 @@ interface OrganizerDataInput {
   providedIn: 'root',
 })
 export class OrganizerService extends AppRESTService {
-  API_URL = '/api/organizers';
+  API_URL = 'https://8080-fbccafcdaddfdebcdfcddfaadfadc.project.examly.io';
 
   constructor(private http: HttpClient) {
     super();
@@ -31,6 +31,13 @@ export class OrganizerService extends AppRESTService {
       .post(this.API_URL, input)
       .pipe(tap(), catchError(this.handleError));
   }
+
+  updateOrganizer(input: any) {
+    return this.http
+      .put(`${this.API_URL}/user/update/${input.id}`, input)
+      .pipe(tap(), catchError(this.handleError));
+  }
+  
 
   getOrganizerByEmailAndPassword(email: string, password: string) {
     return this.http

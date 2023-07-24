@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createvent',
@@ -6,23 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./createvent.component.css']
 })
 export class CreateventComponent {
-  newE:boolean=false;
-  manageE:boolean=false;
-  default:boolean=true;
+ 
 
+    constructor(private router:Router){}
 
+    userId:number=JSON.parse(localStorage.getItem("user")).id;
 
-  newEvent(){
-    this.default=false;
-    this.newE=true;
-    this.manageE=false;
+    newEvent(){
+      this.router.navigate([`organiser/${this.userId}/newevent`])
 
-  }
-  manageEvent(){
-    this.default=false;
-    this.newE=false;
-    this.manageE=true;
-
-  }
-
+    }
+    manageEvent(){
+      this.router.navigate([`organiser/${this.userId}/event`])
+    }
 }
+

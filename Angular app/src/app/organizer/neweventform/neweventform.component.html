@@ -1,142 +1,119 @@
-
-<div class="bg">
+<router-outlet name="nav" id="head-nav"></router-outlet>
+<div class="back">
+  <div class="col-md-2 nav">
+    <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
+    <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
+  </div>
+<form #form="ngForm" class="bg" (ngSubmit)="addEvent(form)">
     <div class="container">
-        <h1 style="color: white; text-align: center; margin-top: 80px; padding-top: 10px; padding-left: 5px;">Fill The Event Details</h1>
-        <div class="form">
-        <form action="">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input">Event Name</label>
-              <input type="text" class="form-control" id="input" placeholder="">
+      <h1 style="color: white; text-align: center; margin-top: 80px; padding-top: 20px; padding-left: 5px;">
+        Fill The Event Details
+      </h1>
+      <div class="form">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input">Event Name</label>
+            <input type="text" class="form-control" name="name" id="input" placeholder="" [(ngModel)]="event.name" required>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="input">Event ID</label>
-              <input type="text" class="form-control" id="input" placeholder="">
-            </div>
+              <label for="input">Event Short Description</label>
+              <input type="text" class="form-control" id="input" name="shortDescription" placeholder="" [(ngModel)]="event.shortDescription" required>
             </div>
           </div>
-          <div class="form-row">
-            <label for="exampleFormControlTextarea1">Event Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-          &nbsp;
-          &nbsp;
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input">Speaker Name</label>
-              <input type="text " class="form-control" id="input" placeholder="">
+        </div>
+        <div class="form-row">
+          <label for="exampleFormControlTextarea1">Event Description</label>
+          <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="event.description" required></textarea>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input">Speaker Name</label>
+            <input type="text" name="speakerName" class="form-control" id="input" placeholder="" [(ngModel)]="event.speakerName" required>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="input">Speaker Expertise</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="">
-            </div>
+              <input type="text" name="speakerExpertise" class="form-control" id="inputEmail4" placeholder="" [(ngModel)]="event.speakerExpertise" required>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input">Speaker Affiliation</label>
-              <input type="text" class="form-control" id="input" placeholder="">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input">Speaker Affiliation</label>
+            <input type="text" class="form-control" name="speakerAffiliations" id="input" placeholder="" [(ngModel)]="event.speakerAffiliations" required>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="input">Speaker Accomplishments</label>
-              <input type="text" class="form-control" id="input" placeholder="">
-            </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="exampleFormControlTextarea1">Speaker Biography</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input">Organiser Name</label>
-              <input type="text" class="form-control" id="input" placeholder="">
-            
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="inputEmail4">Email</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="enter valid email" required>
-            </div>
+              <input type="text" class="form-control" name="speakerAccomplishments" id="input" placeholder="" [(ngModel)]="event.speakerAccomplishments" required>
             </div>
           </div>
-          <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="validationTooltipUsername">Contact Number</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <select class="form-select" id="">
-                <option selected>Choose...</option>
-                <option value="1">+91</option>
-                <option value="2">+213</option>
-                <option value="3">+1-684</option>
-                <option value="3">+374</option>
-                <option value="3">+297</option>
-                <option value="3">+591</option>
-    
-              </select>
-              </div>
-              <input type="text" class="form-control" id="validationTooltipUsername" placeholder="please enter valid mobile number" required>
-              <div class="invalid-tooltip">
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="form-row">
+          <label for="exampleFormControlTextarea1">Speaker Biography</label>
+          <textarea class="form-control" name="speakerBiography" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="event.speakerBiography" required></textarea>
+        </div>
+        <div class="form-row">
+        </div>
+        <div class="form-row">
+
           <div class="col">
             <div class="form-group">
               <label for="inputEmail4">Event Ticket Price</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="">
-            </div>
+              <input type="text" class="form-control" name="price" id="inputEmail4" placeholder="" [(ngModel)]="event.price" required>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="input">Location</label>
-              <input type="text" class="form-control" id="input" placeholder="" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input">Location</label>
+            <input type="text" class="form-control" id="input" name="location" placeholder="" [(ngModel)]="event.location" required>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="inputEmail4">Event Participants capacity</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="">
-            </div>
+              <input type="text" class="form-control" id="inputEmail4" name="totalTickets" placeholder="" [(ngModel)]="event.totalTickets" required>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="Event Time&Date">StartTime&Date</label>
-              <input type="datetime-local" class="form-control" id="datetime-local" placeholder="" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="Event Time&Date">StartTime&Date</label>
+            <input type="datetime-local" class="form-control" name="startDate" id="datetime-local" placeholder="" [(ngModel)]="event.startDate" required>
           </div>
           <div class="col">
             <div class="form-group">
               <label for="Event Time&Date">End Time&Date</label>
-              <input type="datetime-local" class="form-control" id="datetime-local" placeholder="" required>
-          </div>
+              <input type="datetime-local" class="form-control" name="endDate" id="datetime-local" placeholder="" [(ngModel)]="event.endDate" required>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label class="form-label" for="customFile">Please upload the Event related image </label>
-              <input type="file" class="form-control" id="customFile" />
-            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="form-label" for="imageUrl">Event Image Url</label>
+            <input type="text" class="form-control" name="imgUrl" required [(ngModel)]="event.imgUrl" id="img" />
           </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check The Details Before Submission</label>
-          </div>
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" >Close</button>&nbsp;
-            <button type="Update" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+        </div>
+        <div class="form-check">
+          <input type="hidden" name="organiser" [(ngModel)]="organiser_info">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check The Details Before Submission</label>
+        </div>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Close</button>&nbsp;
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid" >Submit</button>
         </div>
       </div>
     </div>
-    
-    
+</form>
+</div>
+
+<app-footer></app-footer>

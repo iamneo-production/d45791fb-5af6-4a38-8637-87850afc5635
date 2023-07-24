@@ -140,6 +140,7 @@ const routes: Routes = [
     ]
   },
   
+  
   {
     path:'organiser/:id/event',
     component:EventdisplayComponent,
@@ -189,7 +190,6 @@ const routes: Routes = [
       
     ],
   },
-  
 
   {
     // Events path
