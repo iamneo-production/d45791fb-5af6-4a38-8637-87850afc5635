@@ -15,7 +15,7 @@ interface OrganizerDataInput {
   providedIn: 'root',
 })
 export class OrganizerService extends AppRESTService {
-  API_URL = '/api/organizers';
+  API_URL = 'https://8080-ffbabacccfdaddfdebcdfcddfaadfadc.project.examly.io';
 
   constructor(private http: HttpClient) {
     super();
