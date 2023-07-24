@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { Admin } from '../models/admin';
 import { Organizer } from '../models/organizer';
 import { Participant } from '../models/participant';
+import { Role } from '../models/role';
+import { ErrorService } from '../services/api/error.service';
 
 @Component({
   selector: 'app-register',
@@ -35,8 +37,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   //to check if user or not
   isUser: boolean = false;
 
-  authUser : Admin | Organizer | Participant | null= null;
-  
+  authUser: Admin | Organizer | Participant | null = null;
+
   isAuth = false;
 
   isAuthUpdates = this.auth.authUpdates.subscribe((data) => {
@@ -44,17 +46,35 @@ export class RegisterComponent implements OnInit, OnDestroy {
   });
   authUserUpdates = this.auth.authUserUpdates.subscribe((data) => {
     this.authUser = data;
+
+    if (this.isAuth && this.authUser) {
+      this.loading = false;
+      const role = this.authUser.role.split('_')[1];
+      console.log(this.authUser);
+      this.router.navigateByUrl(`/${role.toLowerCase()}/${this.authUser.id}`);
+    }
   });
 
-  constructor(private router: Router, private auth: AuthService) {
+  errorUpdates = this.errorService.errorUpdates.subscribe((data) => {
+    this.errorMessage = data.message;
+    if (data) {
+      this.loading = false;
+    }
+  });
+
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private errorService: ErrorService
+  ) {
     this.currentRoute = router.url;
     if (this.currentRoute.includes('/organiser-register')) {
       this.isOrganiser = true;
-      this.formdata.role = 'organiser';
+      this.formdata.role = Role.ORAGANISER;
       console.log('Welcome Organizer');
     } else if (this.currentRoute.includes('/user-register')) {
       this.isUser = true;
-      this.formdata.role = 'participant';
+      this.formdata.role = Role.USER;
       console.log('Welcome User');
     }
   }
@@ -65,10 +85,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.isAuthUpdates.unsubscribe();
     this.authUserUpdates.unsubscribe();
+    this.errorUpdates.unsubscribe();
   }
 
   onSubmit() {
-    console.log(this.formdata);
     this.submit = true;
     this.loading = true;
 
@@ -81,15 +101,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.isUser) this.auth.signupUser(email, password, username, contactNo);
     if (this.isOrganiser)
       this.auth.signupOrganizer(email, password, username, contactNo);
-
-    // only chnage url based on auth
-    if (this.isAuth && this.authUser) {
-      this.submit = false;
-      this.loading = false;
-      console.log(this.auth.authUser);
-
-      this.router.navigateByUrl(`/home`);
-    }
 
     const fileInput: HTMLInputElement | null = document.querySelector(
       'input[name="fileInput"]'

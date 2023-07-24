@@ -26,6 +26,9 @@ import { ReportComponent } from './admin/admin_components/report/report.componen
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { PaymentpageComponent } from './paymentpage/paymentpage.component';
 import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
+import { EditeventformComponent } from './organizer/editeventform/editeventform.component';
+import { EventdisplayComponent } from './organizer/eventdisplay/eventdisplay.component';
+import { NeweventformComponent } from './organizer/neweventform/neweventform.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -116,23 +119,54 @@ const routes: Routes = [
       { path: '', component: NavbarComponent, outlet: 'nav' },
     ]
   },
+  //organizer................
   {
-    path: 'organizer/:id/createvent',
+    path:'organiser/:id/newevent',
+    component:NeweventformComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
+  
+  {
+    path:'organiser/:id/editevent/:eventId',
+    component:EditeventformComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
+  
+  {
+    path:'organiser/:id/event',
+    component:EventdisplayComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
+  {
+    path: 'organiser/:id/createvent',
     component: CreateventComponent,
     canActivate: [orgainzerGuard],
     children: [
       { path: '', component: NavbarComponent, outlet: 'nav' },
+
     ]
   },
   {
     // This path contains details about specific organiser
     // :id is dynamic path variable
-    path: 'organizer/:id',
+    path: 'organiser/:id',
     component:OrganizerprofilepageComponent,
     canActivate: [orgainzerGuard],
     children: [
       { path: '', component: NavbarComponent, outlet: 'nav' },
-
+   
       // {
         // The path opens a page where the
         // organiser can add a new event
@@ -151,9 +185,12 @@ const routes: Routes = [
       //     },
       //   ],
       // },
+
       
     ],
   },
+  
+
   {
     // Events path
     path: 'events-list', // for event listing
