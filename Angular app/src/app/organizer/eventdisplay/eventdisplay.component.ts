@@ -25,7 +25,7 @@ export class EventdisplayComponent implements OnInit{
   events:Event[];
 
   ngOnInit(){
-    this.es.getEvents().subscribe(data=>{this.events=data;console.log(data);
+    this.es.getEventsByOrganiserId(this.userId).subscribe(data=>{this.events=data;console.log(data);
     },err=>console.log(err)
     );
     localStorage.setItem("noOfEvent",this.events.length.toString());
