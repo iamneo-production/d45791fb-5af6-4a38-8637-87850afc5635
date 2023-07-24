@@ -8,7 +8,7 @@ com/example/springapp/model/Event.class
 com/example/springapp/service/AttendeeService.class
 com/example/springapp/model/Ticket.class
 com/example/springapp/repository/AttendeeRepository.class
-com/example/springapp/controller/AttendeeController.class
 com/example/springapp/controller/EventController.class
+com/example/springapp/controller/AttendeeController.class
 com/example/springapp/controller/TicketController.class
 com/example/springapp/repository/TicketRepository.class
