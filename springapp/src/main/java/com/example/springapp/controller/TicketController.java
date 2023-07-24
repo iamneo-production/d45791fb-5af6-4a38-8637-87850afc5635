@@ -1,7 +1,10 @@
 package com.example.springapp.controller;
 
 import com.example.springapp.model.Ticket;
+import com.example.springapp.model.Attendee;
+import com.example.springapp.model.Event;
 import com.example.springapp.service.TicketService;
+import com.example.springapp.service.AttendeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +14,29 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/ticket")
+@CrossOrigin(value = "http://localhost:8081")
 public class TicketController {
 
     private final TicketService ticketService;
+    private final AttendeeService attendeeService;
 
-    public TicketController(TicketService ticketService) {
+    public TicketController(TicketService ticketService,AttendeeService attendeeService) {
         this.ticketService = ticketService;
+        this.attendeeService = attendeeService;
     }
 
     @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
+        // create attendee
+        Attendee attendee = ticket.getAttendee();
+        Event event = ticket.getEvent();
+    
+        Attendee createdAttendee = attendeeService.createAttendee(attendee);
+        
+        List<Attendee> attendees = event.getAttendees();
+        attendees.add(attendee);
+        event.setAttendees(attendees);
+
         Ticket createdTicket = ticketService.createTicket(ticket);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
     }

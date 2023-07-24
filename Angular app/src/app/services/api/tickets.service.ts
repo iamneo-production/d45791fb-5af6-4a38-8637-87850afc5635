@@ -22,7 +22,7 @@ interface TicketInput {
   providedIn: 'root',
 })
 export class TicketsService extends AppRESTService {
-  API_URL = '/api/tickets';
+  API_URL =   'http://localhost:8080/ticket' // '/api/tickets';
 
   constructor(private http: HttpClient) {
     super();
@@ -40,7 +40,7 @@ export class TicketsService extends AppRESTService {
       .pipe(tap(), catchError(this.handleError));
   }
 
-  addTicket(input: TicketInput) {
+  addTicket(input: any) {
     return this.http
       .post(this.API_URL, input)
       .pipe(tap(), catchError(this.handleError));

@@ -15,7 +15,7 @@ interface UserDataInput {
   providedIn: 'root',
 })
 export class UserService extends AppRESTService {
-  API_URL: string = '/api/users';
+  API_URL: string = 'http://localhost:8080'; // /api/users
   constructor(private http: HttpClient) {
     super();
   }
@@ -39,6 +39,12 @@ export class UserService extends AppRESTService {
   addUser(input: UserDataInput) {
     return this.http
       .post(this.API_URL, input)
+      .pipe(tap(), catchError(this.handleError));
+  }
+
+  updateUser(input: any) {
+    return this.http
+      .put(`${this.API_URL}/user/update/${input.id}`, input)
       .pipe(tap(), catchError(this.handleError));
   }
 }
