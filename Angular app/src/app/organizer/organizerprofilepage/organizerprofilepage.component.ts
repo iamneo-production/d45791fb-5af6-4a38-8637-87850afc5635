@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { EventsService } from 'src/app/services/api/events.service';
 import { OrganizerService } from 'src/app/services/api/organizer.service';
 
 @Component({
@@ -8,21 +9,22 @@ import { OrganizerService } from 'src/app/services/api/organizer.service';
 })
 export class OrganizerprofilepageComponent {
 
-  constructor(private organiserservice : OrganizerService) {}
+  constructor(private organiserservice : OrganizerService,private es:EventsService) {}
 
   isEdit = false;
 
   organiser : any;
   firstname : any;
   lastname : any;
-  noOfEvents:string=localStorage.getItem("noOfEvent");
+  noOfEvents:number;
 
   ngOnInit() {
     this.organiser = JSON.parse(localStorage.getItem('user'))
     this.organiser.password = "";
     this.getFirstNameAndLastName();
     console.log(this.organiser);
-
+    this.es.getEventsByOrganiserId(this.organiser.id).subscribe(data=>this.noOfEvents=data.length,err=>console.log(err)
+    );
   }
 
   getFirstNameAndLastName() {

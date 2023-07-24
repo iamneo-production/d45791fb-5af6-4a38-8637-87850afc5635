@@ -96,7 +96,7 @@ export class EventsService extends AppRESTService {
         }
       );
   }
-
+  
   getEventsByOrganiserId(id:number){
     return this.http.get<Event[]>(`${this.BASE_URL}/organiser/${id}`);
   }

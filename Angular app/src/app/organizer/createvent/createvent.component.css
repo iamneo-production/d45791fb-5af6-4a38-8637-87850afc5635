@@ -16,11 +16,6 @@ button{
     position: relative;
     top: 100px;
 }
-.main-panel{
-
-    background-color: white;
-    width: 78vw;
-}
 #btn2{
     position: relative;
     bottom: 100px;
@@ -33,7 +28,6 @@ button{
     left: -10px;
     height: 680px;
     width: 1283px;
-   
     background-image: url('../../../assets/Images/organizer/eventbg.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;

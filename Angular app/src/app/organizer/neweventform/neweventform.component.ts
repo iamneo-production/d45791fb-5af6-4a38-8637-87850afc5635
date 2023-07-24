@@ -44,4 +44,8 @@ export class NeweventformComponent implements OnInit{
     this.newE=false;
     this.router.navigate([`organiser/${this.userId}/event`])
 }
+
+  close(){
+    this.router.navigate([`organiser/${this.userId}/createvent`]);
+  }
 }
