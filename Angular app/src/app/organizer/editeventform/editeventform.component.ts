@@ -9,9 +9,8 @@ import { EventsService } from 'src/app/services/api/events.service';
   styleUrls: ['./editeventform.component.css']
 })
 export class EditeventformComponent {
-  isClose=false;
   close(){
-    this.isClose=!this.isClose;
+    this.router.navigate([`organiser/${this.userId}/createvent`]);
   }
   
   event:Event;
@@ -45,5 +44,8 @@ export class EditeventformComponent {
 
     this.es.updateEvent(this.id,form.value);
     
+    this.router.navigate([`organiser/${this.userId}/event`])
+    
   }
+
 }

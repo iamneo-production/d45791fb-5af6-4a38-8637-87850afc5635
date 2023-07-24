@@ -4,10 +4,6 @@
     <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
     <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
   </div>
-  
-  <div class="default col-md-10 main-panel" *ngIf="default"></div>
-  <div class="col-md-10 main-panel" *ngIf="newE">
-    <app-new-event-form ></app-new-event-form>
-  </div>
+  <div class="default col-md-10"></div>
 </div>
   <app-footer></app-footer>

@@ -96,7 +96,8 @@
           </div>
         </div>
         <div>
-          <div class="row chart">
+          <a [routerLink]="'/organiser/' + organiser.id + '/event'">
+            <div class="row chart">
             <div class="col-md-6">
               <div class="panel" style="border: 2px #F4F4F4 solid;margin-right:150px ;">
                 <div class="panel-body">
@@ -110,6 +111,7 @@
               </div>
             </div>
           </div>
+          </a>
         </div>
       </div>
     </div>
