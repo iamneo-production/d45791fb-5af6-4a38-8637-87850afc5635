@@ -136,7 +136,7 @@ organiser_name=JSON.parse(localStorage.getItem('user')).name;
 
     console.log(event_details)
 
-    this.router.navigate(['/payment', { eventDetails : JSON.stringify(event_details)}])
+    this.router.navigate(['/payment', { eventDetails : JSON.stringify(this.event)}])
   }
   
 }

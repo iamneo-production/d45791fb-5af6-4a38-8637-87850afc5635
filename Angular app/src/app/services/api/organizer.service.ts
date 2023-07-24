@@ -33,7 +33,6 @@ export class OrganizerService extends AppRESTService {
   }
 
   updateOrganizer(input: any) {
-    console.log(input);
     return this.http
       .put(`${this.API_URL}/user/update/${input.id}`, input)
       .pipe(tap(), catchError(this.handleError));
