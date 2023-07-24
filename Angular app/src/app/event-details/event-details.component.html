@@ -5,7 +5,7 @@
     <div class="event-image">
      <div class="image-wrapper">
             <figure class="main-image">
-                <img src={{image}} alt="Image">
+                <img src={{event.imgUrl}} alt="Image">
 
                 </figure>
             </div>
@@ -17,23 +17,16 @@
         <section class="text text-left about-event"><span>About the Event</span></section>
         <section class="text text-left event-desc">
         
-            <p>Join us for a week-long <strong>{{name}}</strong> in Bangalore from June 9th to June 15th, 2023. This symposium brings together experts, professionals, and enthusiasts in the field of cybersecurity for insightful discussions and networking opportunities.
-
-                With a capacity of 100 attendees, this symposium offers an intimate setting that encourages meaningful interactions and connections with industry leaders.
-                
-                Explore a wide range of cybersecurity topics through keynote speeches, panel discussions, workshops, and technical presentations. Gain practical skills and knowledge in threat intelligence, network security, cloud security, data protection, incident response, risk management, and more.
-                
-                Don't miss this transformative journey into the world of cybersecurity at the Bangalore symposium from June 9th to June 15th, 2023. Register now!"
+            <p>{{event.description}}
             </p>
                 <br>
                 <div class="details">
-                    <p><strong>Duration</strong>: {{ duration }}</p>
-                    <p><strong>Location</strong>: {{ location }}</p>
-                    <p><strong>Participants Capacity</strong>: {{ participantsCapacity }}</p>
-                    <p><strong>Start Time & Date</strong>: {{ startTimeDate }}</p>
-                    <p><strong>End Time & Date</strong>: {{ endTimeDate }}</p>
-                    <p><strong>Organizer</strong>: {{ organizer }}</p>
-                    <p><strong>Event ID</strong>: {{ eventID }}</p>
+                    <p><strong>Location</strong>: {{ event.location }}</p>
+                    <p><strong>Participants Capacity</strong>: {{ event.totalTickets }}</p>
+                    <p><strong>Start Date and Time</strong>: {{ event.startDate|date:'medium' }}</p>
+                    <p><strong>End Date and Time</strong>: {{ event.endDate|date:'medium' }}</p>
+                    <p><strong>Organizer</strong>: {{ organiser_name }}</p>
+                    <p><strong>Event ID</strong>: {{ event.id}}</p>
                   </div>
         </section>
         
@@ -45,7 +38,7 @@
       <div class="event-additionals">
         <div class="custom-class">
             <div>
-            <h1 class="event-web">{{name}}</h1>
+            <h1 class="event-web">{{event.name}}</h1>
                 <div class="save-event">
                     <div class="web-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="#0C172F" stroke="#0C172F" stroke-width="0.5">
@@ -92,7 +85,7 @@
                                 <path d="M12.1137 5.23975H2.93725C1.86904 5.23975 1 6.12964 1 7.2235V13.6968C1 14.7906 1.86904 15.6805 2.93725 15.6805H12.1137C13.1819 15.6805 14.051 14.7906 14.051 13.6968V11.5042V9.41606V7.2235C14.051 6.12964 13.1819 5.23975 12.1137 5.23975ZM12.1449 14.7314H2.90604C2.28339 14.7314 1.77684 14.2203 1.77684 13.592V7.17009C1.77684 6.54183 2.28339 6.03071 2.90604 6.03071H12.1449C12.7676 6.03071 13.2741 6.54183 13.2741 7.17009V8.93093H11.0157C10.2233 8.93093 9.57858 9.58146 9.57858 10.381C9.57858 11.1806 10.2233 11.8312 11.0157 11.8312H13.2741V13.592C13.2741 14.2203 12.7676 14.7314 12.1449 14.7314ZM13.2741 11.0929H11.0768C10.7463 11.0929 10.4775 10.8091 10.4775 10.4601C10.4775 10.1112 10.7463 9.82736 11.0768 9.82736H13.2741V11.0929Z" fill="#0C172F" stroke="#0C172F" stroke-width="0.2"></path>
                             </svg></div>
                         <div class="event-cost">
-                         <p class="rupees-class"><span>₹</span>{{cost}}</p>
+                         <p class="rupees-class"><span>₹</span>{{event.price}}</p>
                          <p class="rupees-table"></p>
                         </div>
                     </div>
@@ -165,11 +158,10 @@
 </div>
 
 <app-speaker-details
-  [name]="speakerName"
-  [job]="expertise"
-  [role]="affliations"
-  [certifications]="accomplishments"
-  [bio]="biography"
+  [name]="event.speakerName"
+  [job]="event.speakerExpertise"
+  [role]="event.speakerAffiliations"
+  [certifications]="event.speakerAccomplishments"
+  [bio]="event.speakerBiography"
 ></app-speaker-details>
 <router-outlet name="footer"></router-outlet>
-
