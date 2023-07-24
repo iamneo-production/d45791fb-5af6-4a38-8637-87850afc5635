@@ -23,6 +23,8 @@ export class NeweventformComponent implements OnInit{
   userId:number=JSON.parse(localStorage.getItem("user")).id;
 
   addEvent(form: any) {
+    console.log(form);
+    
     console.log(form.value);
 
     this.es.addEvent(form.value);
