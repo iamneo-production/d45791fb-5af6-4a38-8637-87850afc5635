@@ -1,0 +1,347 @@
+<div class="background">
+    <div class="container">
+      <div class="payment">
+        <div><h3>Select Payment Method</h3></div>
+  
+        <!-- Tabs -->
+  
+        <div class="payment_flex flex-gap">
+          <p
+            [ngClass]="activeTab === 'Credit' ? 'tab_active' : ''"
+            (click)="tabChange('Credit')"
+          >
+            Credit Card
+          </p>
+          <!-- <p [ngClass]="activeTab === 'Paypal' ? 'tab_active' : '' " (click)="tabChange('Paypal')">Paypal</p> -->
+          <!-- <p [ngClass]="activeTab === 'Qr' ? 'tab_active' : '' " (click)="tabChange('Qr')">Qr</p> -->
+          <p
+            [ngClass]="activeTab === 'Razor' ? 'tab_active' : ''"
+            (click)="tabChange('Razor')"
+          >
+            Razor Pay
+          </p>
+          <!-- <p>Other</p> -->
+        </div>
+  
+        <!-- Payment Cards -->
+  
+        <div class="payment_flex">
+          <!-- Cards -->
+          <div class="payment_images">
+            <div>
+              <img src="assets/Images/payment/card1.png" (click)="tabChange('Credit')" />
+              <p>Credit Card</p>
+            </div>
+            <div>
+              <img
+                src="../../assets/Images/payment/card2.png"
+                (click)="tabChange('Razor')"
+              />
+              <p>Razor Pay</p>
+            </div>
+            <div>
+              <img src="../../assets/Images/payment/card3.png" />
+              <p>Future Use</p>
+            </div>
+          </div>
+  
+          <!-- Cards Detail -->
+  
+          <div class="payment_details">
+            <div>
+              <h4>Pay using credit cards</h4>
+  
+              <div class="payment_icon">
+                <div><img src="../../assets/Images/payment/mastercard.png" /></div>
+                <div><img src="../../assets/Images/payment/visa.png" /></div>
+                <div><img src="../../assets/Images/payment/icon.png" /></div>
+              </div>
+            </div>
+            <div>
+              <form [formGroup]="credit">
+                <div *ngIf="activeTab == 'Credit'" >
+  
+                  <div class="payment_details_flex">
+                    <!-- 1 -->
+                    <div [ngClass]="(switchPay) ? 'payment_details_1' : 'payment_details_1 active'">
+                      <div class="payment_info">
+                        <label>Credit Card</label><br /><br />
+                        <div class="payment_text">
+                          <input
+                            type="text"
+                            class="text-size"
+                            formControlName="creditcard"
+                          />
+                        </div>
+                        <span class="errors"
+                          *ngIf="
+                            credit.controls['creditcard'].touched &&
+                            credit.controls['creditcard'].errors
+                          "
+                        >
+                          <span class="errors"
+                            *ngIf="credit.controls['creditcard'].errors?.['required']"
+                          >
+                            Required.
+                          </span>
+                          <span class="errors"
+                            *ngIf="credit.controls['creditcard'].errors?.['minlength']"
+                          >
+                            12 digits long.
+                          </span>
+                        </span>
+                      </div>
+                      <br />
+                      <div class="payment_info">
+                        <label>Name</label><br /><br />
+                        <div class="payment_text">
+                          <input type="text" class="text-size" formControlName="name" />
+                        </div>
+                        <span class="errors"
+                          *ngIf="
+                            credit.controls['name'].touched &&
+                            credit.controls['name'].errors
+                          "
+                        >
+                          <span class="errors" *ngIf="credit.controls['name'].errors?.['required']">
+                            Required.
+                          </span>
+                        </span>
+                      </div>
+                      <br />
+                      <div class="payment_text_flex">
+                        <div class="payment_info">
+                          <label>Expiration Date</label><br /><br />
+                          <div class="payment_text">
+                            <input
+                              type="date"
+                              class="text-size-medium"
+                              formControlName="exp_date"
+                            />
+                          </div>
+                          <span class="errors"
+                            *ngIf="
+                              credit.controls['exp_date'].touched &&
+                              credit.controls['exp_date'].errors
+                            "
+                          >
+                            <span class="errors"
+                              *ngIf="credit.controls['exp_date'].errors?.['required']"
+                            >
+                              Required.
+                            </span>
+                          </span>
+                        </div>
+  
+                        <div class="payment_info">
+                          <label>CVV</label><br /><br />
+                          <div class="payment_text">
+                            <input
+                              type="text"
+                              class="text-size-medium"
+                              formControlName="cvv"
+                            />
+                          </div>
+                          <span class="errors"
+                            *ngIf="
+                              credit.controls['cvv'].touched &&
+                              credit.controls['cvv'].errors
+                            "
+                          >
+                            <span class="errors" *ngIf="credit.controls['cvv'].errors?.['required']">
+                              Required.
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <!-- 2 -->
+  
+                    <div [ngClass]="(!switchPay) ? 'payment_details_1  active' : 'payment_details_1'">
+              
+                      <div class="payment_info">
+                        <label>Billing Address</label><br /><br />
+                        <div class="payment_text">
+                          <input type="text" class="text-size" formControlName="billingaddress" />
+                        </div>
+                        <span class="errors"
+                          *ngIf="
+                            credit.controls['billingaddress'].touched &&
+                            credit.controls['billingaddress'].errors
+                          "
+                        >
+                          <span class="errors" *ngIf="credit.controls['billingaddress'].errors?.['required']">
+                            Required.
+                          </span>
+                        </span>
+                        
+                      </div>
+                      <br />
+                      <div class="payment_text_flex">
+                        <div class="payment_info">
+                          <label>City</label><br /><br />
+                          <div class="payment_text">
+                            <input
+                              type="text"
+                              class="text-size-medium"
+                              formControlName="city"
+                            />
+                          </div>
+                          <span class="errors"
+                            *ngIf="
+                              credit.controls['city'].touched &&
+                              credit.controls['city'].errors
+                            "
+                          >
+                            <span class="errors"
+                              *ngIf="credit.controls['city'].errors?.['required']"
+                            >
+                              Required.
+                            </span>
+                          </span>
+                        </div>
+      
+                        <div class="payment_info">
+                          <label>Zip</label><br /><br />
+                          <div class="payment_text">
+                            <input
+                              type="text"
+                              class="text-size-medium"
+                              formControlName="zip"
+                            />
+                          </div>
+                          <span class="errors"
+                            *ngIf="
+                              credit.controls['zip'].touched &&
+                              credit.controls['zip'].errors
+                            "
+                          >
+                            <span class="errors" *ngIf="credit.controls['zip'].errors?.['required']">
+                              Required.
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+  
+                      
+                      <br />
+                      <div class="payment_text_flex">
+                        <div class="payment_info">
+                          <label>State</label><br /><br />
+                          <div class="payment_text">
+                            <input
+                              type="text"
+                              class="text-size-medium"
+                              formControlName="state"
+                            />
+                          </div>
+                          <span class="errors"
+                            *ngIf="
+                              credit.controls['state'].touched &&
+                              credit.controls['state'].errors
+                            "
+                          >
+                            <span class="errors"
+                              *ngIf="credit.controls['state'].errors?.['required']"
+                            >
+                              Required.
+                            </span>
+                          </span>
+                        </div>
+  
+                        <div class="payment_info">
+                          <label>Country</label><br /><br />
+                          <div class="payment_text">
+                            <input
+                              type="text"
+                              class="text-size-medium"
+                              formControlName="country"
+                            />
+                          </div>
+                          <span class="errors"
+                            *ngIf="
+                              credit.controls['country'].touched &&
+                              credit.controls['country'].errors
+                            "
+                          >
+                            <span class="errors" *ngIf="credit.controls['country'].errors?.['required']">
+                              Required.
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="color_flex">
+                    <div [ngClass]="(switchPay) ? 'blue' : 'brown'" (click) = "paySwitch(true)"></div>
+                    <div [ngClass]="(!switchPay) ? 'blue' : 'brown'" (click) = "paySwitch(false)"></div>
+                  </div>
+                </div>
+  
+                <div *ngIf="activeTab == 'Paypal'">
+                  <div class="payment_info">
+                    <label>Credit Card</label><br /><br />
+                    <div class="payment_text">
+                      <input type="text" class="text-size" />
+                    </div>
+                  </div>
+                  <br />
+                  <div class="payment_info">
+                    <label>Name</label><br /><br />
+                    <div class="payment_text">
+                      <input type="text" class="text-size" />
+                    </div>
+                  </div>
+                  <br />
+                  <div class="payment_text_flex"></div>
+                </div>
+  
+                <div *ngIf="activeTab == 'Qr'">
+                  <div class="payment_info">
+                    <!-- <label>Credit Card</label><br /><br /> -->
+                    <div class="payment_text">
+                      <input
+                        type="text"
+                        class="text-size text-center"
+                        value="Scan the QR Code to pay"
+                      />
+                    </div>
+                  </div>
+  
+                  <div class="payment_qr">
+                    <img src="../../assets/qr.png" />
+                  </div>
+                </div>
+  
+                <div *ngIf="activeTab == 'Razor'">
+                  <div class="payment_info">
+                    <label>Razor Pay</label><br /><br />
+                    <div>
+                      <p class="text-size text-center">
+                        Thanks for using the Razorpay. Click 'Pay' to proceed
+                      </p>
+                    </div>
+                  </div>
+  
+                  <div class="payment_pay text-right">
+                    <input type="button" value="Pay" (click)="razorPay()" />
+                  </div>
+                </div>
+  
+                <div class="payment_actions">
+                  <div class="payment_box">
+                    <!-- <input type="checkbox" /> <p>Save card</p> -->
+                  </div>
+  
+                  <div class="payment_pay" *ngIf="activeTab == 'Credit'">
+                    <input type="submit" value="Pay" (click)="pageChange()" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

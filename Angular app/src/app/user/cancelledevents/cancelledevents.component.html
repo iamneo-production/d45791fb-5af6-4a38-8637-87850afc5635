@@ -1,0 +1,30 @@
+<table class="booking-history-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Booking Id</th>
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Total Cost</th>
+        <th>Refund Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let booking of cancelledevent;let ioe=index">
+        <tr *ngIf="booking.paymentStatus =='Refundstatus'">
+        <td>{{ booking.sno }}</td>
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.eventName }}</td>
+        <td>{{ booking.venue }}</td>
+        <td>{{ booking.date }}</td>
+        <td>{{ booking.location }}</td>
+        <td>{{ booking.totalCost }}</td>
+        <td>yes</td>
+        </tr>
+    </ng-container>
+    </tbody>
+  </table>
+
+

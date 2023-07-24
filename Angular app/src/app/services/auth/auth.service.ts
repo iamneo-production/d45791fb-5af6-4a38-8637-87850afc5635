@@ -7,10 +7,23 @@ import { Organizer } from 'src/app/models/organizer';
 import { Role } from 'src/app/models/role';
 import { OrganizerService } from '../api/organizer.service';
 
+// for razorpay to get native window support
+function _window() : any {
+  // return the global native browser window object
+  return window;
+}
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  // for razorpay to get native window support
+  get nativeWindow() : any {
+    return _window();
+  }
+
   private _isAuth: boolean = false;
   private _authUser!: Admin | Organizer | Participant;
 
