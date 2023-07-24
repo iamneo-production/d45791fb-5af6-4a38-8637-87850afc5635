@@ -72,6 +72,7 @@ import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.servi
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BackendService } from './services/api/backend.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AAuthInterceptorService } from './admin/admin_services/a-interceptor.service';
 
 // player-factory
 export function playerFactory() {

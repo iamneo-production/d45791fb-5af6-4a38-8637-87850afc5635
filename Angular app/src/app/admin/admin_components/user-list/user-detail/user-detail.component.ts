@@ -17,8 +17,12 @@ export class UserDetailComponent {
     this.route.params.subscribe(param=>{
       this.user_id=param['id'];
     });
-    this.user=this.us.getUserById(this.user_id);
-    console.log(this.user);
+    this.us.getUserById(this.user_id).subscribe(data=>{this.user=data;
+      console.log(this.user);
+      const name:string[]=this.us.splitName(this.user.name);
+      this.user.f_name=name[0];
+      this.user.l_name=name[1];
+          },err=>console.log(err));
   }
 
 }

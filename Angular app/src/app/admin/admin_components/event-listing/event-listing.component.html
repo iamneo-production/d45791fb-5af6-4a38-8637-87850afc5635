@@ -7,6 +7,7 @@
     <div id="search">
         <app-search-event></app-search-event>
     </div>
+    <div class="alert alert-warning" *ngIf="isDeleted" style="position: relative;z-index: 4;top: 270px; width: 800px;left: 600px;">Event deleted Successfully</div>
     <div>
         <div id="list">
                 <div class="list-group-item" id="title" style="z-index: 3;position:fixed;left: 450px;width:66vw;height: 60px;top: 200px; ">

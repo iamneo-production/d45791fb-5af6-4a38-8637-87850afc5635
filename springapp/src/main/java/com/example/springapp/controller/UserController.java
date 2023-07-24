@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
-@CrossOrigin(value = "http://localhost:8081")
+@CrossOrigin()
 @RequestMapping("/user")
 public class UserController {
     
@@ -47,5 +47,11 @@ public class UserController {
             return ResponseEntity.ok(updatedUser);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/{id}")
+    public boolean deleteUser(@PathVariable Long id){
+        return userService.deleteUser(id);
     }
 }

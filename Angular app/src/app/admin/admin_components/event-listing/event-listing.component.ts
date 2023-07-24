@@ -10,6 +10,7 @@ import { Event } from '../../../models/event';
 export class EventListingComponent {
 
     events:Event[];
+    isDeleted:boolean=false;
 
     constructor(private es:EventService){
     }
@@ -26,8 +27,10 @@ export class EventListingComponent {
     
       this.es.filterUpdate.subscribe(data=>{
         this.events=data;
-      })
+      });
       console.log('iam back'+this.events);
+
+      this.es.DeleteUpdate.subscribe(data=>this.isDeleted=data);
     }
 
     ngOnDestroy(){

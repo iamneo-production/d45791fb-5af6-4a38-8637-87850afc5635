@@ -9,18 +9,21 @@ import { Injectable } from "@angular/core";
 export class EventService{
     
     filterUpdate=new Subject<Event[]>();
+    DeleteUpdate=new Subject<boolean>();
     eventById:Event;    
     url="http://localhost:8080/event";
 
-
     constructor(private http:HttpClient){
-        
     }
     getEvents(){
-       return this.http.get(this.url);
+       return this.http.get<Event[]>(this.url);
     }
 
     getEventById(id:number){
          return this.http.get<Event>(this.url+'/'+id)
+    }
+
+    deleteEvent(id:number){
+      return this.http.delete(this.url+"/"+id);
     }
 }

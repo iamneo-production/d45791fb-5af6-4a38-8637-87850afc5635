@@ -9,12 +9,21 @@ import { user } from '../../admin_interfaces/a-user';
 })
 export class UserListComponent {
   users:user[];
+  isDeleted:boolean=false;
   constructor(private us:UserService){
 
   }
   ngOnInit(){
-    this.users=this.us.getUsers();
+    this.us.getUsers().subscribe(data=>{this.users=data;
+      this.users.forEach(user=>{
+        const name:string[]=this.us.splitName(user.name);
+        user.f_name=name[0];
+        user.l_name=name[1];
+      })
+    },err=>console.log(err));
+    
     this.us.filterUpdate.subscribe(data=>this.users=data);
+    this.us.isDeleted.subscribe(data=>this.isDeleted=data);
   }
 
 }
