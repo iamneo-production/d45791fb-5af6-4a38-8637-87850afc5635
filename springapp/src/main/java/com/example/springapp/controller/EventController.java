@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin()
 @RestController
 @RequestMapping("/event")
 
@@ -52,5 +52,11 @@ public class EventController {
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable("id") Long id) {
         return eventService.getEventById(id);
+    }
+
+    @GetMapping("/organiser/{organiserId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
+    public List<Event> getEventsByOrganizerId(@PathVariable Long organiserId) {
+        return eventService.getEventsByOrganiserId(organiserId);
     }
 }

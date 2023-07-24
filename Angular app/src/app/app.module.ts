@@ -71,6 +71,7 @@ import { AdminAuthService } from './admin/admin_services/a-auth.service';
 import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BackendService } from './services/api/backend.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // player-factory
 export function playerFactory() {
@@ -149,6 +150,7 @@ export function playerFactory() {
     LottieModule,
     LottieModule.forRoot({ player: playerFactory }),
     CommonModule,
+    BrowserAnimationsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

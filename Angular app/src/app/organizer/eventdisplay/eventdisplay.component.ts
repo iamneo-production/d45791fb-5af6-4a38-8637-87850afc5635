@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/models/event';
 import { EventsService } from 'src/app/services/api/events.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventdisplay',
@@ -8,21 +9,42 @@ import { EventsService } from 'src/app/services/api/events.service';
   styleUrls: ['./eventdisplay.component.css']
 })
 export class EventdisplayComponent implements OnInit{
-  isEdit = false;
-  edit() {
-    this.isEdit = true;
+  
+
+  edit(id:number) {
+    this.router.navigate([`organiser/${this.userId}/editevent/${id}`]);
   }
 
+  
+  userId:number=JSON.parse(localStorage.getItem("user")).id;
+
   organiser:any;
-  constructor(private es:EventsService){
+  constructor(private es:EventsService,private router:Router){
 
   }
   events:Event[];
 
   ngOnInit(){
-    this.es.getEvents().subscribe(data=>{this.events=data;console.log(data);
+    this.es.getEventsByOrganiserId(this.userId).subscribe(data=>{this.events=data;console.log(data);
     },err=>console.log(err)
-    )
+    );
+    localStorage.setItem("noOfEvent",this.events.length.toString());
+  }
+  newEvent(){
+    this.router.navigate([`organiser/${this.userId}/newevent`]);
+  }
+  manageEvent(){
+    this.router.navigate(["/event"]);
+  }
+
+  isDeleted:boolean=false;
+  deleteId:number;
+  delete(id:number){
+    this.es.deleteEvent(id).subscribe(response=>{this.isDeleted=true;setInterval(()=>this.isDeleted=false,3000)},err=>console.log(err)
+    );
+    this.deleteId=id;
+    console.log(this.isDeleted);
+    
   }
 
 }
