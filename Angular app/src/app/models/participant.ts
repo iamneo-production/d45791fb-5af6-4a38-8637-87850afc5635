@@ -1,10 +1,10 @@
 export interface Participant {
   id?: number;
-  ParticipantId: number;
-  Name: string;
-  Email: string;
-  Password: string;
-  Contact_No: string;
+  name: string;
+  email: string;
+  password: string;
+  contact_No: string;
   TicketId: number[];
-  Role: string;
+  role: string;
+  phone: number;
 }

@@ -14,7 +14,9 @@ import { Observable, tap } from 'rxjs';
 export const userGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  return authService.isAuth && authService.authUser.Role === Role.USER
+
+  const role = authService.authUser.role.split('_')[1].toLowerCase();
+  return authService.isAuth && role === Role.USER.toLowerCase()
     ? true
     : router.navigate(['/user-login']);
 };
