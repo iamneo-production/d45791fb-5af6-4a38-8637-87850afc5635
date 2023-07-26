@@ -1,6 +1,11 @@
 import { Subject } from "rxjs";
 import { ticket } from "../admin_interfaces/a-ticket";
+import { Injectable } from "@angular/core";
 
+
+@Injectable({
+    providedIn: 'root',
+  })
 export class TicketService{
     filteredData=new Subject<ticket[]>();
     tickets:ticket[]=[

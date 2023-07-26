@@ -1,53 +1,39 @@
 import { Subject } from "rxjs";
 import { user } from "../admin_interfaces/a-user";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
+
+@Injectable({
+    providedIn: 'root',
+  })
 export class UserService{
+
+    BASE_URL:string=localStorage.getItem("BASE_URL")+"/user";
 
     filterUpdate=new Subject<user[]>();
 
-    users:user[]=[
-        {user_id:1,first_name:'raj',last_name:'krish',email:'reaj@outlook.com',password:'ghtuyy@#123',phone_number:'9876543211',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:6,first_name:'Lean',last_name:'Tyro',email:'green@outlook.com',password:'blue@444hd',phone_number:'4567899872',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'organizer',previous_organized_events:['event1','event2','event3','event4','event5']},
-        {user_id:2,first_name:'Steven',last_name:'Horgs',email:'yellow@outlook.com',password:'green@44@3#',phone_number:'2455666743',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'organizer',previous_organized_events:['event1','event2','event3','event4','event5']},
-        {user_id:3,first_name:'Mia',last_name:'Yell',email:'blue@outlook.com',password:'yellow#$533',phone_number:'9635575363',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:4,first_name:'Esele',last_name:'Martin',email:'reddd@outlook.com',password:'saffaron^$#',phone_number:'9256732112',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
-        {user_id:5,first_name:'Toruk',last_name:'Yoshi',email:'meannn@outlook.com',password:'ghtuyy@#123',phone_number:'8756375922',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']},
+    isDeleted=new Subject<boolean>();
 
-    ];
+    users:user[];
 
-    getUsers(){
-        return this.users;
+    constructor(private http:HttpClient){}
+
+    splitName(name:string){
+        return name.split(' ');
     }
 
-    getUserById(id:number):user{
-        let dummyUser:user={user_id:0,first_name:'',last_name:'',email:'',password:'',phone_number:'',address:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos molestias accusamus ratione soluta quasi deleniti, aliquam est velit? Accusantium officiis ea corporis harum numquam repellendus cum assumenda asperiores vel provident!',user_role:'participant',previous_participated_events:['event1','event2','event3','event4','event5']};
-        console.log('getting dont worry');
-        this.users.forEach(data=>{
-            if(data.user_id==id)
-                dummyUser=data;
-        })
-        return dummyUser;
+    getUsers(){
+        return this.http.get<user[]>(this.BASE_URL);
+    }
+
+    getUserById(id:number){
+        return this.http.get<user>(`${this.BASE_URL}/${id}`);
+    }
+
+
+    deleteUser(id:number){
+        return this.http.delete(`${this.BASE_URL}/${id}`);
     }
     
 }

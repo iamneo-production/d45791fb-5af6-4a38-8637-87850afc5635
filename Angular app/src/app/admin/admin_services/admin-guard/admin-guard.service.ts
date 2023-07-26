@@ -3,8 +3,9 @@ import { AdminAuthService } from "../a-auth.service";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 
-
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+  })
 export class AdminGuard implements CanActivate{
 
     auth=inject(AdminAuthService);

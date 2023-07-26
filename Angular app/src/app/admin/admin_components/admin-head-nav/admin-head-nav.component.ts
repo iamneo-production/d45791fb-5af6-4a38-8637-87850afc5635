@@ -29,7 +29,7 @@ export class AdminHeadNavComponent {
     this.currentUrl=route.url;
 
     if(this.currentUrl==='/admin/dashboard'){
-      this.name="Dashboard";
+      this.name="Admin Dashboard";
       this.isDashboard=true;
     }
     else if(this.currentUrl==='/admin/manage-events'){

@@ -1,51 +1,63 @@
 .form-container{
-    width: 88%; 
-    margin: 0 auto;
-    height: 80vh;
-    overflow:scroll;
-    padding: 20px;
-    box-shadow: 10px 10px 5px lightblue;
-    background-color: rgb(194,240,240);
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    border: 0.5px rgba(0, 0, 0,0.3) solid;
+  width: 88%; 
+  margin: 0 auto;
+  height: 80vh;
+  overflow:scroll;
+  padding: 20px;
+  box-shadow: 10px 10px 5px lightblue;
+  background-color: rgb(194,240,240);
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0.5px rgba(0, 0, 0,0.3) solid;
 }
-  .detail{
-    padding: 3px;
-    padding-left: 10px;
-    padding-bottom: 20px;
-    height: 35px;
-    width: 400px;
-    background-color:white;
-    border: 0.5px rgba(0, 0, 0,0.3) solid;
-    border-radius: 5px;
-  }
-  #address{
-    
-    padding: 3px;
-    padding-left: 10px;
-    padding-bottom: 20px;
-    height: 80px;
-    width: 800px;
-    background-color:white;
-    border-radius: 5px;
-    border: 0.5px rgba(0, 0, 0,0.3) solid;
-    margin-bottom: 15px;
-  }
+.detail{
+  padding: 3px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  height: 35px;
+  width: 400px;
+  background-color:white;
+  border: 0.5px rgba(0, 0, 0,0.3) solid;
+  border-radius: 5px;
+}
+#address{
+  
+  padding: 3px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  height: 80px;
+  width: 800px;
+  background-color:white;
+  border-radius: 5px;
+  border: 0.5px rgba(0, 0, 0,0.3) solid;
+  margin-bottom: 15px;
+}
 
-  ul{
-    width: 800px;
-    box-shadow: 5 px 5px rgba(0, 0, 0,0.3);
-    border-radius: 3px;
-    border: 0.5px rgba(0, 0, 0,0.3) solid;
-    
-  }
+ul{
+  width: 800px;
+  box-shadow: 5 px 5px rgba(0, 0, 0,0.3);
+  border-radius: 3px;
+  border: 0.5px rgba(0, 0, 0,0.3) solid;
+  
+}
 
-  li{
-    list-style-type: none;
-  }
-  .list-group-item{
-    background-color: rgb(226,227,229);
-    
-  }
+li{
+  list-style-type: none;
+}
+.list-group-item{
+  background-color: rgb(226,227,229);
+  
+}
+.list-group-item:hover{
+  background-color: rgba(0, 0, 0,.2);
+}
+a:hover{
+  text-decoration: none;
+}
+
+h5{
+  position: relative;
+  top: 4px;
+  font-size:14px;
+}
