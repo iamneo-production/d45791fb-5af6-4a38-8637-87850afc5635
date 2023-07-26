@@ -15,10 +15,13 @@ export class UserSearchComponent {
 
   search(){
     console.log('search started '+this.search_term);
-    
-    this.users=this.us.getUsers().filter(data=>data.first_name.includes(this.search_term));
-    console.log(this.users);
-    
+    this.us.getUsers().subscribe(data=>{this.users= data.filter(data=>data.name.includes(this.search_term));                                    
+                            this.users.forEach(user=>{
+                            const name:string[]=this.us.splitName(user.name);
+                            user.f_name=name[0];
+                            user.l_name=name[1];
+                          })
+                        },err=>console.log(err));
     this.us.filterUpdate.next(this.users);
   }
 }

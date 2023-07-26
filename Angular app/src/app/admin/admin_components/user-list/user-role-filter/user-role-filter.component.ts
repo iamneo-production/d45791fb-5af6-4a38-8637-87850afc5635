@@ -18,7 +18,7 @@ export class UserRoleFilterComponent {
     }
 
     ngOnInit(){
-      this.data=this.us.getUsers();
+      this.us.getUsers().subscribe(data=>this.data=data,err=>console.log(err));
     }
 
     filter(){
@@ -26,21 +26,21 @@ export class UserRoleFilterComponent {
       if(this.participant){
         this.participant=!this.participant;
         document.getElementById('btn').textContent='Organizer';
-        this.filteredData=this.data.filter(data=>data.user_role==='organizer')
+        this.filteredData=this.data.filter(data=>data.role==='ROLE_ORGANISER')
       }
       //filter by participant
       else if(this.organizer){
         this.organizer=!this.organizer;
         document.getElementById('btn').textContent='Participant';
-        this.filteredData=this.data.filter(data=>data.user_role==='participant')
+        this.filteredData=this.data.filter(data=>data.role==='ROLE_USER')
       }
       //default one at first
       else{
         this.participant=true;
         document.getElementById('btn').textContent='Participant';
-        this.filteredData=this.data.filter(data=>data.user_role==='participant')
+        this.filteredData=this.data.filter(data=>data.role==='ROLE_USER')
       }  
-
+      this.filteredData.forEach((d=>{var name:string[]=this.us.splitName(d.name);d.f_name=name[0];d.l_name=name[1];}));
       this.us.filterUpdate.next(this.filteredData);
     }
 
@@ -48,6 +48,7 @@ export class UserRoleFilterComponent {
       this.organizer=false;
       this.participant=false;
       document.getElementById('btn').textContent='Apply';
+      this.data.forEach((d=>{var name:string[]=this.us.splitName(d.name);d.f_name=name[0];d.l_name=name[1];}))
       this.us.filterUpdate.next(this.data);
     }
 

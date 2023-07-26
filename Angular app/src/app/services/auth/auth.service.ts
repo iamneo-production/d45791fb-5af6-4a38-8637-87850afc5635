@@ -26,7 +26,7 @@ function _window(): any {
   providedIn: 'root',
 })
 export class AuthService {
-  API_URL = 'https://8080-ffbabacccfdaddfdebcdfcddfaadfadc.project.examly.io';
+  API_URL = localStorage.getItem("BASE_URL");
   JWT = 'jwt';
   USER = 'user';
   // for razorpay to get native window support

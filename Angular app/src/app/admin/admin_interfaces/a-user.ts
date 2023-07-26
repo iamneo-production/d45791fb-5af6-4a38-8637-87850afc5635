@@ -1,11 +1,11 @@
 export interface user{
-    user_id:number;
-    first_name:string;
-    last_name:string;
+    id:number;
+    f_name?:string;
+    l_name?:string;
+    name:string;
     email:string;
-    password:string;
-    phone_number:string;
-    user_role:string;
+    phone:string;
+    role:string;
     address:string;
     previous_organized_events?:string[];
     previous_participated_events?:string[];
