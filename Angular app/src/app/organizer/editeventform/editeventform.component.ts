@@ -42,8 +42,10 @@ export class EditeventformComponent {
 
   onSubmit(form:NgForm){
 
+    form.value.organiser=JSON.parse(localStorage.getItem("user"));
     this.es.updateEvent(this.id,form.value);
     
+
     this.router.navigate([`organiser/${this.userId}/event`])
     
   }
