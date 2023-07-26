@@ -15,7 +15,7 @@ interface UserDataInput {
   providedIn: 'root',
 })
 export class UserService extends AppRESTService {
-  API_URL: string = 'https://8080-ffbabacccfdaddfdebcdfcddfaadfadc.project.examly.io'; // /api/users
+  API_URL: string = `${localStorage.getItem("BASE_URL")}`; // /api/users
   constructor(private http: HttpClient) {
     super();
   }

@@ -65,9 +65,10 @@ public class SecurityConfig {
         http.csrf(t -> t.disable())
                 .authorizeHttpRequests(
                         auth -> auth
-                                .mvcMatchers(authUrls)
-                                .permitAll()
-                                .mvcMatchers(eventUrls, attendeeUrls, ticketUrls).authenticated())
+                                // .mvcMatchers(authUrls)
+                                .mvcMatchers("/**")
+                                .permitAll())
+                                // .mvcMatchers(eventUrls, attendeeUrls, ticketUrls).authenticated())
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .userDetailsService(getCustomUserDetailsService()).cors(cors -> cors.disable())

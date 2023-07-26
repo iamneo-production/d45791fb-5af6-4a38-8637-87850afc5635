@@ -16,7 +16,7 @@ interface OrganizerDataInput {
 })
 export class OrganizerService extends AppRESTService {
 
-  API_URL = 'https://8080-ffbabacccfdaddfdebcdfcddfaadfadc.project.examly.io';
+  API_URL = `${localStorage.getItem("BASE_URL")}`;
  
 
   constructor(private http: HttpClient) {

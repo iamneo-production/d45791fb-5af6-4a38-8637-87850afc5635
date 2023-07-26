@@ -22,7 +22,7 @@ interface TicketInput {
   providedIn: 'root',
 })
 export class TicketsService extends AppRESTService {
-  API_URL = '/api/tickets';
+  API_URL = `${localStorage.getItem("BASE_URL")}`;
 
   constructor(private http: HttpClient) {
     super();
