@@ -10,10 +10,10 @@ import { HomeComponent } from './landing_page/home/home.component';
 import { ServiceCardComponent } from './landing_page/service-card/service-card.component';
 import { SliderComponent } from './landing_page/slider/slider.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateventComponent } from './organizer/createvent/createvent.component';
 import { EditeventformComponent } from './organizer/editeventform/editeventform.component';
 import { EventdisplayComponent } from './organizer/eventdisplay/eventdisplay.component';
@@ -33,7 +33,6 @@ import { TotalEventCardComponent } from './admin/admin_components/admin-dashboar
 import { TotalUserCardComponent } from './admin/admin_components/admin-dashboard/main-panel/cards/total-user-card/total-user-card.component';
 import { RecentComponent } from './admin/admin_components/admin-dashboard/main-panel/recent/recent.component';
 import { RevenueChartComponent } from './admin/admin_components/admin-dashboard/main-panel/revenue-chart/revenue-chart.component';
-import { UserChartComponent } from './admin/admin_components/admin-dashboard/main-panel/user-chart/user-chart.component';
 import { AdminHeadNavComponent } from './admin/admin_components/admin-head-nav/admin-head-nav.component';
 import { EventListingComponent } from './admin/admin_components/event-listing/event-listing.component';
 import { AEventDetailComponent } from './admin/admin_components/event-listing/a-event-detail/a-event-detail.component';
@@ -59,9 +58,6 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { EventService } from './admin/admin_services/a-event.service';
-import { TicketService } from './admin/admin_services/a-ticket.service';
-import { UserService } from './admin/admin_services/a-user.service';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { SpeakerDetailsComponent } from './event-details/speaker-details/speaker-details.component';
 import { SearchAlleventsComponent } from './search-allevents/search-allevents.component';
@@ -72,6 +68,11 @@ import { LottieModule } from 'ngx-lottie';
 import { CommonModule } from '@angular/common';
 import { AdminAuthService } from './admin/admin_services/a-auth.service';
 import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BackendService } from './services/api/backend.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AAuthInterceptorService } from './admin/admin_services/a-interceptor.service';
+import { EventChartComponent } from './admin/admin_components/admin-dashboard/main-panel/event-chart/event-chart.component';
 
 // player-factory
 export function playerFactory() {
@@ -108,7 +109,6 @@ export function playerFactory() {
     TotalUserCardComponent,
     RecentComponent,
     RevenueChartComponent,
-    UserChartComponent,
     AdminHeadNavComponent,
     EventListingComponent,
     AEventDetailComponent,
@@ -134,11 +134,13 @@ export function playerFactory() {
     PaymentpageComponent,
     OrdersummaryComponent,
     PaymentmodeComponent,
+    EventChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    // HttpClientInMemoryWebApiModule.forRoot(BackendService),
     NgChartsModule,
     FormsModule,
     MatIconModule,
@@ -148,10 +150,18 @@ export function playerFactory() {
     ReactiveFormsModule,
     LottieModule,
     LottieModule.forRoot({ player: playerFactory }),
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],	
-  providers: [EventsService,EventService,TicketService,UserService,AdminAuthService,AdminGuard],
-  bootstrap: [AppComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    // {
+    //    provide:HTTP_INTERCEPTORS,
+    //    useClass:AAuthInterceptorService,
+    //    multi:true
+    // },
+    EventsService
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

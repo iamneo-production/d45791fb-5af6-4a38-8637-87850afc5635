@@ -32,17 +32,21 @@ export class ReportComponent implements OnInit {
   ngOnInit(){
     this.route.params.subscribe(param=>{
       this.event_id=param['id'];
+      this.es.getEventById(this.event_id).subscribe(data=>{
+        console.log("event based on id is :"+data.name);
+        this.event_data= data;
+      },error=>console.log(error));
     });
-    this.event_data=this.es.getEventById(this.event_id);
+
     this.eventDetails = {
-      name : this.event_data.event_name,
-      description : this.event_data.event_desc,
-      startDate : this.event_data.start_date,
-      endDate : this.event_data.end_date,
+      name : this.event_data.name,
+      description : this.event_data.description,
+      startDate : this.event_data.startDate,
+      endDate : this.event_data.endDate,
       location : this.event_data.location,
-      organised_by : this.event_data.organizer_name,
-      amount : this.event_data.cost,
-      capacity : this.event_data.capacity,
+      organised_by : this.event_data.organizer.name,
+      amount : this.event_data.price,
+      capacity : this.event_data.totalTickets,
       attendee_id : ['evidoldrke001','evidnvjia0001','evidjy7h4g001','evid79rjhd001',
                       'evidqo3j04001','evid19bm01001','evid8fbw6j001','evidxb7zls001',
                       'evidsrukfk001','evid5edprt001']

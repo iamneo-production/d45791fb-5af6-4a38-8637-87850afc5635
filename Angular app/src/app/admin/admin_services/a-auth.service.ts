@@ -16,7 +16,7 @@ export class AdminAuthService{
 
     route=inject(Router);
     isLoggedIn:boolean;
-    url="http://localhost:8080/signin";
+    url=localStorage.getItem("BASE_URL")+"/signin";
     token:string="";
     constructor(private http:HttpClient){
 
