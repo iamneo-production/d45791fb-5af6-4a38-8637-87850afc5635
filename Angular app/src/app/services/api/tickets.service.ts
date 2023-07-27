@@ -22,7 +22,7 @@ interface TicketInput {
   providedIn: 'root',
 })
 export class TicketsService extends AppRESTService {
-  API_URL = `${localStorage.getItem("BASE_URL")}`;
+  API_URL = `${localStorage.getItem("BASE_URL")}/ticket`;
 
   constructor(private http: HttpClient) {
     super();
@@ -50,5 +50,16 @@ export class TicketsService extends AppRESTService {
     return this.http
       .get<Ticket[]>(`${this.API_URL}?ParticipantID=${userID}`)
       .pipe(tap(), catchError(this.handleError));
+  }
+  getTicketsByAttendee(attendeeId: number) {
+    return this.http
+      .get<Ticket[]>(`${this.API_URL}/track/${attendeeId}`)
+      .pipe(tap(), catchError(this.handleError));
+  }
+
+  updateTicketStatusById(id : number,ticket : any) {
+    return this.http
+    .put<Ticket>(`${this.API_URL}/${id}`,ticket)
+    .pipe(tap(), catchError(this.handleError));
   }
 }

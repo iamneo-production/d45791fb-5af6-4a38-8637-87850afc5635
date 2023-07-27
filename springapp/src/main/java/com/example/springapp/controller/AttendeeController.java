@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/attendee")
+@CrossOrigin()
 public class AttendeeController {
 
     private final AttendeeService attendeeService;
@@ -69,5 +70,13 @@ public class AttendeeController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    // Get Attendee By User Id
+    @GetMapping("/trackuser")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
+    public ResponseEntity<List<Attendee>> getAttendeeByUserId(@RequestParam("id") Long id) {
+        List<Attendee> attendees = attendeeService.getAttendeeByUserId(id);
+        return ResponseEntity.ok(attendees);
     }
 }

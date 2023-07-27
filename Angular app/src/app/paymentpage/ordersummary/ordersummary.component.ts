@@ -21,6 +21,7 @@ export class OrdersummaryComponent implements OnInit {
   }
   options : AnimationOptions | null = null;
   ngOnInit(): void {
+    console.log(this.eventDetails)
     this.options = {
       path: this.status ? '/assets/json/success.json' : '/assets/json/failure.json' ,
     };
