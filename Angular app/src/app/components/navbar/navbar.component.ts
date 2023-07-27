@@ -119,6 +119,8 @@ export class NavbarComponent implements OnInit {
       this.menuType = 'login';
     } else if (url.includes('register')) {
       this.menuType = 'login';
+    } else if (url.includes('/payment')) {
+      this.menuType = 'login';
     } else if (url.includes('/events-list')) {
       this.menuType = '/events-list';
     } else if (url.includes('/categories')) {
