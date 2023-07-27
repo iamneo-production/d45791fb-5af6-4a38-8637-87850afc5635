@@ -6,9 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.springapp.model.Event;
+import com.example.springapp.model.Attendee;
 import com.example.springapp.service.EventService;
+import com.example.springapp.service.AttendeeService;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(value = "*")
@@ -18,9 +21,11 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
+    private final AttendeeService attendeeService;
 
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService,AttendeeService attendeeService) {
         this.eventService = eventService;
+        this.attendeeService = attendeeService;
     }
 
     @PostMapping
@@ -58,5 +63,20 @@ public class EventController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
     public List<Event> getEventsByOrganizerId(@PathVariable Long organiserId) {
         return eventService.getEventsByOrganiserId(organiserId);
+    }
+
+    // Get Events By AttendeeId From User Id
+    @GetMapping("/user/attendee/{userid}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ORGANISER')")
+    public List<Event> getEventsByAttendeeIdFromUserId(@PathVariable Long userid) {
+        List<Attendee> attendeeList = attendeeService.getAttendeeByUserId(userid);;
+        List<Event> eventlist = new ArrayList<Event>();
+        for (Attendee attendee : attendeeList) {
+            Event event =  eventService.getEventById(attendee.getEvent().getId());
+            // System.out.println(attendee.getEvent().getId());
+            if(eventlist.contains(event)) continue;
+            eventlist.add(event);
+        }
+        return eventlist;
     }
 }

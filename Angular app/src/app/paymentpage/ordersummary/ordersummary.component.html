@@ -15,11 +15,11 @@
                 <!-- Image -->
 
                 <div class="summary_thumbnail">
-                    <img src="assets/Images/payment/concert.jpg" />
+                    <img src={{eventDetails.imgUrl}} alt="images"/>
                     
                     <p>{{eventDetails.name}}</p>
 
-                    <h4>Rs. {{eventDetails.cost}}</h4>
+                    <h4>Rs. {{eventDetails.price}}</h4>
                 </div>
 
 
@@ -34,7 +34,7 @@
                         <p>{{currentDate | date}}</p>
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <p>Commission</p>
                         <p>Rs. {{commission | number:'1.2'}}</p>
                     </div>
@@ -42,7 +42,7 @@
                     <div>
                         <p>Invoice</p>
                         <p>000-{{invoice_number1}}-{{invoice_number2}}-001</p>
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -57,7 +57,7 @@
 
                         <p>Subtotal</p>
 
-                        <p>Rs. {{(eventDetails.cost + commission) | number : '1.2' }}</p>
+                        <p>Rs. {{(eventDetails.price) | number : '1.2' }}</p>
 
                     </div>
 
@@ -72,7 +72,7 @@
 
                         <p>Total</p>
 
-                        <p class="text-green">Rs. {{(eventDetails.cost + commission) | number : '1.2' }}</p>
+                        <p class="text-green">Rs. {{(eventDetails.price) | number : '1.2' }}</p>
                         
                         <div class="lottie_icon"><ng-lottie [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie></div>
                     </div>

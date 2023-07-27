@@ -73,6 +73,7 @@ import { BackendService } from './services/api/backend.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AAuthInterceptorService } from './admin/admin_services/a-interceptor.service';
 import { EventChartComponent } from './admin/admin_components/admin-dashboard/main-panel/event-chart/event-chart.component';
+import { DatetimeformatterPipe } from './pipes/datetimeformatter.pipe';
 
 // player-factory
 export function playerFactory() {
@@ -135,6 +136,7 @@ export function playerFactory() {
     OrdersummaryComponent,
     PaymentmodeComponent,
     EventChartComponent,
+    DatetimeformatterPipe,
   ],
   imports: [
     BrowserModule,

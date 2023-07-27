@@ -47,4 +47,10 @@ export class UserService extends AppRESTService {
       .put(`${this.API_URL}/user/update/${input.id}`, input)
       .pipe(tap(), catchError(this.handleError));
   }
+
+  getAttendeeDetails(id: any) {
+    return this.http
+      .get(`${this.API_URL}/attendee/trackuser?id=${id}`)
+      .pipe(tap(), catchError(this.handleError));
+  }
 }

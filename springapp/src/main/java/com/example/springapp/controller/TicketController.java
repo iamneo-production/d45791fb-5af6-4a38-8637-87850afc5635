@@ -1,8 +1,10 @@
 package com.example.springapp.controller;
 
 import com.example.springapp.model.Ticket;
+import com.example.springapp.model.User;
 import com.example.springapp.model.Attendee;
 import com.example.springapp.model.Event;
+import com.example.springapp.service.UserService;
 import com.example.springapp.service.TicketService;
 import com.example.springapp.service.AttendeeService;
 import org.springframework.http.HttpStatus;
@@ -10,21 +12,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Optional;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/ticket")
-@CrossOrigin(value = "http://localhost:8081")
+@CrossOrigin()
 public class TicketController {
 
     private final TicketService ticketService;
     private final AttendeeService attendeeService;
+    private final UserService userService;
 
-    public TicketController(TicketService ticketService,AttendeeService attendeeService) {
+    public TicketController(TicketService ticketService,AttendeeService attendeeService, UserService userService) {
         this.ticketService = ticketService;
         this.attendeeService = attendeeService;
+        this.userService = userService;
     }
-
+    // Updated
     @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
         // create attendee
@@ -33,9 +40,25 @@ public class TicketController {
     
         Attendee createdAttendee = attendeeService.createAttendee(attendee);
         
-        List<Attendee> attendees = event.getAttendees();
-        attendees.add(attendee);
+        List<Attendee> attendees = new ArrayList<Attendee>();
+        if(event.getAttendees() != null) {
+            attendees = event.getAttendees();
+        }
+        attendees.add(createdAttendee);
         event.setAttendees(attendees);
+
+        ticket.setAttendee(createdAttendee);
+
+        // Assign attendee_id to user
+
+        Optional<User> getUser = userService.findByEmailIgnoreCase(createdAttendee.getEmail());
+        List<Attendee> userTableAttendeeList = getUser.get().getAttendeeList();
+        userTableAttendeeList.add(createdAttendee);
+        getUser.get().setAttendeeList(userTableAttendeeList);
+        User user = userService.updateUser(getUser.get());
+
+        // System.out.println(ticket.getEvent().getId());
+        // System.out.println(ticket.getAttendee().getId());
 
         Ticket createdTicket = ticketService.createTicket(ticket);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTicket);
@@ -58,9 +81,9 @@ public class TicketController {
         return ResponseEntity.ok(tickets);
     }
 
-    @GetMapping("/{attendeeId}")
+    @GetMapping("/track/{attendeeId}")
     @PreAuthorize("hasAnyRole('ROLE_ORGANISER', 'ROLE_ADMIN')")
-    public ResponseEntity<List<Ticket>> getTicketByAttendeeId(@RequestParam("attendeeId") Long attendeeId) {
+    public ResponseEntity<List<Ticket>> getTicketByAttendeeId(@PathVariable("attendeeId") Long attendeeId) {
         List<Ticket> tickets = ticketService.getTicketByAttendeeId(attendeeId);
         return ResponseEntity.ok(tickets);
     }
