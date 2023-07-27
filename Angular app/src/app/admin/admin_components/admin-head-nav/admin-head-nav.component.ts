@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../admin_services/a-user.service';
 import { EventService } from '../../admin_services/a-event.service';
 import { TicketService } from '../../admin_services/a-ticket.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-admin-head-nav',
@@ -25,7 +26,7 @@ export class AdminHeadNavComponent {
   //name
   name:string;
 
-  constructor(private route:Router,private activatedRoute:ActivatedRoute,private us:UserService,private es:EventService,private ts:TicketService){
+  constructor(private route:Router,private activatedRoute:ActivatedRoute,private auth:AuthService,private us:UserService,private es:EventService,private ts:TicketService){
     this.currentUrl=route.url;
 
     if(this.currentUrl==='/admin/dashboard'){
@@ -61,6 +62,7 @@ export class AdminHeadNavComponent {
     this.ts.filteredData.unsubscribe();
     this.es.filterUpdate.unsubscribe();
     console.log('duckkk');
+    this.auth.logout();
     this.route.navigate(['/admin/login'],{ queryParamsHandling: 'preserve' });
   }
 

@@ -9,18 +9,16 @@ import { TicketService } from '../../../../admin_services/a-ticket.service';
 })
 export class TicketSearchComponent {
   tickets:ticket[];
-  search_term:number;
+  search_text:string;
   constructor(private ts:TicketService){
     
   }
 
   search(){
     this.tickets=[];
-    if(this.search_term===undefined)
-    return;
-    this.tickets.push(this.ts.getTicketById(this.search_term));
+    console.log("i was called...."+this.search_text);
+    this.ts.getTicketById(this.search_text).subscribe(data=>{this.tickets.push(data);
+      this.ts.filteredData.next(this.tickets);},err=>console.log(err));
     console.log("data produced by search iss "+this.tickets);
-    this.ts.filteredData.next(this.tickets);
    }
 }
-
