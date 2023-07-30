@@ -13,6 +13,10 @@ export class CreateventComponent {
 
     userId:number=JSON.parse(localStorage.getItem("user")).id;
 
+    newCategory(){
+      this.router.navigate([`organiser/${this.userId}/newcategory`])
+    }
+
     newEvent(){
       this.router.navigate([`organiser/${this.userId}/newevent`])
 

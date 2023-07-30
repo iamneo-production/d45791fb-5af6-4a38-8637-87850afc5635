@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { CategoryService } from 'src/app/services/api/category.service';
 
 @Component({
   selector: 'app-service-card',
@@ -7,7 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./service-card.component.css'],
 })
 export class ServiceCardComponent implements OnInit {
-  events = [
+  events: any[] = [
     {
       category: 'Business & Professional Events',
       eventDescription:
@@ -87,8 +88,9 @@ export class ServiceCardComponent implements OnInit {
 
   menuType: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private categoryService: CategoryService) { }
 
+  categoryList: any[]
 
   ngOnInit(): void {
     this.setMenuType(this.router.url);
@@ -98,6 +100,29 @@ export class ServiceCardComponent implements OnInit {
         this.setMenuType(event.url);
       }
     });
+
+    this.categoryService.getCategories().subscribe(
+      {
+        next: (response) => {
+          this.categoryList = response;
+          console.log(this.categoryList);
+          let newCategoryList = this.events;
+          this.categoryList.forEach(element => {
+            let category = {
+              category: element.categoryName, eventDescription:
+                element.categoryDescription,
+              imageUrl: element.categoryImageUrl,
+            }
+
+            newCategoryList.push(category)
+          });
+          this.events = newCategoryList
+        },
+        error: (err) => console.log(err)
+      }
+    )
+
+    console.log(this.categoryList)
   }
 
   setMenuType(url: string): void {

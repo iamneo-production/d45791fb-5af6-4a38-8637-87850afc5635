@@ -29,6 +29,7 @@ import { AdminGuard } from './admin/admin_services/admin-guard/admin-guard.servi
 import { EditeventformComponent } from './organizer/editeventform/editeventform.component';
 import { EventdisplayComponent } from './organizer/eventdisplay/eventdisplay.component';
 import { NeweventformComponent } from './organizer/neweventform/neweventform.component';
+import { NewcategoryformComponent } from './organizer/newcategoryform/newcategoryform.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -120,6 +121,15 @@ const routes: Routes = [
     ]
   },
   //organizer................
+  {
+    path:'organiser/:id/newcategory',
+    component:NewcategoryformComponent,
+    canActivate: [orgainzerGuard],
+    children: [
+      { path: '', component: NavbarComponent, outlet: 'nav' },
+
+    ]
+  },
   {
     path:'organiser/:id/newevent',
     component:NeweventformComponent,

@@ -12,9 +12,13 @@ button{
     border-radius: 10px;
 
 }
+#btn0{
+    position: relative;
+    top: 97px;
+    height: 5rem;
+}
 #btn1{
     position: relative;
-    top: 100px;
 }
 #btn2{
     position: relative;
