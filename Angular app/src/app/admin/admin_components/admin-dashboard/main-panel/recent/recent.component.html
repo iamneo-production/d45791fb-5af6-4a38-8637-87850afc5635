@@ -14,11 +14,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let ticket of tickets | slice:0:5" [ngClass]="{'active':ticket.status==='success','danger':ticket.status==='failed'}">
-                    <td>{{ticket.ticket_id}}</td>
-                    <td>{{ticket.event_id}}</td>
-                    <td>{{ticket.attendee_id}}</td>
-                    <td>Rs. {{ticket.cost}}</td>
+                <tr *ngFor="let ticket of tickets | slice:0:5" [ngClass]="{'active':ticket.status==='booked','danger':ticket.status==='failed'}">
+                    <td>{{ticket.id}}</td>
+                    <td>{{ticket.event.id}}</td>
+                    <td>{{ticket.attendee.id}}</td>
+                    <td>Rs. {{ticket.price}}</td>
                     <td>{{ticket.status}}</td>
                 </tr>
             </tbody>

@@ -33,7 +33,7 @@ public class UserService {
         update_user.setEmail(user.getEmail());
         update_user.setPhone(user.getPhone());
         update_user.setAddress(user.getAddress());
-        
+        update_user.setAttendeeList(user.getAttendeeList());
         return userRepository.save(update_user);
     }
 
@@ -43,5 +43,9 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    public Optional<User> findByEmailIgnoreCase(String email) {
+        return userRepository.findByEmailIgnoreCase(email);
     }
 }

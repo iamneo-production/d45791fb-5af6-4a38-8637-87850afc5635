@@ -10,13 +10,13 @@ import { TicketService } from '../../../../admin_services/a-ticket.service';
 })
 export class RecentComponent {
 
-  tickets:ticket[];
+  tickets:any[];
 
   constructor(private router:Router,private ts:TicketService){
   }
 
   ngOnInit(){
-    this.tickets=this.ts.getTickets().reverse();
+    this.ts.getTickets().subscribe(d=>{console.log(this.tickets);this.tickets=d.reverse()},err=>console.log(err));
   }
 
 

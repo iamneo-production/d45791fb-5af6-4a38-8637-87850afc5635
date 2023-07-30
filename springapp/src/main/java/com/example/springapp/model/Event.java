@@ -18,7 +18,7 @@ import java.util.List;
 import com.example.springapp.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -72,10 +72,12 @@ public class Event {
     
     @OneToMany(mappedBy = "event")
     @Column(name="attendees")
+    @JsonIgnore
     private List<Attendee> attendees;
 
     @OneToMany(mappedBy = "event")
     @Column(name="tickets")
+    @JsonIgnore
     private List<Ticket> tickets;
     
     

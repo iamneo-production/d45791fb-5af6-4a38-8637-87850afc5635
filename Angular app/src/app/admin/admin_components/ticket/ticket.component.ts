@@ -14,7 +14,8 @@ export class TicketComponent {
 
     }
     ngOnInit(){
-      this.tickets=this.ts.getTickets();
+      this.ts.getTickets().subscribe(d=>{console.log(d);
+      this.tickets=d},err=>console.log(err));
       this.ts.filteredData.subscribe(data=>{this.tickets=data;console.log("Data has changed "+data)});
     }
     

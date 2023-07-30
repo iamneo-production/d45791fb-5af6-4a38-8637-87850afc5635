@@ -10,10 +10,10 @@ import { TicketService } from '../../../../admin_services/a-ticket.service';
 export class TicketDateFilterComponent {
   startDate='';
   endDate='';
-  filteredData:ticket[];
-  tickets:ticket[];
+  filteredData:any[];
+  tickets:any[];
   constructor(private ts:TicketService ){
-    this.tickets=ts.getTickets();
+    ts.getTickets().subscribe(d=>this.tickets=d,err=>console.log(err));;
   }
   filterType:string='default';
 
@@ -25,7 +25,9 @@ export class TicketDateFilterComponent {
     else{
         const st=new Date(this.startDate);
         const ed=new Date(this.endDate);
-        this.filteredData=this.tickets.filter(filteredData=> new Date(filteredData.date_of_booking)>=st && new Date(filteredData.date_of_booking)<=ed);
+        console.log(st+"    "+ed);
+        
+        this.filteredData=this.tickets.filter(filteredData=> new Date(filteredData.event.startDate)>=st && new Date(filteredData.event.startDate)<=ed);
         console.log(this.filteredData);
         this.ts.filteredData.next(this.filteredData);
     }
@@ -33,19 +35,19 @@ export class TicketDateFilterComponent {
    sort(){
     let btn=document.getElementById('status_btn');
     if(this.status_mode==='default'){
-      this.status_mode='success';
+      this.status_mode='booked';
       btn.textContent=this.status_mode;
-      this.ts.filteredData.next(this.filteredData=this.tickets.filter(data=>data.status==='success'));
+      this.ts.filteredData.next(this.filteredData=this.tickets.filter(data=>data.status==='booked'));
     }
-    else if(this.status_mode==='success'){
+    else if(this.status_mode==='booked'){
       this.status_mode='failed';
       btn.textContent=this.status_mode;
       this.ts.filteredData.next(this.filteredData=this.tickets.filter(data=>data.status==='failed'));
     }
     else if(this.status_mode==='failed'){
-      this.status_mode='success';
+      this.status_mode='booked';
       btn.textContent=this.status_mode;
-      this.ts.filteredData.next(this.filteredData=this.tickets.filter(data=>data.status==='success'));
+      this.ts.filteredData.next(this.filteredData=this.tickets.filter(data=>data.status==='booked'));
 
     }
 

@@ -29,6 +29,10 @@ public class AttendeeService {
         return attendeeRepository.findByEventId(eventId);
     }
 
+    public List<Attendee> getAttendeeByUserId(Long userId) {
+        return attendeeRepository.findByUserId(userId);
+    }
+
     public List<Attendee> getAllAttendee() {
         return attendeeRepository.findAll();
     }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup , FormControl , Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TicketsService } from 'src/app/services/api/tickets.service';
 import { AuthService} from 'src/app/services/auth/auth.service';
 // import { Razorpay }  from 'razorpay';
 
@@ -21,8 +22,9 @@ export class PaymentmodeComponent implements OnInit {
   @Input() status : any;
   @Output() cStatus = new EventEmitter<boolean>();
 
-
-  constructor(private auth : AuthService, private router : Router) { }
+  userDetails :any;
+  eventDetails :any;
+  constructor(private auth : AuthService, private router : Router, private activeRouter:ActivatedRoute,private ticketService : TicketsService) { }
 
   // Credit Tab
 
@@ -39,6 +41,12 @@ export class PaymentmodeComponent implements OnInit {
   })
 
   ngOnInit(): void {
+    this.userDetails = JSON.parse(localStorage.getItem('user'));
+
+    this.activeRouter.params.subscribe((data) => {
+      this.eventDetails = JSON.parse(data['eventDetails']);
+    });
+    console.log(this.eventDetails)
   }
   
   // Tab Change Controls
@@ -117,15 +125,15 @@ export class PaymentmodeComponent implements OnInit {
 
   razorPay() {
     let options = {
-      "key": "rzp_test_XNKWBECF95Os4u", // Enter the Key ID generated from the Dashboard
-      "amount": "1000",
-      "currency": "INR",
-      "description": "Acme Corp",
-      "image": "https://www.ecommerce-nation.com/wp-content/uploads/2019/02/razorpay.webp",
-      "prefill":
+      key: "rzp_test_XNKWBECF95Os4u", // Enter the Key ID generated from the Dashboard
+      amount: this.eventDetails.price * 100,
+      currency: "INR",
+      description: "SwiftEvent",
+      image: "https://www.ecommerce-nation.com/wp-content/uploads/2019/02/razorpay.webp",
+      prefill:
       {
-        "email": "ashwinrupak@example.com",
-        "contact": +919900000000,
+        "email": this.userDetails.email,
+        "contact": this.userDetails.phone,
       },
       config: {
         display: {
@@ -165,10 +173,37 @@ export class PaymentmodeComponent implements OnInit {
           }
         }
       },
-      "handler": (response : any) => {
-        console.log(response.razorpay_payment_id);
-        
-        this.router.navigate(['report'])
+      handler: (response : any) => {
+        console.log(response);
+
+        let attendee = {
+          name : this.userDetails.name,
+          email : this.userDetails.email,
+          phone : this.userDetails.phone,
+          address : this.userDetails.address,
+          event : this.eventDetails,
+          user: this.userDetails
+        }
+
+        let ticket = {
+          status : "booked",
+          event : this.eventDetails,
+          price: this.eventDetails.price,
+          attendee : attendee
+        };
+        console.log(ticket);
+        this.ticketService.addTicket(ticket).subscribe(
+          {next : (data) => {
+            console.log(data);
+          },
+          error : (err) => {
+            console.log(err);
+          }}
+        )
+        alert("Click the screen once to get your order summary. Thank you")
+        this.pageFun.emit();
+        this.cStatus.emit(true);
+        // this.router.navigate(['report'])
         // change route
       },
       "modal": {
