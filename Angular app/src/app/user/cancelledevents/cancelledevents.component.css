@@ -1,0 +1,27 @@
+.booking-history-table {
+    width: 60vw;
+    margin: auto;
+    /* border-collapse:separate; */
+  }
+  
+  .booking-history-table th, .booking-history-table td {
+    padding: 10px;
+    text-align: center;
+    border: 3px solid #0a0a0a;
+  }
+  
+  .booking-history-table th {
+    background-color: #a3b5da;
+    font-size: large;
+  }
+  
+  .booking-history-table button {
+    padding: 10px 20px;
+    background-color: #cac4da;
+    color: #d41111;
+    border: none;
+    border-radius: 30px;
+    font-size: small;
+    font-weight: bold;
+  }
+  

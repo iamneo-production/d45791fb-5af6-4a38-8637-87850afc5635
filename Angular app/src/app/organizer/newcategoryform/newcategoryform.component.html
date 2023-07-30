@@ -1,0 +1,46 @@
+<router-outlet name="nav" id="head-nav"></router-outlet>
+<div class="back">
+  <div class="col-md-2 nav">
+    <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
+    <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
+  </div>
+  <form #form="ngForm" class="bg" (ngSubmit)="addCategory(form)">
+    <div class="container">
+      <h1 style="color: white; text-align: center; margin-top: 80px; padding-top: 20px; padding-left: 5px;">
+        Fill The Category Details
+      </h1>
+      <div class="form">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input">Category Name</label>
+            <input type="text" class="form-control" name="categoryName" id="input" placeholder="" [(ngModel)]="category.categoryName"
+              required>
+          </div>
+        </div>
+        <div class="col" style="padding: 0">
+          <div class="form-group">
+            <label for="input">Category Image URL</label>
+            <input type="text" class="form-control" id="input" name="categoryImageUrl" placeholder=""
+              [(ngModel)]="category.categoryImageUrl" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="exampleFormControlTextarea1">Category Description</label>
+          <textarea name="categoryDescription" class="form-control" id="exampleFormControlTextarea1" rows="3"
+            [(ngModel)]="category.categoryDescription" required></textarea>
+        </div>
+        &nbsp;
+        &nbsp;
+
+        &nbsp;
+        &nbsp;
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Close</button>&nbsp;
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

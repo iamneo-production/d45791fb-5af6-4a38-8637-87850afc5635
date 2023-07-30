@@ -1,0 +1,50 @@
+<router-outlet name="nav"></router-outlet>
+
+<div class="row">    
+  <div class="col-md-2 nav">
+    <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
+    <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
+  </div>
+<div class="bgm">
+    <h2 style="text-align: center;padding-top: 12px;padding-bottom: 20px;color:white; margin-top: 20px;">Number of Events created List</h2>
+    <div class="alert alert-warning" *ngIf="isDeleted">Event of Id {{deleteId}} is deleted</div>
+   <div class="tb">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">S.no</th>
+          <th scope="col">Event ID</th>
+          <th scope="col">Event Name</th>
+          <th scope="col">Organizer Name</th>
+          <th scope="col">Event Total Tickets</th>
+          <th scope="col">Start Time&Date</th>
+          <th scope="col">End Time&Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <tr *ngFor="let event of events;let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{event.id}}</td>
+          <td>{{event.name}}</td>
+          <td>{{event.name}}</td>
+          <td>{{event.totalTickets}}</td>
+          <td>{{event.startDate | date:'short'}}</td>
+          <td>{{event.endDate | date:'short'}}</td>
+          <td>
+            <button class="button-25" (click)="edit(event.id)">Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="button-24" (click)="delete(event.id)">Delete</button>
+          </td>
+
+      </tbody>
+    </table>
+</div>
+</div>
+</div>
+<app-footer></app-footer>
+    
+    
+    
+    
+    
