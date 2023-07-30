@@ -1,0 +1,27 @@
+<div class="recent-data">
+    <h4 style="text-align: center;">Recently Booked Tickets</h4>
+    <div class="col align-self-end"></div>
+    <button class="btn-primary" id="btn" (click)="gotoTickets()">Click here show all Tickets &nbsp;<i class="fa-solid fa-ticket"></i></button>
+    <div class="tdata">
+        <table class="table">
+            <thead >
+                <tr class="info">
+                    <th>Ticket ID</th>
+                    <th>Event ID</th>
+                    <th>User ID</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ticket of tickets | slice:0:5" [ngClass]="{'active':ticket.status==='booked','danger':ticket.status==='failed'}">
+                    <td>{{ticket.id}}</td>
+                    <td>{{ticket.event.id}}</td>
+                    <td>{{ticket.attendee.id}}</td>
+                    <td>Rs. {{ticket.price}}</td>
+                    <td>{{ticket.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,167 @@
+<router-outlet name="nav"></router-outlet>
+<app-search-allevents></app-search-allevents>
+<div class="event-container">
+    <div class="every-details">
+    <div class="event-image">
+     <div class="image-wrapper">
+            <figure class="main-image">
+                <img src={{event.imgUrl}} alt="Image">
+
+                </figure>
+            </div>
+        </div>
+        <div class="Tabscontent">
+            <ul  class="tab-list">
+                <li class="tab-item active-tab"  id="tabs-0" ><span class="about-span">About</span></li>
+            </ul>
+        <section class="text text-left about-event"><span>About the Event</span></section>
+        <section class="text text-left event-desc">
+        
+            <p>{{event.description}}
+            </p>
+                <br>
+                <div class="details">
+                    <p><strong>Location</strong>: {{ event.location }}</p>
+                    <p><strong>Participants Capacity</strong>: {{ event.totalTickets }}</p>
+                    <p><strong>Start Date and Time</strong>: {{ event.startDate|date:'medium' }}</p>
+                    <p><strong>End Date and Time</strong>: {{ event.endDate|date:'medium' }}</p>
+                    <p><strong>Organizer</strong>: {{ organiser_name }}</p>
+                    <p><strong>Event ID</strong>: {{ event.id}}</p>
+                  </div>
+        </section>
+        
+    </div>
+</div>
+<div class="event-title">
+<div class="event-title-main">
+    <div class="marginarea">
+      <div class="event-additionals">
+        <div class="custom-class">
+            <div>
+            <h1 class="event-web">{{event.name}}</h1>
+                <div class="save-event">
+                    <div class="web-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="#0C172F" stroke="#0C172F" stroke-width="0.5">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.8182 2.63636C10.1269 0.945072 7.87309 0.945072 6.18182 2.63636C4.49054 4.32764 4.49054 6.58146 6.18182 8.27273L7.99999 10L9.81818 8.27273C11.5095 6.58146 11.5095 4.32764 9.81818 2.63636C8.1269 0.945072 5.87309 0.945072 4.18182 2.63636C1.88177 4.93641 1.88177 8.36329 4.18182 10.6633L7.99999 14.4815L11.8182 10.6633C14.1182 8.36329 14.1182 4.93641 11.8182 2.63636Z"></path>
+                        </svg>
+                      </div>
+                    <p class="add-location">
+                        <a [attr.href]="generateLocationUrl()">Location</a>
+                    </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+            <div class="tasks">
+             <div class="web-1"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.6 2.35278H13.6C14.4837 2.35278 15.2 3.02699 15.2 3.85867V14.2116C15.2 15.0433 14.4837 15.7175 13.6 15.7175H2.6C1.71634 15.7175 1 15.0433 1 14.2116V3.85867C1 3.02699 1.71634 2.35278 2.6 2.35278ZM13.6 3.4822H2.6C2.37909 3.4822 2.2 3.65075 2.2 3.85867V14.2116C2.2 14.4195 2.37909 14.5881 2.6 14.5881H13.6C13.8209 14.5881 14 14.4195 14 14.2116V3.85867C14 3.65075 13.8209 3.4822 13.6 3.4822Z" fill="#0C172F"></path>
+                            <rect x="4" y="1.41162" width="1" height="2.82353" rx="0.5" fill="#0C172F"></rect>
+                            <rect x="11" y="1.41162" width="1" height="2.82353" rx="0.5" fill="#0C172F"></rect>
+                            <path d="M15.0984 6.02344V7.15285H1.89844V6.02344H15.0984Z" fill="#0C172F"></path>
+                        </svg></div>
+                        <p class="addto-calendar">
+                            <a [attr.href]="generateCalendarUrl()">Add to Calendar</a>
+                          </p>
+            </div>
+            <div class="tasks">
+                 <div class="web-1"><svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="2.42725" width="14" height="11.3333" rx="1.75" stroke="#0C172F" stroke-width="1.16667"></rect>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6 5.42725V10.7606L10.6667 8.06071L6 5.42725Z" stroke="#0C172F" stroke-width="1.16667" stroke-linejoin="round"></path>
+                        </svg></div>
+                        <p class="addto-calendar">
+                            <a [attr.href]="generateYoutubeUrl()">Watch on Youtube</a>
+                          </p>
+            </div>
+                <div class="wording-color"><img src="" class="wording"><span class="wording-span">ENJOY THIS GREAT EVENT</span></div>
+            </div>
+            <div class="custom-container"></div>
+        <div class="custom-wrapper">
+            <div class="event-buy">
+                    <div class="ticket-ar">
+                        <div class="ticket-symb"><svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.17223 4.97276L10.4291 0.945641C10.9254 0.703535 11.5241 0.909674 11.7662 1.40606L13.3414 4.63568C13.5835 5.13207 13.3774 5.73074 12.881 5.97285L4.62416 9.99997C4.12777 10.2421 3.5291 10.0359 3.287 9.53954L1.71181 6.30993C1.4697 5.81354 1.67584 5.21487 2.17223 4.97276Z" fill="white" stroke="#0C172F"></path>
+                                <path d="M7.93203 7.34624C8.81569 7.34624 9.53203 6.6299 9.53203 5.74624C9.53203 4.86258 8.81569 4.14624 7.93203 4.14624C7.04838 4.14624 6.33203 4.86258 6.33203 5.74624C6.33203 6.6299 7.04838 7.34624 7.93203 7.34624Z" fill="white" stroke="#0C172F"></path>
+                                <path d="M3 5.9729H12.051C12.8794 5.9729 13.551 6.64447 13.551 7.4729V12.795C13.551 13.6235 12.8794 14.295 12.051 14.295H3C2.17157 14.295 1.5 13.6235 1.5 12.795V7.4729C1.5 6.64447 2.17157 5.9729 3 5.9729Z" fill="white" stroke="#0C172F"></path>
+                                <path d="M12.1137 5.23975H2.93725C1.86904 5.23975 1 6.12964 1 7.2235V13.6968C1 14.7906 1.86904 15.6805 2.93725 15.6805H12.1137C13.1819 15.6805 14.051 14.7906 14.051 13.6968V11.5042V9.41606V7.2235C14.051 6.12964 13.1819 5.23975 12.1137 5.23975ZM12.1449 14.7314H2.90604C2.28339 14.7314 1.77684 14.2203 1.77684 13.592V7.17009C1.77684 6.54183 2.28339 6.03071 2.90604 6.03071H12.1449C12.7676 6.03071 13.2741 6.54183 13.2741 7.17009V8.93093H11.0157C10.2233 8.93093 9.57858 9.58146 9.57858 10.381C9.57858 11.1806 10.2233 11.8312 11.0157 11.8312H13.2741V13.592C13.2741 14.2203 12.7676 14.7314 12.1449 14.7314ZM13.2741 11.0929H11.0768C10.7463 11.0929 10.4775 10.8091 10.4775 10.4601C10.4775 10.1112 10.7463 9.82736 11.0768 9.82736H13.2741V11.0929Z" fill="#0C172F" stroke="#0C172F" stroke-width="0.2"></path>
+                            </svg></div>
+                        <div class="event-cost">
+                         <p class="rupees-class"><span>₹</span>{{event.price}}</p>
+                         <p class="rupees-table"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buy-button" (click)="buyTickets()"><a  class="buy-buttoninside" >BUY TICKET</a></div>
+            </div>
+        </div>
+        <div class="eventguide">
+            <div class="event-guide-title">Event Guide</div>
+            <div class="event-guide-image"></div>
+            <div class="event-guide-details">
+                <div class="event-guide-info">
+                    <figure class="event-guide-icon">
+                     <div class="event-guide-icon-image"> </div>
+                    </figure>
+                    <div>
+                    <p class="event-guide-label">Event</p>
+                    <p class="event-guide-description">Watch on SwiftEvent</p>
+                    </div>
+                </div>
+                <div class="event-guide-info">
+                    <figure class="event-guide-icon1">
+                    <div class="event-guide-icon-image"></div>
+                    </figure>
+                    <div>
+                    <p class="event-guide-label">For Age(s)</p>
+                    <p class="event-guide-description">Family Friendly</p>
+                    </div>
+                </div>
+                <div class="event-guide-info">
+                    <figure class="event-guide-icon">
+                    <div class="event-guide-icon-image"></div>
+                    </figure>
+                    <div>
+                    <p class="event-guide-label">Language</p>
+                    <p class="event-guide-description">English</p>
+                    </div>
+                </div>
+                <div class="event-guide-info">
+                    <figure class="event-guide-icon">
+                    <div class="event-guide-icon-image"></div>
+                    </figure>
+                    <div>
+                     <p class="event-guide-label">Live Performance</p>
+                    <p class="event-guide-description">Enjoy a unique experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="socialshare-box">
+            <div class="socialshare-box-content">
+                <div class="socialshare-box-content-1">
+                <p class="socialshare-box-title">Invite your Friends</p>
+                <p class="socialshare-box-description">and Enjoy a Shared Experience</p>
+                </div>
+                <div class="socialshare-box-buttons">
+                    <div>
+                      <div class="social-sharing isEdpDesktop css-17">
+                        <a class="social-button social-whatsapp" [href] ="generateWhatsAppShareUrl()"><i class="fab fa-whatsapp"></i></a>
+                        <a class="social-button social-facebook" [href] ="generateFacebookShareUrl()"><i class="fab fa-facebook-f"></i></a>
+                      </div>
+                      <div data-ref="edp_share_button" class=""></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<app-speaker-details
+  [name]="event.speakerName"
+  [job]="event.speakerExpertise"
+  [role]="event.speakerAffiliations"
+  [certifications]="event.speakerAccomplishments"
+  [bio]="event.speakerBiography"
+></app-speaker-details>
+<router-outlet name="footer"></router-outlet>

@@ -1,0 +1,11 @@
+#nav{
+    position: fixed;
+    
+}
+#main{
+    margin-top: -20px;
+    margin-left: 420px;
+}
+#header{
+    overflow: hidden;
+}
