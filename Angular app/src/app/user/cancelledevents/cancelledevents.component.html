@@ -1,0 +1,33 @@
+<table class="booking-history-table">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Event Id</th>
+      <th>Event Name</th>
+      <th>Start DateTime</th>
+      <th>End DateTime</th>
+      <th>Location</th>
+      <th>Total Cost</th>
+      <th>
+        <!-- Refund  -->
+        Status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let booking of canceleventslist;let ioe=index">
+      <tr *ngIf="booking.status =='cancelled'">
+        <td>{{ ioe + 1 }}</td>
+        <td>E{{ booking.event.id }}</td>
+        <td>{{ booking.event.name }}</td>
+        <td>{{ booking.event.startDate | datetimeformatter}}</td>
+        <td>{{ booking.event.endDate | datetimeformatter}}</td>
+        <td>{{ booking.event.location }}</td>
+        <td>{{ booking.event.price }}</td>
+        <td>{{ booking.status }}</td>
+      </tr>
+  </ng-container>
+  </tbody>
+</table>
+
+
