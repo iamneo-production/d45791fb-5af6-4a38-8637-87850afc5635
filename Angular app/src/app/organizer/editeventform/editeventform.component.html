@@ -1,0 +1,116 @@
+<router-outlet name="nav"></router-outlet>
+<div class="back">
+  <div class="col-md-2 nav">
+    <button class="btn-primary" id="btn1" (click)="newEvent()">Create New Event</button>
+    <button class="btn-primary" id="btn2" (click)="manageEvent()">Manage Events</button>
+  </div>
+<div class="bg">
+    <div class="container">
+        <h1 style="color: white; text-align: center; margin-top: 80px; padding-top: 10px;padding-left: 5px;">Edit Event Details</h1>
+        <div class="form">
+        <form action="" (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input">Event Name</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="event.name" placeholder="">
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="input">Event ID</label>
+              <input type="text" class="form-control" disabled id="input" name="id" [(ngModel)]="event.id" placeholder="">
+            </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="exampleFormControlTextarea1">Event Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" [(ngModel)]="event.description"></textarea>
+          </div>
+          &nbsp;
+          &nbsp;
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input">Speaker Name</label>
+              <input type="text " class="form-control" id="input" placeholder="" name="speakerName" [(ngModel)]="event.speakerName">
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="input">Speaker Expertise</label>
+              <input type="text" class="form-control" id="inputEmail4" name="speakerExpertise" [(ngModel)]="event.speakerExpertise" placeholder="">
+            </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input">Speaker Affiliation</label>
+              <input type="text" class="form-control" id="input" name="speakerAffiliations" [(ngModel)]="event.speakerAffiliations" placeholder="">
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="input">Speaker Accomplishments</label>
+              <input type="text" class="form-control" id="input" placeholder="" name="speakerAccomplishments" [(ngModel)]="event.speakerAccomplishments">
+            </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="exampleFormControlTextarea1">Speaker Biography</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="speakerBiography" [(ngModel)]="event.speakerBiography" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input">Organiser Name</label>
+              <input type="text" class="form-control" id="input" disabled placeholder="" name="organiserName" [(ngModel)]="event.organiser.name">
+            
+          </div>
+          </div>
+          <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="inputEmail4">Event Ticket Price</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="" name="price" [(ngModel)]="event.price">
+            </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="input">Location</label>
+              <input type="text" class="form-control" id="input" placeholder="" name="location" [(ngModel)]="event.location" required>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="inputEmail4">Event Participants capacity</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="" name="totalTickets" [(ngModel)]="event.totalTickets">
+            </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="Event Time&Date">StartTime&Date</label>
+              <input type="datetime-local" class="form-control" name="startDate" [ngModel]="event.startDate |date:'yyyy-MM-ddThh:mm' " (ngModelChange)="event.startDate" id="datetime-local" placeholder="" required>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="Event Time&Date">End Time&Date</label>
+              <input type="datetime-local" class="form-control" id="datetime-local" placeholder="" required name="endDate" [ngModel]="event.endDate |date:'yyyy-MM-ddThh:mm'"  (ngModelChange)="event.endDate" >
+          </div>
+            </div>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check The Details Before Submission</label>
+          </div>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"(click)="close()" >Close</button>&nbsp;
+            <button type="Update" (click)="onSubmit(f)" class="btn btn-primary">Update</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>
+    

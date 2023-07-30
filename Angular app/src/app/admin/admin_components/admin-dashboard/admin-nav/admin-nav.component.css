@@ -1,0 +1,44 @@
+#nav{
+    background-color: aliceblue;
+    height: 90vh;
+    border-right: 3px rgba(0, 0, 0,0.2) solid;
+}
+ul{
+    
+    border-left: 10px rgba(0, 0, 255,0.3) solid;
+}
+.list-group-item-secondary{
+    padding: 10px;
+    list-style-type: none;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 10px;
+}
+button{
+    border: none;
+    padding: 0%;
+    margin: 0%;
+    background-color: aliceblue;
+}
+.list-group-item-secondary:hover{
+    border: 1px solid;
+    border-color: rgb(162, 134, 188);
+    background-color: aquamarine;
+    box-shadow: 2px 2px 0px 0px lightblue;
+}
+.active{
+    background-color: aquamarine;
+    border: 2px rgba(0, 0, 0,0.4) solid;
+}
+a,a:hover,a:visited{
+    text-decoration: none;
+    color: black;
+}
+h5{
+    position: relative;
+    top: 5px;
+    font-size:1em;
+    color:rgba(50, 46, 47,0.9);
+}

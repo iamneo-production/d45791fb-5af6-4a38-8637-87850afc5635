@@ -1,0 +1,40 @@
+<app-admin-head-nav id="head"></app-admin-head-nav>
+<div class="row">
+    <div class="col-md-3">
+        <app-admin-nav id="nav"></app-admin-nav>
+        <app-ticket-date-filter id="filter"></app-ticket-date-filter>
+    </div>
+    <div class="col-md-9" id="main">
+        <app-ticket-search id="search"></app-ticket-search>
+        <div class="list">
+            <ul class="list-group" style="width: 80%;">
+                <div id="title" class="list-group-item" style="margin-bottom: 10px;">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <b>Ticket ID</b>
+                        </div>
+                        <div class="col-md-1">
+                            <b>Event ID</b>
+                        </div>
+                        <div class="col-md-2">
+                            <b>Attendee ID</b>
+                        </div>
+                        <div class="col-md-2">
+                            <b>Event Date</b>
+                        </div>
+                        <div class="col-md-2">
+                            <b>Cost of ticket</b>
+                        </div>
+                        <div class="col-md-2">
+                            <b>Status</b>
+                        </div>
+                        <div class="col-md-2">
+                            <b>Action</b>
+                        </div>
+                    </div>
+                </div>
+                <app-ticket-list id="list" *ngFor="let ticket of tickets" [ticket]="ticket"></app-ticket-list>
+            </ul>
+        </div>
+    </div>
+</div>

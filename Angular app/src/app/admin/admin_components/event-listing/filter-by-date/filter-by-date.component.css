@@ -1,0 +1,23 @@
+#filter{
+    width: 300px;
+    padding: 15px;
+    background-color:rgb(127,255,212);
+    border: 3px rgb(168,173,255) solid;
+    border-radius: 20px;
+    position: relative;
+    bottom: 380px;
+    left: 30px;
+    box-shadow: 10px 10px lightblue;
+}
+div{
+    text-align: center;
+    margin-top: 20px;
+}
+label{
+    margin-bottom: 6px;
+}
+input{
+    width: 150px;
+    position: relative;
+    left: 20%;
+}

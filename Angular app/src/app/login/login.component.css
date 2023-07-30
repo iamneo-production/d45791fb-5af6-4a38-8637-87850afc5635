@@ -1,0 +1,35 @@
+/* .login-block{
+    background-image: url('./bg.jpg');
+    height: 93vh;
+} */
+.container{
+    margin: 0 auto;
+    width: 500px;
+    height: 53vh;
+    overflow-wrap: normal;
+    overflow: hidden;
+    align-content: center;
+    background-color: rgba(245, 245, 245,0.8);
+    padding: 40px;
+    position: relative;
+    /* top: 150px; */
+    border-radius: 20px;
+}
+.login-block{
+    background-image: url('../../assets/bg.jpg');
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+#logbtn{
+    background-color: rgba(138, 43, 226,0.6);
+    width: 80px;
+    position: relative;
+    top: 30px;
+    color: white;
+}
+input{
+    padding: 6px;
+    border-radius: 3px;
+    background-color: rgb(242,243,243);
+}

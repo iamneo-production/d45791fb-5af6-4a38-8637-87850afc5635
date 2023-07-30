@@ -1,0 +1,39 @@
+<app-admin-head-nav id="head"></app-admin-head-nav>
+<div>
+    <div class="col-md-3">
+        <app-admin-nav id="nav"></app-admin-nav>
+        <app-filter-by-date id="filter"></app-filter-by-date>
+    </div>
+    <div id="search">
+        <app-search-event></app-search-event>
+    </div>
+    <div>
+        <div id="list">
+                <div class="list-group-item" id="title" style="z-index: 3;position:fixed;left: 450px;width:66vw;height: 60px;top: 200px; ">
+                    <div>
+                        <div class="col-md-1">
+                        <b> Event ID</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>Event Name</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>   Organizer ID</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>Start Date</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>   End Date</b>
+                        </div>
+                        <div class="col-md-2">
+                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</b>
+                        </div>
+                    </div>
+                </div>
+                <div id="ls">
+                    <app-a-events *ngFor="let event of events" [event]="event"></app-a-events>
+                </div>
+        </div>
+    </div>
+</div>
